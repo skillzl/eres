@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="icon" href="<%= bot.user.displayAvatarURL({ dynamic: true, size: 64, format: 'png' }) %>">
+    <link href="https://use.fontawesome.com/releases/v6.0.0/css/all.css" rel="stylesheet" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Nunito+Sans:ital,wght@0,800;1,800&family=Open+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,300;1,400;1,500;1,600;1,700;1,800&display=swap" rel="stylesheet">    
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.3/css/bulma.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.0.0/animate.min.css" />
+    <link rel="stylesheet" href="/css/custom.css">
+
+    <nav class="navbar" style="background-color: #0c584d;" role="navigation" aria-label="main navigation">
+        <div class="container">
+            <div class="navbar-brand">
+                <a href="/" class="navSpace">
+                    <img src="/static/Logo.png" class="navicon-fade" width="150" height="auto">
+                </a>
+            
+                <a role="button" class="navbar-burger" data-target="navMenu" aria-label="menu" aria-expanded="false" data-target="navbarBasicExample">
+                    <span aria-hidden="true"></span>
+                    <span aria-hidden="true"></span>
+                    <span aria-hidden="true"></span>
+                </a>
+            </div>
+        
+            <div id="navMenu" class="navbar-menu">
+                <div class="navbar-start">
+                    <a href="/" class="navbar-item">
+                        Home
+                    </a>
+            
+                    <a href="/stats" class="navbar-item">
+                        Stats
+                    </a>
+
+                    <a href="/invite" class="navbar-item">
+                        Invite Bot
+                    </a>
+
+                    <a href="<%= process.env.SUPPORT_SERVER %>" class="navbar-item">
+                        Support Server
+                    </a>
+                </div>
+
+                <% if (user) { %>
+                    <div class="navbar-end">
+                        <div class="navbar-item">
+                            <div class="dropdown is-right is-hoverable">
+                                <div class="dropdown-trigger">
+                                  <button class="button" aria-haspopup="true" aria-controls="dropdown-menu4">
+                                    <span><%= user.username %><%= user.discriminator && user.discriminator !== '0' ? `#${user.discriminator}` : '' %></span>
+                                    <span class="icon is-small">
+                                      <i class="fas fa-angle-down" aria-hidden="true"></i>
+                                    </span>
+                                  </button>
+                                </div>
+                                <div class="dropdown-menu" id="dropdown-menu4" role="menu">
+                                  <div class="dropdown-content">
+                                    <a href="/dashboard/servers" class="dropdown-item">
+                                        <i class="fas fa-server" style="padding-right: 5px;"></i> Servers
+                                    </a>
+                                    <hr class="dropdown-divider">
+                                    <a href="/logout" class="dropdown-item">
+                                        <i class="fas fa-sign-out-alt" style="padding-right: 5px;"></i> Log Out
+                                    </a>
+                                  </div>
+                                </div>
+                              </div>
+                        </div>
+                    </div>
+                <% } else { %>
+                    <div class="navbar-end">
+                        <div class="navbar-item">
+                            <div class="buttons">
+                                <a class="button is-light is-rounded" href="/login">
+                                    <i class="fab fa-discord" style="padding-right: 5px;"></i> Login
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                <% } %>
+            </div>
+        </div>
+    </nav>
+
+</head>
+
+<body>
+
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+        const $navbarBurgers = Array.prototype.slice.call(document.querySelectorAll('.navbar-burger'), 0);
+        if ($navbarBurgers.length > 0) {
+            $navbarBurgers.forEach( el => {
+                el.addEventListener('click', () => {
+                    const target = el.dataset.target;
+                    const $target = document.getElementById(target);
+
+                    el.classList.toggle('is-active');
+                    $target.classList.toggle('is-active');
+                });
+            });
+        }
+    });
+</script>

@@ -1,0 +1,54 @@
+<%- include("../partials/header") %>
+
+<title>Manage | <%= guild.name %> » <%= bot.user.username %> Dashboard</title>
+
+<section class="hero is-medium is-black" style="padding-top: 50px; padding-bottom: 50px;">
+    <div class="container">
+        <figure class="image is-128x128 has-image-centered">
+            <img class="is-rounded" src="<%= guild.icon ? `https://cdn.discordapp.com/icons/${guild.id}/${guild.icon}?size=512` : 'https://i.imgur.com/RO3uUxX.png' %>">
+        </figure>
+        <br>
+        <h1 class="is-size-1">
+            Manage <strong class="has-text-white"><%= guild.name %></strong>
+        </h1>
+    </div>
+</section>
+
+<div class="container" style="padding-top: 50px; padding-bottom: 30px;">
+    <div class="columns is-centered">
+        <div class="field is-grouped has-image-centered">
+            <p class="control">
+                <a href="/dashboard/server/<%= guild.id %>/profile" class="button is-medium is-rounded is-link">
+                    <i class="fa-solid fa-face-grin-beam" style="padding-right: 5px;"></i> Your Profile
+                </a>
+            </p>
+            <p class="control">
+                <a href="/dashboard/server/<%= guild.id %>/members" class="button is-medium is-rounded is-success">
+                    <i class="fas fa-users" style="padding-right: 5px;"></i> Members
+                </a>
+            </p>
+            <p class="control">
+                <a href="/dashboard/server/<%= guild.id %>/stats" class="button is-medium is-rounded is-warning">
+                    <i class="fa-solid fa-chart-column" style="padding-right: 5px;"></i> Stats
+                </a>
+            </p>
+        </div>
+    </div>
+
+    <hr style="background-color: dimgray">
+    
+    <form role="form" action="/dashboard/server/<%= guild.id %>" method="POST">
+        <h1 class="is-size-3 has-text-white">
+            <i class="fas fa-gear" style="padding-right: 5px;"></i> Edit Settings
+        </h1>
+        <label class="is-size-4 has-text-white">Prefix</label>
+        <input class="input is-medium" name="prefix" type="text" placeholder="<%= serverData.prefix ? serverData.prefix : '' %>">
+        <br>
+        <br>
+        <button type="submit" class="button is-warning is-rounded is-small is-link"><i class="fas fa-paper-plane" style="padding-right: 5px;"></i> Save Changes</button>
+        <br>
+        <br>
+        <small class="has-text-white">Page will reload after clicking the save button.</small>
+        <br>
+    </form>
+</div>

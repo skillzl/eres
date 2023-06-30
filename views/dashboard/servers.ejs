@@ -1,0 +1,39 @@
+<%- include("../partials/header") %>
+
+<title>Servers » <%= bot.user.username %> Dashboard</title>
+
+<section class="hero is-medium is-black" style="padding-top: 50px; padding-bottom: 50px;">
+    <div class="container">
+        <h1 class="is-size-1">
+            Select a Server
+        </h1>
+    </div>
+</section>
+
+<div class="container" style="padding-top: 50px; padding-bottom: 50px;">
+    <div class="columns is-multiline">
+        <% for (let guild of guilds) { %>
+            <div class="column post is-6">
+                <a href="/dashboard/server/<%= guild.id %>">
+                    <div class="card" style="border: 3px solid <%= bot.guilds.cache.get(guild.id) ? '#61b19b' : '#9b9b9b' %>;">
+                        <div class="card-content">
+                        <div class="media">
+                            <div class="media-left">
+                            <figure class="image is-48x48">
+                                <img class="is-rounded" src="<%= guild.icon ? `https://cdn.discordapp.com/icons/${guild.id}/${guild.icon}` : 'https://i.imgur.com/RO3uUxX.png' %>">
+                            </figure>
+                            </div>
+                            <div class="media-content">
+                            <h4 class="title is-4"><%= guild.name %></h4>
+                            <p class="subtitle is-6"><%= bot.guilds.cache.get(guild.id) ? "📝 Edit this server" : "➕ Invite Bot" %></p>
+                            </div>
+                        </div>
+                        </div>
+                    </div>
+                </a>
+            </div>
+        <% } %>
+    </div>
+</div>
+
+<%- include("../partials/footer") %>
