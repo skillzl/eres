@@ -1,5 +1,5 @@
 
-> <img  style="border-radius: 200px;"  src="https://raw.githubusercontent.com/skillzl/eres/main/assets/eres-crop.png?token=GHSAT0AAAAAACEJL55OLKSM4IMEXQQQYP5YZE7JHTQ"  width="20"/> skillzl<br/> eres-main github
+> <img  style="border-radius: 200px;"  src="https://raw.githubusercontent.com/skillzl/eres/main/assets/eres-crop.png?token=GHSAT0AAAAAACEJL55P56X47QH37DVMSHJOZFAHR4Q"  width="20"/> skillzl<br/> eres-main github
 
   
 Journey to rewrite my old bot from discord.js@v13 to v14!
@@ -22,7 +22,7 @@ git clone https://github.com/skillzl/eres
 cd eres-main
 
 npm install
-npn run start [cls && node index.js] or nodemon
+npn run start [cls && node bot.js] or nodemon
 ```
 
 > **Release**: Don't even think about it 😂
