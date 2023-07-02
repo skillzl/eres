@@ -1,22 +1,21 @@
 const Command = require('../../structures/CommandClass');
 
-const { EmbedBuilder, ContextMenuCommandBuilder, ApplicationCommandType } = require('discord.js');
+const { SlashCommandBuilder, EmbedBuilder } = require('discord.js');
 const { stripIndents } = require('common-tags');
 
 module.exports = class UserInfo extends Command {
 	constructor(client) {
 		super(client, {
-			data: new ContextMenuCommandBuilder()
-				.setName('User Info')
-				.setType(ApplicationCommandType.User)
+			data: new SlashCommandBuilder()
+				.setName('userinfo')
+				.setDescription('Returns information about a user.')
 				.setDMPermission(false),
-			contextDescription: 'Returns information about a user.',
 			usage: 'User Info',
-			category: 'Context',
+			category: 'General',
 			permissions: ['Use Application Commands', 'Send Messages', 'Embed Links'],
 		});
 	}
-	async run(client, interaction) {
+	async run(interaction) {
 		const member = interaction.guild.members.cache.get(interaction.targetId) || interaction.member;
 
 		const embed = new EmbedBuilder()
@@ -50,5 +49,6 @@ module.exports = class UserInfo extends Command {
 			);
 
 		await interaction.reply({ embeds: [embed] });
+
 	}
 };
