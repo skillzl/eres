@@ -26,7 +26,7 @@ npm install
 npn run start [cls && node bot.js] or nodemon
 ```
 
-<img src="./assets/github/dashboard.pnge" width="256">
+<img src="./assets/github/dashboard.png" width="256">
 
 > **Release**: Don't even think about it 😂
 > **Tip**: Visit this repo once a while, there may be an update!
