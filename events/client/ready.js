@@ -22,7 +22,7 @@ module.exports = class ReadyEvent extends Event {
 		webPortal.load(client);
 
 		client.user.setActivity('🌴 ' + client.users.cache.size + ' users', { type: ActivityType.Watching });
-		
+
 		console.log(`[Deploy]: 🟢 ${client.user.tag} is online. `);
 		console.log(`[Info]: Interacted with ${client.users.cache.size.toLocaleString()} users 👥 and ${client.guilds.cache.size.toLocaleString()} guilds 🈂️.`);
 	}
