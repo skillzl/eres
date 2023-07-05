@@ -25,13 +25,13 @@ const deploy = async () => {
 		const clientId = process.env.CLIENT_ID;
 		const guildId = process.env.DEPLOY_GUILD_ID;
 
-		console.log('Started refreshing Slash Commands and Context Menus...');
+		console.log('[Deploy]: Started refreshing Slash Commands and Context Menus... ⏳');
 
 		await rest.put(
 			Routes.applicationGuildCommands(clientId, guildId),
 			{ body: commandData },
 		).then(() => {
-			console.log('Slash Commands and Context Menus have now been deployed.');
+			console.log('[Deploy]: Slash Commands and Context Menus have now been deployed 📈.');
 		});
 	}
 	catch (e) {
