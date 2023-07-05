@@ -15,6 +15,7 @@ All the sessions are maintained by me [skillzl](https://github.com/skillzl) only
 - Music player with queue support and more.
 - Social system with reputation status, credits and levels.
 - Moderation features with auto-moderation and more.
+- Working dashboard merged with the database to control bots settings.
 ## Node start guide
 
 ```
