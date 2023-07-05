@@ -1,7 +1,7 @@
 {
-  "name": "discord-dashboard",
-  "version": "2.1.0",
-  "description": "Dashboard example using Discord.js and Passport-Discord",
+  "name": "eres-main",
+  "version": "1.4.0",
+  "description": "🍍 Eres; new Discord application with modern web dashboard and new features for your community.",
   "main": "bot.js",
   "scripts": {
     "start": "node bot",
@@ -9,19 +9,19 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/NTMNathan/discord-dashboard.git"
+    "url": "git+https://github.com/skillzl/eres.git"
   },
   "keywords": [
-    "discord",
-    "bot",
-    "dashboard"
+    "eres",
+    "eres-main",
+    "discord.js"
   ],
-  "author": "NTM Development",
-  "license": "ISC",
+  "author": "skillzl",
+  "license": "Apache License 2.0",
   "bugs": {
-    "url": "https://github.com/NTMNathan/discord-dashboard/issues"
+    "url": "https://github.com/skillzl/eres/issues"
   },
-  "homepage": "https://github.com/NTMNathan/discord-dashboard#readme",
+  "homepage": "https://github.com/skillzl/eres#readme",
   "dependencies": {
     "@discordjs/rest": "^1.7.1",
     "body-parser": "^1.20.0",
