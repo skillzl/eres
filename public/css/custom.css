@@ -36,7 +36,7 @@ p, div {
 }
 
 .navbar-item:hover {
-    color: #30917d;
+    color: #21695b;
 }
 
 .navbar-burger {
@@ -44,7 +44,7 @@ p, div {
 }
 
 .navbar-burger:hover {
-    color: #d8d8d8;
+    color: #c0bebe;
 }
 
 .has-image-centered {
