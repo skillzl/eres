@@ -1,5 +1,5 @@
 
-> ![](./assets/eres-crop.png) skillzl<br/> eres-main github
+> ![20x](./assets/eres-crop.png) skillzl<br/> eres-main github
 
   
 Journey to rewrite my old bot from discord.js@v13 to v14!
