@@ -56,6 +56,6 @@ module.exports.load = async (client) => {
 	});
 
 	app.listen(process.env.PORT, () => {
-		console.log(`Web Server now online on port ${process.env.PORT}`);
+		console.log(`[Dashboard]: Web server now online on port:${process.env.PORT} 📶.`);
 	});
 };

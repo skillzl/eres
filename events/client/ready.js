@@ -16,13 +16,14 @@ module.exports = class ReadyEvent extends Event {
 		mongoose.connect(process.env.MONGO_URL, {
 			useNewUrlParser: true,
 			useUnifiedTopology: true,
-		}).then(() => console.log('MongoDB Client has been successfully connected.'));
+		}).then(() => console.log('[Database]: Connected to 🥬 mongoose database server. '));
 
 		const webPortal = require('../../server');
 		webPortal.load(client);
 
-		client.user.setActivity('👋 Hello World!', { type: ActivityType.Playing });
-
-		console.log(`Discord Bot is now online with ${client.users.cache.size} users and ${client.guilds.cache.size} servers.`);
+		client.user.setActivity('🌴 ' + client.users.cache.size + ' users', { type: ActivityType.Watching });
+		
+		console.log(`[Deploy]: 🟢 ${client.user.tag} is online. `);
+		console.log(`[Info]: Interacted with ${client.users.cache.size.toLocaleString()} users 👥 and ${client.guilds.cache.size.toLocaleString()} guilds 🈂️.`);
 	}
 };
