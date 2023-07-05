@@ -10,6 +10,6 @@ module.exports = class guildCreate extends Event {
 	// eslint-disable-next-line max-statements-per-line
 	async run(guild) {
 		// eslint-disable-next-line max-statements-per-line
-		if (!guild.available) return; await db.createServer(guild.id); console.log(`Joined server: ${guild.name}`);
+		if (!guild.available) return; await db.createServer(guild.id); console.log(`[Info]: Joined guild: ${guild.name} ⬆️.`);
 	}
 };
