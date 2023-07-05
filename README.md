@@ -25,7 +25,7 @@ cd eres-main
 npm install
 npn run start [cls && node bot.js] or nodemon
 ```
-
+## Dashboard
 <img src="./assets/github/dashboard.png" width="1042">
 
 > **Release**: Don't even think about it 😂
