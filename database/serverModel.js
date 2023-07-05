@@ -1,8 +1,8 @@
 const mongoose = require('mongoose');
 
 const serverSchema = new mongoose.Schema({
-	serverId: String,
-	prefix: String,
+	serverId: { type:String },
+	prefix: { type:String },
 });
 
 module.exports = mongoose.model('server', serverSchema);
