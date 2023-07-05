@@ -4,7 +4,6 @@ const passport = require('passport');
 const dayjs = require('dayjs');
 require('dayjs/plugin/duration');
 
-
 const package = require('../package.json');
 
 const router = express.Router();
