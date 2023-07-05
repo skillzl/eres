@@ -1,5 +1,5 @@
 
-> <img  style="border-radius: 200px;"  src="https://raw.githubusercontent.com/skillzl/eres/main/assets/eres-crop.png?token=GHSAT0AAAAAACEJL55P56X47QH37DVMSHJOZFAHR4Q"  width="20"/> skillzl<br/> eres-main github
+> ![](./assets/eres-crop.png) skillzl<br/> eres-main github
 
   
 Journey to rewrite my old bot from discord.js@v13 to v14!
