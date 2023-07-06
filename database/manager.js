@@ -37,9 +37,12 @@ module.exports = class Manager {
 	}
 
 	static async createUser(id) {
-		const result = new userModel({ userId: id });
-		await result.save();
-		return result;
+		const user = new userModel({
+			userId: id,
+		});
+
+		await user.save();
+		return user;
 	}
 
 	static async getUserById(id) {
