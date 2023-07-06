@@ -71,7 +71,7 @@ module.exports = class UserInfo extends Command {
 			const diff = (+today - +createdOn) / msInDay;
 
 			return diff;
-		} 
+		}
 
 		const embed = new EmbedBuilder()
 			.setTitle(
