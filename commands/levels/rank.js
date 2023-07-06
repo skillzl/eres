@@ -17,6 +17,8 @@ module.exports = class Rank extends Command {
 			data: new SlashCommandBuilder()
 				.setName('rank')
 				.setDescription('Get your current level.')
+				.addUserOption(option => option.setName('target').setDescription('The user')
+					.setRequired(false))
 				.setDMPermission(false),
 			usage: 'rank',
 			category: 'Levels',
@@ -24,8 +26,8 @@ module.exports = class Rank extends Command {
 		});
 	}
 	async run(client, interaction) {
-		const member = client.users.cache.get(interaction.targetId) || interaction.user;
-		const { user } = await db.getUserById(interaction.user.id);
+		const member = interaction.options.getUser('target') || interaction.user;
+		const { user } = await db.getUserById(member.id);
 
 		const level = calculateUserXp(user.xp);
 

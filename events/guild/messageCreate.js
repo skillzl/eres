@@ -1,3 +1,5 @@
+/* eslint-disable no-cond-assign */
+/* eslint-disable no-shadow */
 const Event = require('../../structures/EventClass');
 const db = require('../../database/manager');
 
@@ -8,13 +10,11 @@ module.exports = class MessageCreate extends Event {
 			category: 'message',
 		});
 	}
-	// eslint-disable-next-line no-empty-function, brace-style
-	async run(message) { // eslint-disable-next-line indent
-        if (!message.author.bot) { // eslint-disable-next-line indent
-             const { user } = await db.getUserById(message.author.id);
+	async run(message) {
+		if (!message.author.bot) {
+			const { user } = await db.getUserById(message.author.id);
 			const xp = Math.ceil(Math.random() * (1 * 5));
 
-			// eslint-disable-next-line no-shadow
 			const calculateUserXp = (xp) => Math.floor(0.1 * Math.sqrt(xp));
 
 			const level = calculateUserXp(user.xp);

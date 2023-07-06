@@ -15,7 +15,7 @@ module.exports = class Hello extends Command {
 			permissions: ['Use Application Commands', 'Send Messages', 'Embed Links'],
 		});
 	}
-	async run(client, interaction) {
-		await interaction.reply({ content: `Hello ${interaction.user}! Here, you should have a slice of vanilla cake 😊🍰\n\nMessage ID: ${interaction.targetId}` });
+	async run(interaction) {
+		await interaction.reply(`Hello ${interaction.user}! Here, you should have a slice of vanilla cake 😊🍰\n\nMessage ID: ${interaction.targetId}`);
 	}
 };
