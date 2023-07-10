@@ -3,7 +3,7 @@ const db = require('../../database/manager');
 
 const { SlashCommandBuilder } = require('discord.js');
 
-module.exports = class Rank extends Command {
+module.exports = class Xp extends Command {
 	constructor(client) {
 		super(client, {
 			data: new SlashCommandBuilder()
