@@ -1,86 +1,82 @@
 <%- include("partials/header") %>
 
-  <title>Bot Stats » <%= bot.user.username %> Dashboard</title>
+  <title>ucp.<%= bot.user.username.toLowerCase() %>.dev - stats</title>
 
-  <div class="bg-light text-dark has-text-centered" style="padding-top: 45px;">
+  <div class="bg-light text-dark has-text-centered" style="padding-top: 145px;">
     <div class="p-5">
       <div class="container">
         <h2 class="is-size-2 has-text-white">Bot Statistics</h2>
       </div>
     </div>
   </div>
-
-  <div class="container" style="padding-top: 10px; padding-bottom: 90px;">
-    <table class="table text-light is-fullwidth">
-      <tbody>
-        <tr class="has-text-centered">
-          <td style="font-size: 20px;"><i class="fas fa-users"></i> Users</td>
-          <td style="font-size: 20px;">
-            <%= bot.users.cache.size || 0 %>
-          </td>
-        </tr>
-        <tr class="has-text-centered">
-          <td style="font-size: 20px;"><i class="fas fa-server"></i> Servers</td>
-          <td style="font-size: 20px;">
-            <%= bot.guilds.cache.size || 0 %>
-          </td>
-        </tr>
-        <tr class="has-text-centered">
-          <td style="font-size: 20px;"><i class="fas fa-hashtag"></i> Channels</td>
-          <td style="font-size: 20px;">
-            <%= bot.channels.cache.size || 0 %> (<%= bot.channels.cache.filter(c=> c.type ===
-                channelType.GuildText).size %> Text and <%= bot.channels.cache.filter(c=> c.type ===
-                  channelType.GuildVoice).size %> Voice)
-          </td>
-        </tr>
-        <tr class="has-text-centered">
-          <td style="font-size: 20px;"><i class="fas fa-laugh"></i> Emojis</td>
-          <td style="font-size: 20px;">
-            <%= bot.emojis.cache.size || 0 %> (<%= bot.emojis.cache.filter(e=> e.animated === false).size %> Normal and
-                <%= bot.emojis.cache.filter(e=> e.animated === true).size %> Animated)
-          </td>
-        </tr>
-        <tr class="has-text-centered">
-          <td style="font-size: 20px;"><i class="fa-solid fa-stopwatch"></i> Uptime</td>
-          <td style="font-size: 20px;">
-            <%= uptime %>
-          </td>
-        </tr>
-        <tr class="has-text-centered">
-          <td style="font-size: 20px;"><i class="fas fa-table-tennis"></i> Ping (Latency)</td>
-          <td style="font-size: 20px;">
-            <%= bot.ws.ping || 0 %>ms
-          </td>
-        </tr>
-        <tr class="has-text-centered">
-          <td style="font-size: 20px;"><i class="fab fa-discord"></i> Discord.js Version</td>
-          <td style="font-size: 20px;">v<%= djsVersion %>
-          </td>
-        </tr>
-        <tr class="has-text-centered">
-          <td style="font-size: 20px;"><i class="fa-solid fa-database"></i> Database Version</td>
-          <td style="font-size: 20px;">
-            <%= mongoDBVersion %>
-          </td>
-        </tr>
-        <tr class="has-text-centered">
-          <td style="font-size: 20px;"><i class="fab fa-node"></i> Node.js Version</td>
-          <td style="font-size: 20px;">
-            <%= process.version %>
-          </td>
-        </tr>
-        <tr class="has-text-centered">
-          <td style="font-size: 20px;"><i class="fas fa-laptop"></i> Usage</td>
-          <td style="font-size: 20px;">
-            <ul>
-              <li>Memory: <%= (process.memoryUsage().rss / 1024 / 1024).toFixed(2) %> MB</li>
-              <li>CPU: <%= (process.cpuUsage().system / 1024 / 1024).toFixed(2) %>%</li>
-              <li>Node CPU: <%= (process.cpuUsage().user / 1024 / 1024).toFixed(2) %>%</li>
-            </ul>
-          </td>
-        </tr>
-      </tbody>
-    </table>
+  <div class="container">
+    <div class="notification is-link mt-5" style="background-color: #0c584d;">
+  <nav class="level has-text-white">
+    <div class="level-item has-text-centered">
+      <div>
+        <p class="heading">Users</p>
+        <p class="title has-text-white"><%= bot.users.cache.size || 0 %></p>
+      </div>
+    </div>
+    <div class="level-item has-text-centered">
+      <div>
+        <p class="heading">Guilds</p>
+        <p class="title has-text-white"><%= bot.guilds.cache.size || 0 %></p>
+      </div>
+    </div>
+    <div class="level-item has-text-centered">
+      <div>
+        <p class="heading">Channels</p>
+        <p class="title has-text-white"><%= bot.channels.cache.size || 0 %> (<%= bot.channels.cache.filter(c=> c.type ===
+          channelType.GuildText).size %> text & <%= bot.channels.cache.filter(c=> c.type ===
+            channelType.GuildVoice).size %> voice)</p>
+      </div>
+    </div>
+    <div class="level-item has-text-centered">
+      <div>
+        <p class="heading">Emojis</p>
+        <p class="title has-text-white"><%= bot.emojis.cache.size || 0 %> (<%= bot.emojis.cache.filter(e=> e.animated === false).size %> &
+          <%= bot.emojis.cache.filter(e=> e.animated === true).size %> gif)</p>
+      </div>
+    </div>
+    <div class="level-item has-text-centered">
+      <div>
+        <p class="heading">Uptime</p>
+        <p class="title has-text-white"><%= uptime %></p>
+      </div>
+    </div>
+  </nav>
+  <nav class="level has-text-white">
+    <div class="level-item has-text-centered">
+      <div>
+        <p class="heading">Ping (Latency)</p>
+        <p class="title has-text-white"><%= bot.ws.ping || 0 %>ms</p>
+      </div>
+    </div>
+    <div class="level-item has-text-centered">
+      <div>
+        <p class="heading">Discord.js Version</p>
+        <p class="title has-text-white">v<%= djsVersion %></p>
+      </div>
+    </div>
+    <div class="level-item has-text-centered">
+      <div>
+        <p class="heading">Database Version</p>
+        <p class="title has-text-white"><%= mongoDBVersion %></p>
+      </div>
+    </div>
+    <div class="level-item has-text-centered">
+      <div>
+        <p class="heading">Node.js Version</p>
+        <p class="title has-text-white"><%= process.version %></p>
+      </div>
+    </div>
+    <div class="level-item has-text-centered">
+      <div>
+        <p class="heading">Usage</p>
+        <p class="title has-text-white">mem: <%= (process.memoryUsage().rss / 1024 / 1024).toFixed(2) %> MB</p>
+        <p class="title has-text-white">cpu: <%= (process.cpuUsage().system / 1024 / 1024).toFixed(2) %>%</p>
+      </div>
+    </div>
   </div>
-
-  <%- include("partials/footer") %>
+ </div>

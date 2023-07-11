@@ -21,7 +21,7 @@ router.get('/stats', async (req, res) => {
 		tag: (req.user ? req.user.tag : 'Login'),
 		bot: req.client,
 		user: req.user || null,
-		uptime: dayjs(req.client.uptime).format('D [days], H [hours], m [minutes], s [seconds]'),
+		uptime: dayjs(req.client.uptime).format('D [d], H [h], m [m], s [s]'),
 		channelType: ChannelType,
 		djsVersion: version,
 		mongoDBVersion: package.dependencies['mongoose'],
