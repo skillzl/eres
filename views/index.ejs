@@ -2,7 +2,7 @@
 
 <title>Home » <%= bot.user.username %> Dashboard</title>
 
-<div class="container has-text-centered" style="padding-top: 80px;">
+<div class="container has-text-centered" style="padding-top: 50px;">
     <% if (user) { %>
         <figure class="image is-128x128 has-image-centered">
             <img class="is-rounded" src="https://cdn.discordapp.com/avatars/<%= user.id %>/<%= user.avatar %>">
@@ -11,6 +11,7 @@
         <h1 class="is-size-2 has-text-white">Logged in as <strong class="has-text-white"><%= user.username %><%= user.discriminator && user.discriminator !== '0' ? `#${user.discriminator}` : '' %></strong></h1>
         <p class="has-text-white">Welcome to the <b><%= bot.user.username %></b> dashboard! Where would you like to go?</p>
         <br>
+
 
         <hr style="background-color: dimgray">
 
@@ -34,14 +35,91 @@
                 </p>
             </div>
         </div>
+
+        <div class="container is-max-widescreen">
+            <div class="notification is-link mt-5" style="background-color: #df4848;">
+                <button class="delete"></button>
+                <p>
+                    You are experiencing a beta version of this web application that may suffer some unfinished features and it can be incompatible with some devices or browsers. Please create an issue ticket on GitHub:
+                    <a href=
+                "https://github.com/skillzl/eres/issues">
+                https://github.com/skillzl/eres/issues</a>
+                </p>
+            </div>
+        <script>
+
+            document.querySelectorAll(".notification .delete")
+                .forEach(function ($deleteButton) {
+      
+                    const parentNotification = $deleteButton.parentNode;
+                    $deleteButton.addEventListener('click', function () {
+                        parentNotification.parentNode
+                            .removeChild(parentNotification);
+                    });
+                });
+        </script>
     <% } else { %>
         <figure class="image is-128x128 has-image-centered">
             <img class="is-rounded" src="<%= bot.user.displayAvatarURL({ dynamic: true, size: 128, format: 'png' }) %>">
         </figure>
-        <br>
-        <h1 class="is-size-2 has-text-white"><%= bot.user.username %> Discord Bot</h1>
-        <br>
-        <a href="/login" class="button is-medium is-rounded"><i class="fab fa-discord" style="padding-right: 5px;"></i> Login with Discord</a>
+        <h1 class="is-size-2 has-text-white"><%= bot.user.username %></h1>
+        <div class="content has-text-white">
+            <p class="p-2 is-size-10">A multipurpose discord client written in  <span class="has-text-warning">javascript</span> featuring <span class="has-text-success"><%= bot.commands.size %></span> commands and a highly optimized web application with control over the application's settings. <%= bot.user.username %> is used on over <span class="has-text-success"><%= bot.guilds.cache.size %></span> servers, we invite you to try it out and hope you enjoy!</p>
+        </div>
+        <a href="/invite" class="button is-success is-medium is-rounded"><i class="fab fa-discord" style="padding-right: 5px;"></i> Add to Discord</a>
+        <a href="/login" class="button is-medium is-rounded"><i class="fa fa-right-to-bracket" style="padding-right: 5px;"></i> Login</a>
         <img src="https://i.imgur.com/yGgBbxA.png" alt="Landing Image" >
+        <nav class="columns box" style="background-color: #0c584d;">
+            <a class="bd-focus-item column has-text-centered">
+                <p class="title is-4 has-text-white">
+                    <strong>
+                        Commands
+                    </strong>
+                </p>
+                <p class="subtitle is-6 has-text-white">
+                    <strong class="has-text-white">
+                        <%= bot.commands.size || 0 %>
+                    </strong>
+                    commands
+                </p>
+            </a>
+            <a class="bd-focus-item column has-text-centered">
+                <p class="title is-4 has-text-white">
+                    <strong class="has-text-white">
+                        Guilds
+                    </strong>
+                </p>
+                <p class="subtitle is-6 has-text-white">
+                    <strong class="has-text-white">
+                        <%= bot.guilds.cache.size || 0 %>
+                    </strong> guilds
+                </p>
+            </a>
+            <a class="bd-focus-item column has-text-centered">
+                <p class="title is-4 has-text-white">
+                    <strong>
+                        Users
+                    </strong>
+                </p>
+                <p class="subtitle is-6 has-text-white">
+                    <strong class="has-text-white">
+                        <%= bot.users.cache.size || 0 %>
+                    </strong> users
+                </p>
+            </a>
+            <a class="bd-focus-item column has-text-centered" target="_blank">
+                <p class="title is-4 has-text-white">
+                    <strong>
+                        Ping
+                    </strong>
+                </p>
+                <p class="subtitle is-6 has-text-white">
+                    <%= bot.ws.ping || 0 %>
+                    <strong class="has-text-white">
+                        ms
+                    </strong>
+                </p>
+            </a>
+        </nav> <br>
     <% } %>
 </div>
