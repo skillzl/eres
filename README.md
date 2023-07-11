@@ -1,21 +1,20 @@
 
-> <img src="./assets/eres-crop.png" width="20"> skillzl<br/> eres-main github
+> <img src="./assets/eres-crop.png" width="20"> eres<br/> author: skillzl
 
   
-Journey to rewrite my old bot from discord.js@v13 to v14!
+🍍 Complete journey rewriting the original chrlwv source to discord.js@v14.1.1!
 
 ## Deployment & Features
-Deployment support is not here yet! This repo is for my porpose to maintain the rewrite of this application.
+Deployment support is not here yet! This repository is only for github imigration purposes.
 
-All the sessions are maintained by me [skillzl](https://github.com/skillzl) only `my desktop` without any mass-public known.
+Current version it is not available for production deployment.
 
-> **Note:** Alpha stage not even a beta one so, updates may not be so often.
+> **Note**
+> Application is not intended to be used in production environments.
 
 - Modular features with optional congifuration.
-- Music player with queue support and more.
-- Social system with reputation status, credits and levels.
-- Moderation features with auto-moderation and more.
-- Working dashboard merged with the database to control bots settings.
+- Experience system with levels and xp.
+- Web application (dashboard) for optional configuration settings.
 ## Node start guide
 
 ```
@@ -28,8 +27,7 @@ npn run start [cls && node bot.js] or nodemon
 ## Dashboard
 <img src="./assets/github/dashboard.png" width="1042">
 
-> **Release**: Don't even think about it 😂
-> **Tip**: Visit this repo once a while, there may be an update!
-> 
+> **Release**: No estimated time of release, this may be changed later.
+> **Tip**: Visit this repository to check out the latest version. 
 ## License
 This project is licensed under the Apache License 2.0 License - see the [LICENSE](https://github.com/skillzl/eres/blob/main/LICENSE) file for details.
