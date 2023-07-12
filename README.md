@@ -56,5 +56,7 @@ SUPPORT_SERVER=
 ## Unique identifier guild for deployed commands and context commands
 DEPLOY_GUILD_ID=
 ```
+> **Note**
+ Envoirement settings can be changed here: [.env.example](https://github.com/skillzl/eres/blob/main/.env.example)
 ## License
 This project is licensed under the Apache License 2.0 License - see the [LICENSE](https://github.com/skillzl/eres/blob/main/LICENSE) file for details.
