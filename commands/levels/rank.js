@@ -31,8 +31,8 @@ module.exports = class Rank extends Command {
 
 		const level = calculateUserXp(user.xp);
 
-		const minxp = (level * level) / 0.01;
-		const maxxp = ((level + 1) * (level + 1)) / 0.01;
+		const minXp = (level * level) / 0.01;
+		const maxXp = ((level + 1) * (level + 1)) / 0.01;
 
 		const canvas = createCanvas(1026, 285);
 		const ctx = canvas.getContext('2d');
@@ -54,14 +54,14 @@ module.exports = class Rank extends Command {
 
 		ctx.fillStyle = '#0c594e';
 		ctx.globalAlpha = 1;
-		ctx.fillRect(0, 270, ((user.xp - minxp) / (maxxp - minxp)) * 1026, 20);
+		ctx.fillRect(0, 270, ((user.xp - minXp) / (maxXp - minXp)) * 1026, 20);
 		ctx.fill();
 		ctx.globalAlpha = 1;
 
 		ctx.font = '25px Arial';
 		ctx.textAlign = 'center';
 		ctx.fillStyle = '#d6d6d6';
-		ctx.fillText(`${numAbbr.abbreviate(user.xp)}/${numAbbr.abbreviate(maxxp)}`, 780, 160);
+		ctx.fillText(`${numAbbr.abbreviate(user.xp)}/${numAbbr.abbreviate(maxXp)}`, 780, 160);
 
 		ctx.textAlign = 'center';
 		ctx.font = 'bold 25px Arial';

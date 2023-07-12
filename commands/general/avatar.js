@@ -19,7 +19,6 @@ module.exports = class Avatar extends Command {
 	async run(client, interaction) {
 		const user = interaction.options.getUser('target') || interaction.user;
 
-
 		const buttonRow = new ActionRowBuilder()
 			.addComponents(
 				new ButtonBuilder()

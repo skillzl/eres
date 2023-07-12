@@ -29,5 +29,32 @@ npn run start [cls && node bot.js] or nodemon
 
 > **Release**: No estimated time of release, this may be changed later.
 > **Tip**: Visit this repository to check out the latest version. 
+## Envoirement settings
+
+```
+## Discord Application Token
+TOKEN=
+
+## Mongoose Connection String
+MONGO_URL=
+
+## Discord Application Unique Identifier
+CLIENT_ID=
+
+## Dicord Application Secret Key => (used for dashboard authentication)
+CLIENT_SECRET=
+
+## Listening Port for web-server
+PORT= (e.g: 3000)
+
+## Callback Url for web-server => (also applied in discord.com/developers settings)
+CALLBACK_URL= (e.g: http://localhost:3000/login)
+
+## Support server Url
+SUPPORT_SERVER=
+
+## Unique identifier guild for deployed commands and context commands
+DEPLOY_GUILD_ID=
+```
 ## License
 This project is licensed under the Apache License 2.0 License - see the [LICENSE](https://github.com/skillzl/eres/blob/main/LICENSE) file for details.
