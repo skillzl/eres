@@ -20,7 +20,7 @@ module.exports = class Leaderboard extends Command {
 		let members = [];
 
 		for (const obj of data) {
-			if (interaction.guild.members.fetch()
+			if (client.guilds.cache.get(interaction.guild.id)
 				.map(member => member.id)
 				.include(obj.userId)) members.push(obj);
 		}
