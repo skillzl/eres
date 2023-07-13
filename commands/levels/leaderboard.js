@@ -21,7 +21,7 @@ module.exports = class Leaderboard extends Command {
 
 		for (let i = 0; i < 10; i++) {
 			if (users[i]) {
-				leaderboard.push(`**${i + 1}**. ${client.users.cache.get(users[i].userId)} - ${users[i].xp} xp points`);
+				leaderboard.push(`**${i + 1}**. ${client.users.cache.get(users[i].userId).username} - ${users[i].xp} xp points`);
 			}
 		}
 
