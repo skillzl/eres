@@ -3,8 +3,6 @@ const db = require('../../database/manager');
 
 const NumAbbr = require('number-abbreviate');
 const { loadImage, createCanvas } = require('canvas');
-const fs = require('fs');
-const path = require('path');
 
 const calculateUserXp = (xp) => Math.floor(0.1 * Math.sqrt(xp));
 const numAbbr = new NumAbbr();
@@ -37,8 +35,7 @@ module.exports = class Rank extends Command {
 		const canvas = createCanvas(1026, 285);
 		const ctx = canvas.getContext('2d');
 
-		const backgroundLevel = fs.readFileSync(path.join(__dirname, '..', '..', 'assets', 'canva', 'level-background.png'));
-		const background = await loadImage(backgroundLevel);
+		const background = await loadImage('././assets/canva/level-background.png');
 
 		ctx.drawImage(background, 0, 0, canvas.width, canvas.height);
 		ctx.beginPath();
