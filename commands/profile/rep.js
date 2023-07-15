@@ -10,7 +10,7 @@ module.exports = class Reputation extends Command {
 		super(client, {
 			data: new SlashCommandBuilder()
 				.setName('rep')
-				.setDescription('Give a reputation point to a user.')
+				.setDescription('Give a reputation point to a user')
 				.addUserOption(option => option.setName('target').setDescription('The user')
 					.setRequired(true))
 				.setDMPermission(false),

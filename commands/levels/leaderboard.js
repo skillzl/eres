@@ -8,7 +8,7 @@ module.exports = class Leaderboard extends Command {
 		super(client, {
 			data: new SlashCommandBuilder()
 				.setName('leaderboard')
-				.setDescription('Shows top 10 users with the highest amount of XP.')
+				.setDescription('Shows top 10 users with the highest amount of XP')
 				.setDMPermission(false),
 			usage: 'leaderboard',
 			category: 'Levels',

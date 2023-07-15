@@ -8,7 +8,7 @@ module.exports = class Xp extends Command {
 		super(client, {
 			data: new SlashCommandBuilder()
 				.setName('xp')
-				.setDescription('Fetch the current xp points an user have.')
+				.setDescription('Fetch the current xp points an user have')
 				.addUserOption(option => option.setName('target').setDescription('The user')
 					.setRequired(false))
 				.setDMPermission(false),

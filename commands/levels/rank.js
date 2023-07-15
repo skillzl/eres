@@ -14,7 +14,7 @@ module.exports = class Rank extends Command {
 		super(client, {
 			data: new SlashCommandBuilder()
 				.setName('rank')
-				.setDescription('Get your current level.')
+				.setDescription('Get your current level')
 				.addUserOption(option => option.setName('target').setDescription('The user')
 					.setRequired(false))
 				.setDMPermission(false),

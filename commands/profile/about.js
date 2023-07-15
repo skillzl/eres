@@ -8,10 +8,10 @@ module.exports = class About extends Command {
 		super(client, {
 			data: new SlashCommandBuilder()
 				.setName('about')
-				.setDescription('Customize your profile, by setting a new about me text.')
+				.setDescription('Customize your profile, by setting a new about me text')
 				.addStringOption(option =>
 					option.setName('input')
-						.setDescription('Your new profile\'s description.')
+						.setDescription('Your new profile\'s description')
 						.setRequired(true))
 				.setDMPermission(false),
 			usage: 'about',

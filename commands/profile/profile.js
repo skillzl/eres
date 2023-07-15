@@ -13,7 +13,7 @@ module.exports = class Profile extends Command {
 		super(client, {
 			data: new SlashCommandBuilder()
 				.setName('profile')
-				.setDescription('Fetch the current profile stats an user have.')
+				.setDescription('Fetch the current profile stats an user have')
 				.addUserOption(option => option.setName('target').setDescription('The user')
 					.setRequired(false))
 				.setDMPermission(false),

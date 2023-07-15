@@ -7,7 +7,7 @@ module.exports = class Avatar extends Command {
 		super(client, {
 			data: new SlashCommandBuilder()
 				.setName('avatar')
-				.setDescription('Fetches the avatar of a user.')
+				.setDescription('Fetches the avatar of a user')
 				.addUserOption(option => option.setName('target').setDescription('The user')
 					.setRequired(false))
 				.setDMPermission(false),
