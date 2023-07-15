@@ -55,6 +55,9 @@ SUPPORT_SERVER=
 
 ## Unique identifier guild for deployed commands and context commands
 DEPLOY_GUILD_ID=
+
+## Unique identifier developer
+DEVELOPER_ID=
 ```
 > **Note**
  Envoirement settings can be changed here: [.env.example](https://github.com/skillzl/eres/blob/main/.env.example)
