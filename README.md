@@ -53,9 +53,6 @@ CALLBACK_URL= (e.g: http://localhost:3000/login)
 ## Support server Url
 SUPPORT_SERVER=
 
-## Unique identifier guild for deployed commands and context commands
-DEPLOY_GUILD_ID=
-
 ## Unique identifier developer
 DEVELOPER_ID=
 ```
