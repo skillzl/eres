@@ -26,8 +26,6 @@ module.exports = class Reputation extends Command {
 		const amount = 1;
 		const { user } = await db.getUserById(interaction.user.id);
 
-		const rep = user.reputation_cooldown;
-
 		const { user: receiver } = await db.getUserById(member.id);
 		const { user: sender } = await db.getUserById(interaction.user.id);
 
@@ -35,8 +33,8 @@ module.exports = class Reputation extends Command {
 			return interaction.reply('You cannot give yourself an extra reputation point.');
 		}
 
-		if (rep !== null && timeout - (Date.now() - rep) > 0) {
-			const time = ms(timeout - (Date.now() - rep), {
+		if (user.reputation_cooldown !== null && timeout - (Date.now() - user.reputation_cooldown) > 0) {
+			const time = ms(timeout - (Date.now() - user.reputation_cooldown), {
 				long: true,
 			});
 
