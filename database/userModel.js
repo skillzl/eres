@@ -8,6 +8,8 @@ const userSchema = new mongoose.Schema({
 	xp: { type: Number, default: 0 },
 	reputation_cooldown: { type: Number, default: null },
 	daily_cooldown: { type: Number, default: null },
+	fish_cooldown: { type: Number, default: null },
+	hunt_cooldown: { type: Number, default: null },
 });
 
 module.exports = mongoose.model('user', userSchema);

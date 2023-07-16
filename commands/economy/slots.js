@@ -57,6 +57,7 @@ module.exports = class Slots extends Command {
 		if (amount > 100000) { return interaction.reply('The maximum bet you can play is `100,000`.');}
 
 		const random = 5 * amount;
+		const xp = Math.floor(Math.random() * 10) + 1;
 
 		const array_one = shuffle(slots);
 		const array_two = shuffle(slots);
@@ -122,6 +123,7 @@ ${array_one[0]} : ${array_two[2]} : ${array_tree[0]}
 					) {
 						await db.updateUserById(interaction.user.id, {
 							balance: user.balance + random,
+							xp: user.xp + xp,
 						});
 						return setTimeout(
 							() =>
@@ -135,7 +137,7 @@ ${array_one[1]} : ${array_two[1]} : ${array_tree[1]} **«**
 ${array_one[0]} : ${array_two[2]} : ${array_tree[0]}
 ----------------
 [ :: **SLOTS** :: ]
-${interaction.user.username} won ${random.toLocaleString()} <:balance_emoji:1129875960188112966>. \`(bet: ${amount.toLocaleString()})\``),
+${interaction.user.username} won ${random.toLocaleString()} <:balance_emoji:1129875960188112966>. \`(bet: ${amount.toLocaleString()})\`\nXP earned: ${xp} <:star_emoji:1126279940321574913>`),
 							2300,
 						);
 					}
