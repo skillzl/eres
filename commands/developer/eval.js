@@ -18,7 +18,7 @@ module.exports = class Eval extends Command {
 		});
 	}
 	async run(client, interaction) {
-		if (interaction.user.id !== process.env.DEVELOPER_ID) return interaction.reply('You are not allowed to do this.');
+		if (interaction.user.id !== process.env.DEVELOPER_ID) return interaction.reply('Missing `DEVELOPER` permission.');
 
 		const toEval = interaction.options.getString('input');
 		const toRemove = /^(```js)|(```)$/gi;
