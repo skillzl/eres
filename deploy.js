@@ -24,14 +24,14 @@ const deploy = async () => {
 	try {
 		const clientId = process.env.CLIENT_ID;
 
-		console.log('[Deploy]: Started refreshing Slash Commands and Context Menus... ⏳');
+		console.log('[Deploy]: Started refreshing Slash Commands... ⏳');
 
 		await rest.put(
 			Routes.applicationCommands(clientId),
 			{ body: commandData },
 
 		).then(() => {
-			console.log('[Deploy]: Slash Commands and Context Menus have now been deployed 📈.');
+			console.log('[Deploy]: Slash Commands have now been deployed 📈.');
 		});
 	}
 	catch (e) {
