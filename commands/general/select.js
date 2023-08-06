@@ -10,7 +10,7 @@ module.exports = class Select extends Command {
 				.setDescription('Examples of the Discord Select Menu component.')
 				.setDMPermission(false),
 			usage: 'select',
-			category: 'Info',
+			category: 'General',
 			permissions: ['Use Application Commands', 'Send Messages', 'Embed Links'],
 		});
 	}

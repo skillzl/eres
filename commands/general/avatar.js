@@ -12,7 +12,7 @@ module.exports = class Avatar extends Command {
 					.setRequired(false))
 				.setDMPermission(false),
 			usage: 'avatar',
-			category: 'Info',
+			category: 'General',
 			permissions: ['Use Application Commands', 'Send Messages', 'Embed Links'],
 		});
 	}

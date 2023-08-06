@@ -1,6 +1,6 @@
 const Command = require('../../structures/CommandClass');
 
-const { SlashCommandBuilder, ModalBuilder, ActionRowBuilder, TextInputBuilder, TextInputStyle } = require('discord.js');
+const { SlashCommandBuilder, ModalBuilder, ActionRowBuilder, TextInputBuilder, TextInputStyle, PermissionsBitField } = require('discord.js');
 
 module.exports = class Prefix extends Command {
 	constructor(client) {
@@ -10,11 +10,13 @@ module.exports = class Prefix extends Command {
 				.setDescription('Sets a new bot prefix by filling out the modal')
 				.setDMPermission(false),
 			usage: 'prefix',
-			category: 'Info',
-			permissions: ['Use Application Commands', 'Send Messages', 'Embed Links'],
+			category: 'Settings',
+			permissions: ['Use Application Commands', 'Send Messages', 'Embed Links', 'Manage Messages'],
 		});
 	}
 	async run(client, interaction) {
+		if (!interaction.member.permissions.has(PermissionsBitField.Flags.ManageGuild)) return await interaction.reply('You are missing `MANAGE_GUILD` permission.');
+
 		const prefixModal = new ModalBuilder()
 			.setTitle('Set Bot Prefix')
 			.setCustomId('prefixForm')

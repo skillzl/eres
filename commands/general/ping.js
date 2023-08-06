@@ -11,7 +11,7 @@ module.exports = class Ping extends Command {
 				.setDescription('Returns the bot ping')
 				.setDMPermission(true),
 			usage: 'ping',
-			category: 'Info',
+			category: 'General',
 			permissions: ['Use Application Commands', 'Send Messages', 'Embed Links'],
 		});
 	}
