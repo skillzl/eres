@@ -8,7 +8,7 @@ module.exports = class Ping extends Command {
 		super(client, {
 			data: new SlashCommandBuilder()
 				.setName('ping')
-				.setDescription('Returns the bot ping.')
+				.setDescription('Returns the bot ping')
 				.setDMPermission(true),
 			usage: 'ping',
 			category: 'Info',
@@ -21,13 +21,13 @@ module.exports = class Ping extends Command {
 
 		const pingEmbed = new EmbedBuilder()
 			.setAuthor({
-				name: `${client.user.username}'s Ping`,
+				name: 'process ping',
 				iconURL: client.user.displayAvatarURL({ size: 2048 }),
 			})
-			.setColor('#fee75c')
+			.setColor(0x36393e)
 			.setDescription(stripIndents`
-            **⏱ Roundtrip:** ${Math.round(Date.now() - now)} ms
-            **💓 API:** ${Math.round(client.ws.ping)} ms
+            ⏱ roundtrip: **${Math.round(Date.now() - now)} ms**
+            💓 api: **${Math.round(client.ws.ping)} ms**
             `);
 
 		return await interaction.followUp({ embeds: [pingEmbed] });

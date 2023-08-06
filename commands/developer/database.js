@@ -8,7 +8,7 @@ module.exports = class Database extends Command {
 		super(client, {
 			data: new SlashCommandBuilder()
 				.setName('database')
-				.setDescription('Change mongoose database values.')
+				.setDescription('Change mongoose database values')
 				.addUserOption(option => option.setName('target').setDescription('The user')
 					.setRequired(true))
 				.addStringOption(option =>
