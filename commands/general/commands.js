@@ -23,7 +23,7 @@ module.exports = class Commands extends Command {
 			.addFields(
 				{ name: 'Developer', value: 'database, eval' },
 				{ name: 'Economy', value: 'balance, daily, fish, hunt, slots, transfer' },
-				{ name: 'General', value: 'avatar, commands, ping, select' },
+				{ name: 'General', value: 'avatar, commands, ping, server' },
 				{ name: 'Levels', value: 'leaderboard, rank, xp' },
 				{ name: 'Profile', value: 'about, profile, rep' },
 			)
