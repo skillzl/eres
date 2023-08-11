@@ -75,7 +75,7 @@ module.exports = class Server extends Command {
 				{ name: 'BOOSTS', value: interaction.guild.premiumSubscriptionCount + ` (Level: ${interaction.guild.premiumTier})`, inline: true },
 				{ name: 'AFK CHANNEL', value: interaction.guild.afkChannel ? `<:moon_emoji:1139513847238119425> ${interaction.guild.afkChannel.name}` : '<:red_emoji:1126936340022435963>', inline: true },
 				{ name: 'CREATED ON', value: `<t:${Math.floor(_createdAt / 1000) + 3600}:F>` + `\n${daysAgo(interaction.guild.createdAt).toFixed(0)} (days ago)` },
-				{ name: `MEMBERS (${interaction.guild.memberCount})`, value: `online (${members.online}) : dnd (${members.dnd}) : idle (${members.idle}) : bots (${members.bots})`, inline: true },
+				{ name: `MEMBERS (${interaction.guild.memberCount})`, value: `online (${members.online}) : dnd (${members.dnd})  idle (${members.idle}) : bots (${members.bots})`, inline: true },
 				{ name: `EMOJIS (${interaction.guild.emojis.cache.size})`, value: `${guildEmojis}`, inline: true },
 				{ name: `ROLES (${interaction.guild.roles.cache.size})`, value: `${guildRoles}`, inline: true },
 			);
