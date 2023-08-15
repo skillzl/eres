@@ -51,7 +51,7 @@ module.exports = class Whois extends Command {
 		};
 
 		const member = interaction.guild.members.cache.get(user.id);
-		const roles = member.roles.cache.map(r => `${r}`).join(', ').substring(0, 248);
+		const roles = member.roles.cache.map(r => `${r}`).join(' ').substring(0, 248);
 
 		const _createdAt = new Date(user.createdAt);
 		const _joinedAt = new Date(member.joinedAt);
