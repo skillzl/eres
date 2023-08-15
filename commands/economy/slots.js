@@ -33,9 +33,11 @@ module.exports = class Slots extends Command {
 			data: new SlashCommandBuilder()
 				.setName('slots')
 				.setDescription('Try out the slots and make some changes to your account, by winning coins and XP')
-				.addStringOption(option =>
-					option.setName('input')
-						.setDescription('Amount of coins')
+				.addNumberOption((option) =>
+					option.setName('amount')
+						.setDescription('Amount of coins (min: 100 max: 100000)')
+						.setMinValue(100)
+						.setMaxValue(100000)
 						.setRequired(true))
 				.setDMPermission(false),
 			usage: 'slots',
@@ -46,7 +48,7 @@ module.exports = class Slots extends Command {
 	async run(client, interaction) {
 		const { user } = await db.getUserById(interaction.user.id);
 
-		const amount = interaction.options.getString('input');
+		const amount = interaction.options.getNumber('amount');
 		const availableCoins = user.balance;
 
 		if (isNaN(amount)) return interaction.reply('Make sure you enter a valid number.');
@@ -157,7 +159,7 @@ ${array_one[1]} : ${array_two[1]} : ${array_tree[1]} **«**
 ${array_one[0]} : ${array_two[2]} : ${array_tree[0]}
 ----------------
 [ :: **SLOTS** :: ]
-${interaction.user.username} lost everything. \`(bet: ${amount.toLocaleString()})\``),
+${interaction.user.username} lost everything <:balance_emoji:1129875960188112966>. \`(bet: ${amount.toLocaleString()})\``),
 						2300,
 					);
 				}
