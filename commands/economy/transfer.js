@@ -11,9 +11,11 @@ module.exports = class Transfer extends Command {
 				.setDescription('Transfer coins to another user')
 				.addUserOption(option => option.setName('target').setDescription('The user')
 					.setRequired(true))
-				.addStringOption(option =>
-					option.setName('input')
-						.setDescription('Amount of coins')
+				.addNumberOption((option) =>
+					option.setName('amount')
+						.setDescription('Amount of coins (min: 1 max: 9999999)')
+						.setMinValue(1)
+						.setMaxValue(9999999)
 						.setRequired(true))
 				.setDMPermission(false),
 			usage: 'transfer',
@@ -23,7 +25,7 @@ module.exports = class Transfer extends Command {
 	}
 	async run(client, interaction) {
 		const member = interaction.options.getUser('target') || interaction.user;
-		const amount = interaction.options.getString('input');
+		const amount = interaction.options.getNumber('amount');
 
 		const fee = Math.round(amount - amount * 0.729);
 		const { user: receiver } = await db.getUserById(member.id);
