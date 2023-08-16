@@ -2,7 +2,7 @@
 > <img src="./assets/eres-crop.png" width="20"> eres<br/> author: skillzl
 
   
-🍍 Complete journey rewriting the original chrlwv source to discord.js@v14.1.1!
+🍍 Complete journey rewriting the original chrlwv source to discord.js@v14.12.1!
 
 ## Deployment & Features
 Deployment support is not here yet! This repository is only for github imigration purposes.
