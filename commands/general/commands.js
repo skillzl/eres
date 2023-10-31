@@ -17,10 +17,11 @@ module.exports = class Commands extends Command {
 	async run(client, interaction) {
 
 		const embed = new EmbedBuilder()
-			.setAuthor({ name: 'Eres • Commands', iconURL: interaction.guild.iconURL({ dynamic: true, size: 2048, extension: 'png' }) })
+			.setAuthor({ name: `${client.user.username} • Commands`, iconURL: interaction.guild.iconURL({ dynamic: true, size: 2048, extension: 'png' }) })
 			.setColor(0x36393e)
 			.setDescription('Before using any of these commands you are welcomed with a guide.')
 			.addFields(
+				{ name: 'App', value: 'process' },
 				{ name: 'Developer', value: 'database, eval' },
 				{ name: 'Economy', value: 'balance, daily, fish, hunt, slots, transfer' },
 				{ name: 'General', value: 'avatar, commands, ping, server, whois' },
