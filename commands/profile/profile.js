@@ -1,7 +1,7 @@
 const Command = require('../../structures/CommandClass');
 const db = require('../../database/manager');
 
-const { createCanvas, loadImage, Canvas } = require('canvas');
+const { createCanvas, loadImage } = require('canvas');
 
 const { SlashCommandBuilder, AttachmentBuilder } = require('discord.js');
 
@@ -103,12 +103,7 @@ module.exports = class Profile extends Command {
 		ctx.textAlign = 'left';
 		ctx.fillText(`${user.reputation.toLocaleString()}`, 1230, 1850);
 
-		const canvas2 = new Canvas(2000, 2000);
-		const ctx2 = canvas2.getContext('2d');
-
-		ctx2.drawImage(canvas, 0, 0, 2000, 2000);
-
-		const attachment = new AttachmentBuilder(canvas2.toBuffer(), { name: 'image.png' });
+		const attachment = new AttachmentBuilder(canvas.toBuffer(), { name: 'image.png' });
 		interaction.reply({ files: [attachment] });
 	}
 };
