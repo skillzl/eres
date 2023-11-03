@@ -37,7 +37,7 @@ module.exports = class Commits extends Command {
 				const unixTimestamp = Date.parse(isoDate) / 1000;
 				const commitSha = commit.sha;
 
-				return `[${commitSha.substring(0, 7)}](https://github.com/${owner}/${repo}/commit/${commitSha})\n<t:${unixTimestamp}:R> ${commit.commit.message}`;
+				return `[\`${commitSha.substring(0, 7)}\`](https://github.com/${owner}/${repo}/commit/${commitSha})\n<t:${unixTimestamp}:R> ${commit.commit.message}`;
 			});
 
 			const embed = new EmbedBuilder()
