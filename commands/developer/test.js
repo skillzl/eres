@@ -1,20 +1,20 @@
 const Command = require('../../structures/CommandClass');
+const { SlashCommandBuilder, EmbedBuilder } = require('discord.js');
 
-const { EmbedBuilder, SlashCommandBuilder } = require('discord.js');
-
-module.exports = class Commands extends Command {
+module.exports = class Test extends Command {
 	constructor(client) {
 		super(client, {
 			data: new SlashCommandBuilder()
-				.setName('commands')
-				.setDescription('Fetches available commands')
+				.setName('test')
+				.setDescription('Test')
 				.setDMPermission(false),
-			usage: 'commands',
-			category: 'General',
+			usage: 'test',
+			category: 'Developer',
 			permissions: ['Use Application Commands', 'Send Messages', 'Embed Links'],
 		});
 	}
 	async run(client, interaction) {
+		if (interaction.user.id !== process.env.DEVELOPER_ID) return interaction.reply('Missing `DEVELOPER` permission.');
 
 		const categorizedCommands = {};
 		client.commands.forEach(command => {
@@ -24,23 +24,19 @@ module.exports = class Commands extends Command {
 			categorizedCommands[command.category].push(command.name);
 		});
 
-
 		const embed = new EmbedBuilder()
-			.setAuthor({ name: `${client.user.username} • Commands`, iconURL: interaction.guild.iconURL({ dynamic: true, size: 2048, extension: 'png' }) })
 			.setColor(0x36393e)
-			.setDescription('Before using any of these commands you are welcomed with a guide.')
-			.setFooter({
-				text: 'You are experiencing a beta version of this application that may suffer some unfinished features!',
-			})
+			.setTitle('<:star_emoji:1126279940321574913> Commands')
 			.setThumbnail(client.user.displayAvatarURL({ dynamic: true, size: 128, format: 'png' }));
 
 		for (const category in categorizedCommands) {
 			const commandList = categorizedCommands[category].join(', ');
 			embed.addFields(
-				{ name: category, value: commandList, inline: true },
+				{ name: category, value: commandList },
 			);
 		}
 
 		await interaction.reply({ embeds: [embed] });
+
 	}
 };
