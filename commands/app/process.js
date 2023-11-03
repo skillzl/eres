@@ -18,7 +18,6 @@ module.exports = class Process extends Command {
 		});
 	}
 	async run(client, interaction) {
-
 		const btn_one = new ButtonBuilder()
 			.setURL(process.env.CALLBACK_URL)
 			.setLabel('website')
@@ -40,9 +39,9 @@ module.exports = class Process extends Command {
 			.setColor(0x36393e)
 			.setDescription('Live process values, also seen on our website.')
 			.addFields(
-				{ name: 'Process', value: `Memory: ${(process.memoryUsage().rss / 1024 / 1024).toFixed(2)}mb CPU:${(process.cpuUsage().system / 1024 / 1024).toFixed(2)}%\nPing: ${client.ws.ping || 0}ms\nUptime: ${dayjs(client.uptime).format('D [d], H [h], m [m], s [s]')}`, inline: true },
-				{ name: 'Packages', value: `discord.js: ^${version}\nmongoose: ${packages.dependencies['mongoose']}\nnode.js: ^${process.version}`, inline: true },
-				{ name: 'Cache', value: `Channels: ${client.channels.cache.size || 0}\nEmojis: ${client.emojis.cache.size || 0 }\nUsers: ${client.users.cache.size || 0}`, inline:true },
+				{ name: 'Process', value: `Memory: ${(process.memoryUsage().rss / 1024 / 1024).toFixed(2)}mb\nCPU:${(process.cpuUsage().system / 1024 / 1024).toFixed(2)}%\nPing: ${client.ws.ping || 0}ms\nUptime: ${dayjs(client.uptime).format('D [d], H [h], m [m], s [s]')}`, inline: true },
+				{ name: 'Packages', value: `discord.js: ^${version}\nexpress: ${packages.dependencies['express']}\nmongoose: ${packages.dependencies['mongoose']}\nnode.js: ^${process.version}`, inline: true },
+				{ name: 'Cache', value: `Guilds: ${client.guilds.cache.size || 0}\nChannels: ${client.channels.cache.size || 0}\nEmojis: ${client.emojis.cache.size || 0 }\nUsers: ${client.users.cache.size || 0}`, inline:true },
 			)
 			.setFooter({
 				text: 'You are experiencing a beta version of this application that may suffer some unfinished features!',
