@@ -104,6 +104,6 @@ module.exports = class Profile extends Command {
 		ctx.fillText(`${user.reputation.toLocaleString()}`, 1230, 1850);
 
 		const attachment = new AttachmentBuilder(canvas.toBuffer(), { name: 'image.png' });
-		interaction.reply({ files: [attachment] });
+		await interaction.reply({ files: [attachment], ephemeral: true });
 	}
 };
