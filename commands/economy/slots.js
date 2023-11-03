@@ -40,7 +40,7 @@ module.exports = class Slots extends Command {
 						.setMaxValue(100000)
 						.setRequired(true))
 				.setDMPermission(false),
-			usage: 'slots',
+			usage: 'slots [number]',
 			category: 'Economy',
 			permissions: ['Use Application Commands', 'Send Messages', 'Embed Links'],
 		});

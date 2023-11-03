@@ -22,7 +22,7 @@ module.exports = class Database extends Command {
 						.setMaxValue(9999999)
 						.setRequired(true))
 				.setDMPermission(false),
-			usage: 'database',
+			usage: 'database [user] [string] [number]',
 			category: 'Developer',
 			permissions: ['Use Application Commands', 'Send Messages', 'Embed Links'],
 		});

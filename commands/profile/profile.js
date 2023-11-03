@@ -17,7 +17,7 @@ module.exports = class Profile extends Command {
 				.addUserOption(option => option.setName('target').setDescription('The user')
 					.setRequired(false))
 				.setDMPermission(false),
-			usage: 'profile',
+			usage: 'profile [user]',
 			category: 'Profile',
 			permissions: ['Use Application Commands', 'Send Messages', 'Embed Links'],
 		});

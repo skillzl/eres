@@ -18,7 +18,7 @@ module.exports = class Transfer extends Command {
 						.setMaxValue(9999999)
 						.setRequired(true))
 				.setDMPermission(false),
-			usage: 'transfer',
+			usage: 'transfer [user] [number]',
 			category: 'Economy',
 			permissions: ['Use Application Commands', 'Send Messages', 'Embed Links'],
 		});

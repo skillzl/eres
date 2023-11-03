@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 const Command = require('../../structures/CommandClass');
 
 const { EmbedBuilder, SlashCommandBuilder } = require('discord.js');
@@ -8,14 +9,17 @@ module.exports = class Commands extends Command {
 			data: new SlashCommandBuilder()
 				.setName('commands')
 				.setDescription('Fetches available commands')
+				.addStringOption(option =>
+					option.setName('command')
+						.setDescription('Type a command to get specif usage help')
+						.setRequired(false))
 				.setDMPermission(false),
-			usage: 'commands',
+			usage: 'commands [commandName]',
 			category: 'General',
 			permissions: ['Use Application Commands', 'Send Messages', 'Embed Links'],
 		});
 	}
 	async run(client, interaction) {
-
 		const categorizedCommands = {};
 		client.commands.forEach(command => {
 			if (!categorizedCommands[command.category]) {
@@ -23,6 +27,19 @@ module.exports = class Commands extends Command {
 			}
 			categorizedCommands[command.category].push(command.name);
 		});
+
+		const commandName = interaction.options.getString('command');
+		if (commandName) {
+			const command = client.commands.get(commandName);
+			if (command) {
+				const usage = command.usage;
+				const embed = new EmbedBuilder()
+					.setColor(0x36393e)
+					.setDescription(`Usage for command ${commandName}: ${usage}`);
+				await interaction.reply({ embeds: [embed] });
+				return;
+			}
+		}
 
 
 		const embed = new EmbedBuilder()

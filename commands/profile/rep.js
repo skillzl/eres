@@ -14,7 +14,7 @@ module.exports = class Reputation extends Command {
 				.addUserOption(option => option.setName('target').setDescription('The user')
 					.setRequired(true))
 				.setDMPermission(false),
-			usage: 'rep',
+			usage: 'rep [user]',
 			category: 'Profile',
 			permissions: ['Use Application Commands', 'Send Messages', 'Embed Links'],
 		});

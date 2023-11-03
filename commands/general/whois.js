@@ -11,7 +11,7 @@ module.exports = class Whois extends Command {
 				.addUserOption(option => option.setName('target').setDescription('The user')
 					.setRequired(false))
 				.setDMPermission(true),
-			usage: 'whois',
+			usage: 'whois [user]',
 			category: 'General',
 			permissions: ['Use Application Commands', 'Send Messages', 'Embed Links'],
 		});

@@ -18,7 +18,7 @@ module.exports = class Rank extends Command {
 				.addUserOption(option => option.setName('target').setDescription('The user')
 					.setRequired(false))
 				.setDMPermission(false),
-			usage: 'rank',
+			usage: 'rank [user',
 			category: 'Levels',
 			permissions: ['Use Application Commands', 'Send Messages', 'Embed Links'],
 		});

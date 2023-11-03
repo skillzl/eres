@@ -12,7 +12,7 @@ module.exports = class Xp extends Command {
 				.addUserOption(option => option.setName('target').setDescription('The user')
 					.setRequired(false))
 				.setDMPermission(false),
-			usage: 'xp',
+			usage: 'xp [user]',
 			category: 'Levels',
 			permissions: ['Use Application Commands', 'Send Messages', 'Embed Links'],
 		});

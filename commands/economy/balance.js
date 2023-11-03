@@ -12,7 +12,7 @@ module.exports = class Balance extends Command {
 				.addUserOption(option => option.setName('target').setDescription('The user')
 					.setRequired(false))
 				.setDMPermission(false),
-			usage: 'balance',
+			usage: 'balance [user]',
 			category: 'Economy',
 			permissions: ['Use Application Commands', 'Send Messages', 'Embed Links'],
 		});

@@ -11,7 +11,7 @@ module.exports = class Avatar extends Command {
 				.addUserOption(option => option.setName('target').setDescription('The user')
 					.setRequired(false))
 				.setDMPermission(false),
-			usage: 'avatar',
+			usage: 'avatar [user]',
 			category: 'General',
 			permissions: ['Use Application Commands', 'Send Messages', 'Embed Links'],
 		});

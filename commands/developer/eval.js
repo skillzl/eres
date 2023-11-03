@@ -12,7 +12,7 @@ module.exports = class Eval extends Command {
 						.setDescription('Your code')
 						.setRequired(true))
 				.setDMPermission(false),
-			usage: 'eval',
+			usage: 'eval [string]',
 			category: 'Developer',
 			permissions: ['Use Application Commands', 'Send Messages', 'Embed Links'],
 		});

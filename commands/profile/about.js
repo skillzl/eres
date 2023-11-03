@@ -14,7 +14,7 @@ module.exports = class About extends Command {
 						.setDescription('Your new profile\'s description')
 						.setRequired(true))
 				.setDMPermission(false),
-			usage: 'about',
+			usage: 'about [string]',
 			category: 'Profile',
 			permissions: ['Use Application Commands', 'Send Messages', 'Embed Links'],
 		});
