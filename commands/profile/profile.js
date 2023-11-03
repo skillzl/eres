@@ -36,7 +36,8 @@ module.exports = class Profile extends Command {
 
 		const background = await loadImage('././assets/canva/profile-background.png');
 
-		ctx.drawImage(background, 0, 0, 2000, 2000);
+		ctx.drawImage(background, 0, 0, canvas.width, canvas.height);
+		ctx.beginPath();
 		ctx.patternQuality = 'bilinear';
 		ctx.filter = 'bilinear';
 		ctx.antialias = 'subpixel';
@@ -74,8 +75,6 @@ module.exports = class Profile extends Command {
 		ctx.textAlign = 'left';
 		ctx.fillText(`${splice(user.about).toString()}`, 98, 1390);
 
-		const coins_badge = await loadImage('././assets/canva/coins-asset.png');
-		ctx.drawImage(coins_badge, 117, 1700, 124, 124);
 		ctx.font = 'bold 75px Arial';
 		ctx.fillStyle = '#30917d';
 		ctx.textAlign = 'left';
@@ -86,8 +85,6 @@ module.exports = class Profile extends Command {
 		ctx.textAlign = 'left';
 		ctx.fillText(`${user.balance.toLocaleString()}`, 273, 1850);
 
-		const reputation_badge = await loadImage('././assets/canva/reputation-asset.png');
-		ctx.drawImage(reputation_badge, 1095, 1700, 124, 124);
 		ctx.font = 'bold 75px Arial';
 		ctx.fillStyle = '#30917d';
 		ctx.textAlign = 'left';
@@ -99,6 +96,11 @@ module.exports = class Profile extends Command {
 		ctx.fillText(`${user.reputation.toLocaleString()}`, 1230, 1850);
 
 		const avatar = await loadImage(member.displayAvatarURL({ extension: 'png', size: 1024 }));
+		const reputation_badge = await loadImage('././assets/canva/reputation-asset.png');
+		const coins_badge = await loadImage('././assets/canva/coins-asset.png');
+
+		ctx.drawImage(coins_badge, 117, 1700, 124, 124);
+		ctx.drawImage(reputation_badge, 1095, 1700, 124, 124);
 		ctx.drawImage(avatar, 117, 420, 550, 550);
 		ctx.stroke();
 		ctx.closePath();
