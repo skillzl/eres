@@ -10,6 +10,7 @@ const userSchema = new mongoose.Schema({
 	daily_cooldown: { type: Number, default: null },
 	fish_cooldown: { type: Number, default: null },
 	hunt_cooldown: { type: Number, default: null },
+	report_cooldown: { type: Number, default: null },
 });
 
 module.exports = mongoose.model('user', userSchema);
