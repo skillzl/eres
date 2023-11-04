@@ -30,7 +30,6 @@ module.exports = class Commits extends Command {
 				return;
 			}
 
-
 			const commits = data.map((commit) => {
 
 				const isoDate = commit.commit.author.date;

@@ -38,7 +38,8 @@
     "number-abbreviate": "^2.0.0",
     "passport": "^0.6.0",
     "passport-discord": "^0.1.4",
-    "path": "^0.12.7"
+    "path": "^0.12.7",
+    "zlib": "^1.0.5"
   },
   "devDependencies": {
     "eslint": "^8.42.0",
