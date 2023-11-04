@@ -11,7 +11,7 @@ module.exports = class Prefix extends Command {
 				.setDMPermission(false),
 			usage: 'prefix',
 			category: 'Settings',
-			permissions: ['Use Application Commands', 'Send Messages', 'Embed Links', 'Manage Messages'],
+			permissions: ['Use Application Commands', 'Send Messages', 'Embed Links', 'Manage Guild'],
 		});
 	}
 	async run(client, interaction) {
