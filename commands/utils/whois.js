@@ -12,7 +12,7 @@ module.exports = class Whois extends Command {
 					.setRequired(false))
 				.setDMPermission(true),
 			usage: 'whois [user]',
-			category: 'General',
+			category: 'Utils',
 			permissions: ['Use Application Commands', 'Send Messages', 'Embed Links'],
 		});
 	}

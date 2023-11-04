@@ -10,7 +10,7 @@ module.exports = class Server extends Command {
 				.setDescription('Guild informations and statistics')
 				.setDMPermission(true),
 			usage: 'server',
-			category: 'General',
+			category: 'Utils',
 			permissions: ['Use Application Commands', 'Send Messages', 'Embed Links'],
 		});
 	}
