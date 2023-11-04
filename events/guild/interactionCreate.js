@@ -1,8 +1,7 @@
 const Event = require('../../structures/EventClass');
+const db = require('../../database/manager');
 
 const { InteractionType } = require('discord.js');
-
-const defaultAutoComplete = require('../../assets/json/autocomplete.json');
 
 module.exports = class InteractionCreate extends Event {
 	constructor(client) {
@@ -36,19 +35,8 @@ module.exports = class InteractionCreate extends Event {
 				const prefix = interaction.fields.getTextInputValue('prefix');
 				const reason = interaction.fields.getTextInputValue('reason');
 
+				db.updateServerPrefix(interaction.guild.id, prefix);
 				return await interaction.reply({ content: `Prefix has been set to: **\`${prefix}\`**\n**Reason:** ${reason}` });
-			}
-		}
-
-		if (interaction.type === InteractionType.ApplicationCommandAutocomplete) {
-			const focused = interaction.options.getFocused().toLowerCase();
-			let filter;
-
-			switch (interaction.commandName) {
-			case 'autocomplete':
-				filter = defaultAutoComplete.filter(option => option.value.toLowerCase().startsWith(focused));
-				await interaction.respond(filter);
-				break;
 			}
 		}
 	}

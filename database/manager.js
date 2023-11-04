@@ -63,24 +63,17 @@ module.exports = class Manager {
 		await userModel.findOneAndDelete({ userId: id });
 	}
 
-	static async getGuildById(id) {
-		let guild = await serverModel.findOne({ guildId: id });
-
-		if (!guild) { guild = await this.addGuild(id); }
-		return guild;
-	}
-
-	static async updateGuildById(id, settings) {
+	static async updateServerById(id, settings) {
 		if (typeof settings !== 'object') { throw Error('\'settings\' must be an object'); }
 
-		const guild = await this.getGuildById(id);
+		const guild = await this.findServer(id);
 
-		if (!guild) { await this.addGuild(id); }
+		if (!guild) { await this.createServer(id); }
 
 		await serverModel.findOneAndUpdate({ guildId: id }, settings);
 	}
 
-	static async removeGuild(id) {
+	static async removeServer(id) {
 		await serverModel.findOneAndDelete({ guildId: id });
 	}
 };
