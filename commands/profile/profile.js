@@ -23,6 +23,7 @@ module.exports = class Profile extends Command {
 		});
 	}
 	async run(client, interaction) {
+		await interaction.deferReply();
 		const member = interaction.options.getUser('target') || interaction.user;
 		const { user } = await db.getUserById(member.id);
 
@@ -107,6 +108,6 @@ module.exports = class Profile extends Command {
 		ctx.clip();
 
 		const attachment = new AttachmentBuilder(canvas.toBuffer(), { name: 'image.png' });
-		interaction.reply({ files: [attachment] });
+		interaction.editReply({ files: [attachment] });
 	}
 };
