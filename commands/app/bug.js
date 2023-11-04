@@ -16,7 +16,7 @@ module.exports = class Bug extends Command {
 						.setDescription('Bug details (e.g. got less xp than it\'s showed I should get)')
 						.setRequired(true))
 				.setDMPermission(false),
-			usage: 'process',
+			usage: 'bug [string]',
 			category: 'App',
 			permissions: ['Use Application Commands', 'Send Messages', 'Embed Links'],
 		});
