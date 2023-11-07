@@ -14,6 +14,7 @@ Current version it is not available for production deployment.
 
 - Modular features with optional congifuration.
 - Experience system with levels and xp.
+- Popular canva design for rank and profile command.
 - Web application (dashboard) for optional configuration settings.
 ## Node start guide
 
@@ -27,7 +28,7 @@ npn run start [cls && node bot.js] or nodemon
 ## Dashboard
 <img src="./assets/github/dashboard.png" width="1042">
 
-> **Release**: No estimated time of release, this may be changed later.
+> **Live**: Beta release https://eres.fun
 > **Tip**: Visit this repository to check out the latest version. 
 ## Envoirement settings
 
@@ -57,6 +58,6 @@ SUPPORT_SERVER=
 DEVELOPER_ID=
 ```
 > **Note**
- Envoirement settings can be changed here: [.env.example](https://github.com/skillzl/eres/blob/main/.env.example)
+ Envoirement settings need to be in a ".env" file.
 ## License
 This project is licensed under the Apache License 2.0 License - see the [LICENSE](https://github.com/skillzl/eres/blob/main/LICENSE) file for details.

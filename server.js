@@ -31,9 +31,11 @@ module.exports.load = async (client) => {
 	passport.serializeUser((user, done) => {
 		done(null, user);
 	});
+
 	passport.deserializeUser((obj, done) => {
 		done(null, obj);
 	});
+
 	passport.use(new Strategy({
 		clientID: process.env.CLIENT_ID,
 		clientSecret: process.env.CLIENT_SECRET,
