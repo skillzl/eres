@@ -33,6 +33,7 @@ npn run start [cls && node bot.js] or nodemon
 
 ## Widgets
 <img src="./assets/github/eres-widget.png" width="512">
+
 ## Envoirement settings
 
 ```
