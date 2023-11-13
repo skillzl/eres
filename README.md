@@ -31,8 +31,8 @@ npn run start [cls && node bot.js] or nodemon
 > **Live**: Beta release https://eres.fun
 > **Tip**: Visit this repository to check out the latest version. 
 
-## Widgets
-<img src="./assets/github/eres-widget.png" width="512">
+## Widget
+<a  href="https://eres.fun" ><img src="./assets/github/eres-widget.png" width="512"><a/>
 
 ## Envoirement settings
 
