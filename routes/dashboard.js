@@ -89,6 +89,10 @@ router.get('/server/:guildID/profile', checkAuth, async (req, res) => {
 router.get('/server/:guildID', checkAuth, async (req, res) => {
 	const server = req.client.guilds.cache.get(req.params.guildID);
 
+	if (!req.user.guilds.map(u => u.id).includes(req.params.guildID)) {
+		return res.status(403).send('Forbidden');
+	}
+
 	const serverData = await db.findServer(req.params.guildID) || await db.createServer(req.params.guildID);
 
 	if (!server && req.user.guilds.filter(u => ((u.permissions & 2146958591) === 2146958591)).map(u => u.id).includes(req.params.guildID)) {
