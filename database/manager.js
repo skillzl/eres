@@ -14,7 +14,7 @@ module.exports = class Manager {
 	}
 
 	static async findServer(id) {
-		if (typeof id !== 'string' || id.length !== 24) {
+		if (typeof id !== 'string') {
 			throw new Error('Invalid ID');
 		}
 		const result = await serverModel.findOne({ serverId: id });
@@ -23,7 +23,7 @@ module.exports = class Manager {
 	}
 
 	static async getPrefix(id) {
-		if (typeof id !== 'string' || id.length !== 24) {
+		if (typeof id !== 'string') {
 			throw new Error('Invalid ID');
 		}
 		const result = await serverModel.findOne({ serverId: id });
@@ -32,7 +32,7 @@ module.exports = class Manager {
 	}
 
 	static async updateServerPrefix(id, prefix) {
-		if (typeof id !== 'string' || id.length !== 24) {
+		if (typeof id !== 'string') {
 			throw new Error('Invalid ID');
 		}
 		const result = await serverModel.findOne({ serverId: id });
@@ -46,7 +46,7 @@ module.exports = class Manager {
 	}
 
 	static async createUser(id) {
-		if (typeof id !== 'string' || id.length !== 24) {
+		if (typeof id !== 'string') {
 			throw new Error('Invalid ID');
 		}
 		const user = new userModel({
@@ -58,7 +58,7 @@ module.exports = class Manager {
 	}
 
 	static async getUserById(id) {
-		if (typeof id !== 'string' || id.length !== 24) {
+		if (typeof id !== 'string') {
 			throw new Error('Invalid ID');
 		}
 		let user = await userModel.findOne({ userId: id });
@@ -67,7 +67,7 @@ module.exports = class Manager {
 	}
 
 	static async updateUserById(id, data) {
-		if (typeof id !== 'string' || id.length !== 24) {
+		if (typeof id !== 'string') {
 			throw new Error('Invalid ID');
 		}
 		if (typeof data !== 'object') { throw Error('\'data\' must be an object'); }
@@ -78,14 +78,14 @@ module.exports = class Manager {
 	}
 
 	static async removeUser(id) {
-		if (typeof id !== 'string' || id.length !== 24) {
+		if (typeof id !== 'string') {
 			throw new Error('Invalid ID');
 		}
 		await userModel.findOneAndDelete({ userId: id });
 	}
 
 	static async updateServerById(id, settings) {
-		if (typeof id !== 'string' || id.length !== 24) {
+		if (typeof id !== 'string') {
 			throw new Error('Invalid ID');
 		}
 		if (typeof settings !== 'object') { throw Error('\'settings\' must be an object'); }
@@ -98,7 +98,7 @@ module.exports = class Manager {
 	}
 
 	static async removeServer(id) {
-		if (typeof id !== 'string' || id.length !== 24) {
+		if (typeof id !== 'string') {
 			throw new Error('Invalid ID');
 		}
 		await serverModel.findOneAndDelete({ guildId: id });
