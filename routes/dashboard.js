@@ -93,7 +93,11 @@ router.get('/server/:guildID', checkAuth, async (req, res) => {
 		return res.status(403).send('Forbidden');
 	}
 
-	const serverData = await db.findServer(req.params.guildID) || await db.createServer(req.params.guildID);
+	let serverData = await db.findServer(req.params.guildID) || await db.createServer(req.params.guildID);
+
+	if (!serverData && server) {
+		serverData = await db.createServer(req.params.guildID);
+	}
 
 	if (!server && req.user.guilds.filter(u => ((u.permissions & 2146958591) === 2146958591)).map(u => u.id).includes(req.params.guildID)) {
 		return res.redirect(`https://discord.com/oauth2/authorize?client_id=${req.client.user.id}&scope=bot%20applications.commands&permissions=1098974625783&guild_id=${req.params.guildID}`);
