@@ -60,6 +60,12 @@ SUPPORT_SERVER=
 
 ## Unique identifier developer
 DEVELOPER_ID=
+
+## Unique identifier webhook for bug reports
+WEBHOOK_ID=
+
+## Unique token webhook for bug reports
+WEBHOOK_TOKEN=
 ```
 > **Note**
  Envoirement settings need to be in a ".env" file.

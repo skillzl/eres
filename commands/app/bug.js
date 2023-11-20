@@ -36,7 +36,7 @@ module.exports = class Bug extends Command {
 		}
 		else {
 			const webhookClient = new WebhookClient({
-				url: 'https://discord.com/api/webhooks/1170061068261937253/BVwd8dU6P5KnEq3TNhgDQPfnw4T38YsomV14pgH8EmOzg8iFZdP4auefGMBksVXvOD5W',
+				url: `https://discord.com/api/webhooks/${process.env.WEBHOOK_ID}/${process.env.WEBHOOK_TOKEN}`,
 			});
 
 			const embed = new EmbedBuilder()
