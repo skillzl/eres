@@ -1,3 +1,4 @@
+/* eslint-disable no-mixed-spaces-and-tabs */
 const Command = require('../../structures/CommandClass');
 
 const { SlashCommandBuilder, EmbedBuilder } = require('discord.js');
@@ -70,11 +71,46 @@ module.exports = class Whois extends Command {
 				{ name: 'ROLES', value: roles, inline: true },
 				{ name: 'TYPE', value: user.bot ? 'Bot' : 'Human', inline: true },
 				{ name: 'BADGES', value: userFlags.lenght ? formatter.format(userFlags.map(flag => `${DISCORD_BADGES[flag]}`)) : 'None', inline: true },
-				{ name: 'CREATED ON', value: `<t:${Math.floor(_createdAt / 1000) + 3600}:F>` + `\n${daysAgo(user.createdAt).toFixed(0)} (days ago)`, inline: true },
-				{ name: 'JOINED AT', value: `<t:${Math.floor(_joinedAt / 1000) + 3600}:F>` + `\n${daysAgo(member.joinedAt).toFixed(0)} (days ago)`, inline: true },
 			);
 
-		await interaction.reply({ embeds: [embed] });
+		if (member.presence) {
+			const activities = member.presence.activities;
 
+			if (activities.length > 0) {
+				const activity = activities[0];
+				let details = '';
+
+				if (activity.name) {
+					details += `${activity.name}\n`;
+				}
+
+				if (activity.details) {
+					details += `${activity.details}\n`;
+				}
+
+				if (activity.state) {
+					details += `${activity.state}\n`;
+				}
+
+				if (activity.timestamps && activity.timestamps.start) {
+					const elapsed = Date.now() - activity.timestamps.start.getTime();
+					const elapsedSec = Math.floor(elapsed / 1000);
+					const elapsedMin = Math.floor(elapsedSec / 60);
+					const elapsedHrs = Math.floor(elapsedMin / 60);
+
+					details += `${elapsedHrs} hrs, ${elapsedMin % 60} mins, ${elapsedSec % 60} secs elapsed\n`;
+				}
+
+				embed.addFields(
+					{ name: 'ACTIVITY', value: details },
+					{ name: 'CREATED ON', value: `<t:${Math.floor(_createdAt / 1000) + 3600}:F>` + `\n${daysAgo(user.createdAt).toFixed(0)} (days ago)`, inline: true },
+					{ name: 'JOINED AT', value: `<t:${Math.floor(_joinedAt / 1000) + 3600}:F>` + `\n${daysAgo(member.joinedAt).toFixed(0)} (days ago)`, inline: true },
+				);
+			}
+
+
+			await interaction.reply({ embeds: [embed] });
+
+		}
 	}
 };
