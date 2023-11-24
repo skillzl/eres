@@ -8,11 +8,41 @@ const package = require('../package.json');
 
 const router = express.Router();
 
+const db = require('../database/manager');
+const checkAuth = require('../backend/checkAuth');
+
 router.get('/', async (req, res) => {
 	res.render('index', {
 		tag: (req.user ? req.user.tag : 'Login'),
 		bot: req.client,
 		user: req.user || null,
+	});
+});
+
+router.get('/profile/:userID/me', checkAuth, async (req, res) => {
+	const userReq = req.client.users.cache.get(req.params.userID);
+	if (!userReq) {
+		return res.status(404).send('Not allowed');
+	}
+
+	const { user } = await db.getUserById(req.user.id);
+
+	const calculateUserXp = (xp) => Math.floor(0.1 * Math.sqrt(xp));
+	const level = calculateUserXp(user.xp);
+
+	const minXp = (level * level) / 0.01;
+	const maxXp = ((level + 1) * (level + 1)) / 0.01;
+
+	res.render('profile/me', {
+		bot: req.client,
+		level: level || 0,
+		xp: user.xp.toLocaleString() || 0,
+		about: user.about || 0,
+		balance: user.balance.toLocaleString() || 0,
+		reputation: user.reputation.toLocaleString() || 0,
+		user: req.user || null,
+		minXp: minXp || 0,
+		maxXp: maxXp || 0,
 	});
 });
 

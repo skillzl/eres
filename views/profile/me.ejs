@@ -1,0 +1,57 @@
+<%- include("../partials/header") %>
+
+    <title><%= bot.user.username.toLowerCase() %>.fun - your profile</title>
+
+    <section class="hero is-small has-text-centered is-link">
+        <div class="hero-body"
+            style="padding-top: 50px; padding-bottom: 50px; background-repeat: no-repeat; background-position: center; background-size: cover; background-image: url('https://i.imgur.com/DwUXLF3.png')">
+            <figure class="image is-128x128 has-image-centered">
+                <img class="is-rounded" style="box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.8);"
+                    src="https://cdn.discordapp.com/avatars/<%= user.id %>/<%= user.avatar %>">
+            </figure>
+            <br>
+            <h1 class="is-size-1" style="text-shadow: 0 0 10px #000000;">
+                <%= user.username %><%= user.discriminator && user.discriminator !== '0' ? `#${user.discriminator}` : '' %>
+            </h1>
+            <h2>
+                <%= about %>
+            </h2>
+        </div>
+    </section>
+
+    <div class="container" style="padding-top: 25px; padding-bottom: 10px;">
+        <h1 class="has-text-white is-size-5">LEVEL : <%= level %></h1>
+        <progress class="progress is-success" value="<%=minXp %>" max="<%=maxXp %>" style="width:20%"> <%= xp %></progress>
+    </div>
+    <div class="container has-text-centered" style="padding-top: 30px; padding-bottom: 50px;">
+        <table class="table is-fullwidth">
+            <tbody>
+                <tr class="has-text-centered">
+                    <td style="font-size: 20px;"><i class="fa-solid fa-wand-magic-sparkles"></i> XP</td>
+                    <td style="font-size: 20px;">
+                        <%= xp %>
+                    </td>
+                </tr>
+                <tr class="has-text-centered">
+                    <td style="font-size: 20px;"><i class="fa-solid fa-trophy"></i> LEVEL</td>
+                    <td style="font-size: 20px;">
+                        <%= level %>
+                    </td>
+                </tr>
+                <tr class="has-text-centered">
+                    <td style="font-size: 20px;"><i class="fa-solid fa-coins"></i> BALANCE</td>
+                    <td style="font-size: 20px;">
+                        <%= balance %>
+                    </td>
+                </tr>
+                <tr class="has-text-centered">
+                    <td style="font-size: 20px;"><i class="fa-solid fa-medal"></i> REPUTATION</td>
+                    <td style="font-size: 20px;">
+                        <%= reputation %>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <%- include("../partials/footer") %>
