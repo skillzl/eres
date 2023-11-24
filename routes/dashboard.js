@@ -9,6 +9,11 @@ const db = require('../database/manager');
 const checkAuth = require('../backend/checkAuth');
 
 router.get('/server/:guildID/profile', checkAuth, async (req, res) => {
+	const guild = req.client.guilds.cache.get(req.params.guildID);
+	if (!guild) {
+		return res.status(404).send('Guild not found');
+	}
+
 	const userObj = req.client.guilds.cache.get(req.params.guildID).members.cache.get(req.user.id);
 
 	const userSubscription = {
