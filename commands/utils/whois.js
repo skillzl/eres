@@ -101,16 +101,20 @@ module.exports = class Whois extends Command {
 					details += `${elapsedHrs} hrs, ${elapsedMin % 60} mins, ${elapsedSec % 60} secs elapsed\n`;
 				}
 
-				embed.addFields(
-					{ name: 'ACTIVITY', value: details },
-					{ name: 'CREATED ON', value: `<t:${Math.floor(_createdAt / 1000) + 3600}:F>` + `\n${daysAgo(user.createdAt).toFixed(0)} (days ago)`, inline: true },
-					{ name: 'JOINED AT', value: `<t:${Math.floor(_joinedAt / 1000) + 3600}:F>` + `\n${daysAgo(member.joinedAt).toFixed(0)} (days ago)`, inline: true },
-				);
+				if (details !== '') {
+					embed.addFields(
+						{ name: 'ACTIVITY', value: details },
+					);
+				}
 			}
-
-
-			await interaction.reply({ embeds: [embed] });
-
 		}
+
+		embed.addFields(
+			{ name: 'CREATED ON', value: `<t:${Math.floor(_createdAt / 1000) + 3600}:F>` + `\n${daysAgo(user.createdAt).toFixed(0)} (days ago)`, inline: true },
+			{ name: 'JOINED AT', value: `<t:${Math.floor(_joinedAt / 1000) + 3600}:F>` + `\n${daysAgo(member.joinedAt).toFixed(0)} (days ago)`, inline: true },
+		);
+
+		await interaction.reply({ embeds: [embed] });
+
 	}
 };
