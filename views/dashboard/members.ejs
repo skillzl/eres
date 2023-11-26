@@ -14,7 +14,7 @@
     </div>
       <form action="" class="relative mx-auto w-max">
         <input type="text" id="searchInput"
-              class="mb-5 ml-4 peer cursor-pointer relative z-10 h-12 w-12 rounded-full border bg-transparent pl-12 outline-none focus:w-full focus:cursor-text focus:border-gray-400 focus:pl-16 focus:pr-4 text-white" />
+              class="mb-5 ml-4 cursor-pointer relative z-10 h-12 w-12 rounded-full bg-transparent pl-12 outline-none focus:w-full focus:cursor-text focus:border-gray-400 focus:pl-16 focus:pr-4 text-white" />
         <svg xmlns="http://www.w3.org/2000/svg" class="mb-7 ml-4 absolute inset-y-0 my-auto h-8 w-12 border-r border-transparent stroke-gray-500 px-3.5 peer-focus:border-gray-400 peer-focus:stroke-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
           <path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
         </svg>
@@ -66,10 +66,10 @@
 						</td>
 						<td class="p-3 ">
               <% if (roles.length === 0) { %>
-                <p class="center relative inline-block select-none whitespace-nowrap rounded-lg bg-gray-950 py-2 px-3.5 align-baseline font-sans text-xs font-bold uppercase leading-none text-white">None</p>
+                <p class="center inline-block select-none whitespace-nowrap rounded-lg bg-gray-950 py-2 px-3.5 align-baseline font-sans text-xs font-bold uppercase leading-none text-white">None</p>
               <% } else { %>
                   <% for (let j = 0; j < roles.length; j++) { %>
-                      <span class="center relative inline-block select-none whitespace-nowrap rounded-lg bg-gray-950 py-2 px-3.5 align-baseline font-sans text-xs font-bold uppercase leading-none" style="color: <%= roles[j].hexColor === "#000000" ? "#ffffff" : roles[j].hexColor %>" title="<%= roles[j].id %>"><b><%= roles[j].name %></b></span>
+                      <span class="center inline-block select-none whitespace-nowrap rounded-lg bg-gray-950 py-2 px-3.5 align-baseline font-sans text-xs font-bold uppercase leading-none" style="color: <%= roles[j].hexColor === "#000000" ? "#ffffff" : roles[j].hexColor %>" title="<%= roles[j].id %>"><b><%= roles[j].name %></b></span>
                   <% } %>
               <% } %>
 						</td>
