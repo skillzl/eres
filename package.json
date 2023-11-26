@@ -5,7 +5,8 @@
   "main": "bot.js",
   "scripts": {
     "start": "node bot",
-    "deploy": "node deploy"
+    "deploy": "node deploy",
+    "build:css": "postcss public/stylesheets/tailwind.css -o public/stylesheets/style.css"
   },
   "repository": {
     "type": "git",
@@ -24,12 +25,13 @@
   "homepage": "https://github.com/skillzl/eres#readme",
   "dependencies": {
     "@discordjs/rest": "^1.7.1",
+    "autoprefixer": "^10.4.16",
     "body-parser": "^1.20.0",
     "canvas": "^2.11.2",
     "common-tags": "^1.8.2",
     "dayjs": "^1.11.8",
     "discord.js": "^14.11.0",
-    "dotenv": "^16.1.4",
+    "dotenv": "^16.3.1",
     "ejs": "^3.1.9",
     "express": "^4.18.2",
     "express-session": "^1.17.3",
@@ -39,6 +41,7 @@
     "passport": "^0.6.0",
     "passport-discord": "^0.1.4",
     "path": "^0.12.7",
+    "tailwindcss": "^3.3.5",
     "zlib": "^1.0.5"
   },
   "devDependencies": {

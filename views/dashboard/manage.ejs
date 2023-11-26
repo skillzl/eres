@@ -2,48 +2,35 @@
 
 <title><%= bot.user.username.toLowerCase() %>.fun - <%= guild.name %></title>
 
-<section class="hero is-medium is-black" style="padding-top: 50px; padding-bottom: 50px;">
-    <div class="container">
-        <figure class="image is-128x128 has-image-centered">
-            <img class="is-rounded" src="<%= guild.icon ? `https://cdn.discordapp.com/icons/${guild.id}/${guild.icon}?size=512` : 'https://i.imgur.com/RO3uUxX.png' %>">
-        </figure>
-        <br>
-        <h1 class="is-size-1">
-            Manage <strong class="has-text-white"><%= guild.name %></strong>
-        </h1>
-    </div>
-</section>
-
-<div class="container" style="padding-top: 50px; padding-bottom: 30px;">
-    <div class="columns is-centered">
-        <div class="field is-grouped has-image-centered">
-            <p class="control">
-                <a href="/dashboard/server/<%= guild.id %>/members" class="button is-medium is-rounded is-success">
-                    <i class="fas fa-users" style="padding-right: 5px;"></i> Members
-                </a>
-            </p>
-            <p class="control">
-                <a href="/dashboard/server/<%= guild.id %>/stats" class="button is-medium is-rounded is-warning">
-                    <i class="fa-solid fa-chart-column" style="padding-right: 5px;"></i> Stats
-                </a>
-            </p>
-        </div>
-    </div>
-
-    <hr style="background-color: dimgray">
-    
-    <form role="form" action="/dashboard/server/<%= guild.id %>" method="POST">
-        <h1 class="is-size-3 has-text-white">
-            <i class="fas fa-gear" style="padding-right: 5px;"></i> Edit Settings
-        </h1>
-        <label class="is-size-4 has-text-white">Prefix</label>
-        <input class="input is-medium" name="prefix" type="text" placeholder="<%= serverData.prefix ? serverData.prefix : '' %>">
-        <br>
-        <br>
-        <button type="submit" class="button is-warning is-rounded is-small is-link"><i class="fas fa-paper-plane" style="padding-right: 5px;"></i> Save Changes</button>
-        <br>
-        <br>
-        <small class="has-text-white">Page will reload after clicking the save button.</small>
-        <br>
-    </form>
+<div class="flex items-center justify-center mt-3.5">
+    <img
+    class="inline-block bject-cover h-56 w-56 rounded-2xl object-cover object-center"
+    alt="guild image"
+    src="<%= guild.icon ? `https://cdn.discordapp.com/icons/${guild.id}/${guild.icon}?size=512` : 'https://i.imgur.com/RO3uUxX.png' %>"
+    />
 </div>
+<h1 class="mt-9 text-white text-center font-bold text-2xl">Manage <span class="text-green-400"><%= guild.name %></span></h1>
+<div class="h-screen flex items-center justify-center -mt-56">
+    <div class="max-w-md w-full bg-gray-900 p-8 rounded-lg shadow-md">
+        <form role="form" action="/dashboard/server/<%= guild.id %>" method="POST">
+            <div class="mb-6">
+                <label for="postContent" class="block text-white text-sm font-bold mb-2">Prefix <span class="pl-56 text-gray-500 font-normal text-s">Max 5 characters</span></label>
+                <textarea id="postContent" name="prefix" rows="1" class="w-full border-2 rounded-md px-4 py-2 leading-5 transition duration-150 ease-in-out sm:text-sm
+  sm:leading-5 resize-none focus:outline-none focus:border-green-500" placeholder="<%= serverData.prefix ? serverData.prefix : '' %>" maxlength="5"></textarea>
+            </div>
+            <div class="flex items-center justify-between">
+                <button type="submit" class="flex justify-center items-center bg-green-500 hover:bg-green-600 focus:outline-none focus:shadow-outline-blue text-white py-2 px-4 rounded-md transition duration-300 gap-2"><i class="fa-solid fa-floppy-disk"></i> Save</button>
+            </div>
+            <div class="mt-2">
+            <span class=" text-gray-400 text-xs">Page will reload after clicking the save button.</span>
+            </div>
+        </form>
+    </div>
+</div>
+<div class="flex items-center justify-center -mt-64 text-sm text-gray-400">
+    <a href="/dashboard/server/<%= guild.id %>/members" class="flex-no-shrink bg-violet-500 hover:bg-violet-600 px-5 ml-4 py-2 text-xs shadow-sm hover:shadow-lg font-medium tracking-wider text-white rounded-full transition ease-in duration-300"><i class="fa-solid fa-users"></i> Members</a>
+    <a href="/dashboard/server/<%= guild.id %>/stats" class="flex-no-shrink bg-teal-400 hover:bg-teal-500 px-5 ml-4 py-2 text-xs shadow-sm hover:shadow-lg font-medium tracking-wider text-white rounded-full transition ease-in duration-300"><i class="fa-solid fa-signal"></i> Stats</a>
+    <a href="/dashboard/servers" class="flex-no-shrink bg-green-500 hover:bg-green-600 px-5 ml-4 py-2 text-xs shadow-sm hover:shadow-lg font-medium tracking-wider text-white rounded-full transition ease-in duration-300"><i class="fa-regular fa-circle-left"></i> Go back</a>
+</div>
+
+<%- include("../partials/footer") %>

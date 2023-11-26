@@ -2,124 +2,245 @@
 
 <title><%= bot.user.username.toLowerCase() %>.fun - home</title>
 
-<div class="container has-text-centered" style="padding-top: 50px;">
-    <% if (user) { %>
-        <figure class="image is-128x128 has-image-centered">
-            <img class="is-rounded" src="https://cdn.discordapp.com/avatars/<%= user.id %>/<%= user.avatar %>">
-        </figure>
-        <br>
-        <h1 class="is-size-2 has-text-white">Logged in as <strong class="has-text-white"><%= user.username %><%= user.discriminator && user.discriminator !== '0' ? `#${user.discriminator}` : '' %></strong></h1>
-        <p class="has-text-white">Welcome to the <b><%= bot.user.username %></b> dashboard! Where would you like to go?</p>
-        <br>
-
-
-        <hr style="background-color: dimgray">
-
-        <br>
-        <div class="columns is-centered">
-            <div class="field is-grouped has-image-centered">
-                <p class="control">
-                    <a href="/dashboard/servers" class="button is-success is-rounded is-medium">
-                        <i class="fas fa-server" style="padding-right: 5px;"></i> Servers
-                    </a>
-                </p>
-                <p class="control">
-                    <a href="/profile/<%= user.id%>/me" class="button is-warning is-rounded is-medium">
-                        <i class="fa fa-user" style="padding-right: 5px;"></i> Profile
-                    </a>
-                </p>
-                <p class="control">
-                    <a href="/logout" class="button is-danger  is-rounded is-medium">
-                        <i class="fas fa-sign-out-alt" style="padding-right: 5px;"></i> Log Out
-                    </a>
-                </p>
+<% if (user) { %>
+<link href="https://unpkg.com/tailwindcss@^2/dist/tailwind.min.css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Loopple/loopple-public-assets@main/motion-tailwind/motion-tailwind.css" rel="stylesheet">
+<script defer src="https://unpkg.com/alpinejs@3.2.3/dist/cdn.min.js"></script>
+<div class="flex flex-col items-center justify-center ">
+  <div class="container  m-4">
+    <div class="max-w-3xl w-full mx-auto grid gap-4 grid-cols-1">
+        <div class="shadow-lg rounded-lg bg-gray-900 mx-auto m-8 p-4 notification-box flex">
+            <div>
+                <div class="text-sm pb-2 text-gray-300">
+                    Notification
+                   <span class="float-right">
+                        <svg
+                        class="fill-current text-gray-300 hover:text-gray-500"
+                        xmlns="http://www.w3.org/2000/svg"
+                        viewBox="0 0 24 24"
+                        width="22"
+                        height="22"
+                        >
+                        <path
+                        class="heroicon-ui"
+                        d="M16.24 14.83a1 1 0 0 1-1.41 1.41L12 13.41l-2.83 2.83a1 1 0 0 1-1.41-1.41L10.59 12 7.76 9.17a1 1 0 0 1 1.41-1.41L12 10.59l2.83-2.83a1 1 0 0 1 1.41 1.41L13.41 12l2.83 2.83z"
+                        />
+                    </svg>
+                </span>
             </div>
+          <div class="text-sm text-gray-500  tracking-tight">
+            You are experiencing a beta version of this web application that may suffer some unfinished features and it can be incompatible with some devices or browsers.
+            Please create an issue ticket on <a href="https://github.com/skillzl/eres/issues" class="hover:text-white">GitHub</a>.
+          </div>
         </div>
-
-        <div class="container is-max-widescreen">
-            <div class="notification is-link mt-5" style="background-color: #df4848;">
-                <button class="delete"></button>
-                <p>
-                    You are experiencing a beta version of this web application that may suffer some unfinished features and it can be incompatible with some devices or browsers. Please create an issue ticket on GitHub:
-                    <a href=
-                "https://github.com/skillzl/eres/issues">
-                https://github.com/skillzl/eres/issues</a>
-                </p>
-            </div>
-        <script>
-
-            document.querySelectorAll(".notification .delete")
-                .forEach(function ($deleteButton) {
-      
-                    const parentNotification = $deleteButton.parentNode;
-                    $deleteButton.addEventListener('click', function () {
-                        parentNotification.parentNode
-                            .removeChild(parentNotification);
-                    });
+      </div>
+      <script>
+        document.addEventListener('DOMContentLoaded', (event) => {
+            const closeButton = document.querySelector('.notification-box .float-right svg');
+            const notificationBox = document.querySelector('.notification-box');
+            if (closeButton && notificationBox) {
+                closeButton.addEventListener('click', (event) => {
+                    notificationBox.style.display = 'none';
                 });
+            }
+        });
         </script>
-    <% } else { %>
-        <figure class="image is-128x128 has-image-centered">
-            <img class="is-rounded" src="<%= bot.user.displayAvatarURL({ dynamic: true, size: 128, format: 'png' }) %>">
-        </figure>
-        <h1 class="is-size-2 has-text-white"><%= bot.user.username %></h1>
-        <div class="content has-text-white">
-            <p class="p-2 is-size-10">A multipurpose discord client written in  <span class="has-text-warning">javascript</span> featuring <span class="has-text-success"><%= bot.commands.size %></span> commands and a highly optimized web application with control over the application's settings. <%= bot.user.username %> is used on over <span class="has-text-success"><%= bot.guilds.cache.size %></span> servers, we invite you to try it out and hope you enjoy!</p>
+      <div class="flex flex-col z-10">
+        <div class="bg-gray-900 border border-gray-900 shadow-lg  rounded-2xl p-4">
+          <div class="flex-none sm:flex">
+            <div class="h-32 w-32 sm:mb-0 mb-3">
+              <img src="https://cdn.discordapp.com/avatars/<%= user.id %>/<%= user.avatar %>" alt="user avatar" class=" w-32 h-32 object-cover rounded-2xl">
+            </div>
+            <div class="flex-auto sm:ml-5 justify-evenly">
+              <div class="flex items-center justify-between sm:mt-2">
+                <div class="flex items-center">
+                  <div class="flex flex-col">
+                    <div class="w-full flex-none text-lg text-gray-200 font-bold leading-none"><%= user.username %><%= user.discriminator && user.discriminator !== '0' ? `#${user.discriminator}` : '' %></div>
+                    <div class="flex-auto text-gray-400 my-1">
+                      <span class="mr-3 ">Welcome to the <a class="font-bold"><%= bot.user.username %></a> dashboard! Where would you like to go?</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="flex pt-5 text-sm text-gray-400">
+                <a href="dashboard/servers" class="flex-no-shrink bg-green-500 hover:bg-green-600 px-5 ml-4 py-2 text-xs shadow-sm hover:shadow-lg font-medium tracking-wider text-white rounded-full transition ease-in duration-300"><i class="fa-solid fa-server"></i> Servers</a>
+                <a href="profile/<%= user.id%>/me" class="flex-no-shrink bg-yellow-400 hover:bg-yellow-500 px-5 ml-4 py-2 text-xs shadow-sm hover:shadow-lg font-medium tracking-wider text-white rounded-full transition ease-in duration-300"><i class="fa-solid fa-user"></i> Profile</a>
+                <a href="/logout" class="flex-no-shrink bg-red-500 hover:bg-red-600 px-5 ml-4 py-2 text-xs shadow-sm hover:shadow-lg font-medium tracking-wider text-white rounded-full transition ease-in duration-300"><i class="fa-solid fa-right-from-bracket"></i> Log out</a>
+              </div>
+            </div>
+          </div>
         </div>
-        <a href="/invite" class="button is-success is-medium is-rounded"><i class="fab fa-discord" style="padding-right: 5px;"></i> Add to Discord</a>
-        <a href="/login" class="button is-medium is-rounded"><i class="fa fa-right-to-bracket" style="padding-right: 5px;"></i> Login</a>
-        <img src="https://i.imgur.com/yGgBbxA.png" alt="Landing Image" >
-        <nav class="columns box" style="background-color: #0c584d;">
-            <a class="bd-focus-item column has-text-centered">
-                <p class="title is-4 has-text-white">
-                    <strong>
-                        Commands
-                    </strong>
-                </p>
-                <p class="subtitle is-6 has-text-white">
-                    <strong class="has-text-white">
-                        <%= bot.commands.size || 0 %>
-                    </strong>
-                    commands
-                </p>
-            </a>
-            <a class="bd-focus-item column has-text-centered">
-                <p class="title is-4 has-text-white">
-                    <strong class="has-text-white">
-                        Guilds
-                    </strong>
-                </p>
-                <p class="subtitle is-6 has-text-white">
-                    <strong class="has-text-white">
-                        <%= bot.guilds.cache.size || 0 %>
-                    </strong> guilds
-                </p>
-            </a>
-            <a class="bd-focus-item column has-text-centered">
-                <p class="title is-4 has-text-white">
-                    <strong>
-                        Users
-                    </strong>
-                </p>
-                <p class="subtitle is-6 has-text-white">
-                    <strong class="has-text-white">
-                        <%= bot.users.cache.size || 0 %>
-                    </strong> users
-                </p>
-            </a>
-            <a class="bd-focus-item column has-text-centered" target="_blank">
-                <p class="title is-4 has-text-white">
-                    <strong>
-                        Ping
-                    </strong>
-                </p>
-                <p class="subtitle is-6 has-text-white">
-                    <%= bot.ws.ping || 0 %>
-                    <strong class="has-text-white">
-                        ms
-                    </strong>
-                </p>
-            </a>
-        </nav> <br>
-    <% } %>
+      </div>
+    </div>
+   </div>
 </div>
+<% } else { %>
+        <div class="px-4 py-16 mx-auto sm:max-w-xl md:max-w-full lg:max-w-screen-xl md:px-24 lg:px-8 lg:py-20">
+            <div class="flex justify-center">
+                <a href="/"><img src="/static/eres-crop.png" alt="eres.fun logo" class="navicon-fade" width="78" height="auto"></a>
+        </div>
+          <div class="max-w-xl sm:mx-auto lg:max-w-2xl">
+            <div class="flex flex-col mb-16 sm:text-center sm:mb-0">
+              <div class="max-w-xl mb-10 md:mx-auto sm:text-center lg:max-w-2xl md:mb-12">
+                <h2 class="max-w-lg mb-6 font-sans text-3xl font-bold leading-none tracking-tight text-white sm:text-4xl md:mx-auto">
+                  <span class="static inline-block">
+                    <svg viewBox="0 0 52 24" fill="currentColor" class="static top-0 left-0 z-0 hidden w-32 -mt-8 -ml-20 lg:w-32 lg:-ml-28 lg:-mt-10 sm:block">
+                      <defs>
+                        <pattern id="700c93bf-0068-4e32-aafe-ef5b6a647708" x="0" y="0" width=".135" height=".30">
+                          <circle cx="1" cy="1" r=".7"></circle>
+                        </pattern>
+                      </defs>
+                      <rect fill="url(#700c93bf-0068-4e32-aafe-ef5b6a647708)" width="52" height="24"></rect>
+                    </svg>
+                  </span>
+                  <%= bot.user.username %>, discord application
+                </h2>
+                <p class="text-base text-indigo-100 md:text-lg">
+                    A multipurpose discord client written in javascript featuring <span class="text-yellow-200"><%= bot.commands.size %> commands</span> and a highly optimized web application with control over the application's settings. <%= bot.user.username %> is used on over <span class="text-yellow-200"><%= bot.guilds.cache.size || 0 %> servers</span>, we invite you to try it out and hope you enjoy!
+                </p>
+              </div>
+              <div>
+                <a
+                  href="/invite"
+                  class="inline-flex items-center justify-center h-12 px-6 font-semibold tracking-wide text-white hover:text-gray-400 transition duration-200 rounded shadow-md hover:text-deep-purple-900 bg-teal-accent-400 hover:bg-deep-purple-accent-100 focus:shadow-outline focus:outline-none"
+                >
+                  Add on Discord
+                </a>
+                <a href="/login" class="flex-no-shrink bg-green-500 hover:bg-green-600 px-5 ml-4 py-2 text-xs shadow-sm hover:shadow-lg font-medium tracking-wider text-white rounded-full transition ease-in duration-300"><i class="fab fa-discord" style="padding-right: 5px;"></i> Login</a>
+              </div>
+            </div>
+          </div>
+
+        <div class="container flex flex-col mx-auto">
+            <div class="w-full draggable">
+                <div class="container flex flex-col items-center gap-16 mx-auto my-32">
+                    <div class="grid w-full grid-cols-1 gap-5 md:grid-cols-2 lg:grid-cols-3">
+                        <div class="flex flex-col items-center gap-3 px-8 py-10 bg-gray-900 rounded-3xl shadow-main">
+                        <span>
+                            <i class="fa-regular fa-circle-up fa-2xl" style="color: #d6b929;"></i>
+                        </span>
+                        <p class="text-2xl font-extrabold text-white">Uptime</p>
+                        <p class="leading-6 text-gray-200">Persistently online, with a current uptime for <%= uptime %>. Almost 99% online application.</p>
+                        </div>
+                        <div class="flex flex-col items-center gap-3 px-8 py-10 bg-gray-900 rounded-3xl shadow-main">
+                        <span>
+                            <i class="fa-solid fa-feather fa-2xl" style="color: #5a81dd;"></i>
+                        </span>
+                        <p class="text-2xl font-extrabold text-white">Features</p>
+                        <p class="leading-6 text-gray-200">Improved and new light features with custom UI and different types of actions. Also open-source so pull requests are welcomed.</p>
+                        </div>
+                        <div class="flex flex-col items-center gap-3 px-8 py-10 bg-gray-900 rounded-3xl shadow-main">
+                        <span>
+                            <i class="fa-solid fa-star fa-2xl" style="color: #dd4646;"></i>
+                        </span>
+                        <p class="text-2xl font-extrabold text-white">Easy-to-use</p>
+                        <p class="text-base leading-7 text-gray-200">All app's feature are open-minded and easy to work with. Just try them!</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+                <div class="container px-6 py-12 mx-auto">
+                    <h1 class="text-2xl font-semibold text-white lg:text-3xl text-center">Frequently asked questions</h1>
+                    <div class="grid grid-cols-1 gap-8 mt-8 lg:mt-16 md:grid-cols-2 xl:grid-cols-3">
+                        <div>
+                            <div class="inline-block p-3 text-white bg-green-400 rounded-lg">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8.228 9c.549-1.165 2.03-2 3.772-2 2.21 0 4 1.343 4 3 0 1.4-1.278 2.575-3.006 2.907-.542.104-.994.54-.994 1.093m0 3h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                                </svg>
+                            </div>
+            
+                            <div>
+                                <h1 class="text-xl font-semibold text-white ">How do I rank in levels?</h1>
+            
+                                <p class="mt-2 text-sm text-gray-300">
+                                    Well, its easy! You need to just send a message in your favorite community channel and you will get between <span class="text-green-400">1 to 5 xp per message</span>. Also you can get xp with the economy commands which are fish, hunt, slots.
+                                </p>
+                            </div>
+                        </div>
+            
+                        <div>
+                            <div class="inline-block p-3 text-white bg-yellow-400 rounded-lg">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8.228 9c.549-1.165 2.03-2 3.772-2 2.21 0 4 1.343 4 3 0 1.4-1.278 2.575-3.006 2.907-.542.104-.994.54-.994 1.093m0 3h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                                </svg>
+                            </div>
+            
+                            <div>
+                                <h1 class="text-xl font-semibold text-white">How can I use the dashboard?</h1>
+            
+                                <p class="mt-2 text-sm text-gray-300">
+                                    First of all, you will need to login, just click on the green <a class="text-green-400 hover:text-green-700" href="/login">Login</a> button, or even on the green Login here. After you logged in you will have complete control to you servers.
+                                </p>
+                            </div>
+                        </div>
+            
+                        <div>
+                            <div class="inline-block p-3 text-white bg-red-500 rounded-lg">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8.228 9c.549-1.165 2.03-2 3.772-2 2.21 0 4 1.343 4 3 0 1.4-1.278 2.575-3.006 2.907-.542.104-.994.54-.994 1.093m0 3h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                                </svg>
+                            </div>
+            
+                            <div>
+                                <h1 class="text-xl font-semibold text-white">Is it possible to suggest anything here?</h1>
+            
+                                <p class="mt-2 text-sm text-gray-300">
+                                    Well, I didn't add any suggest command, but you could use the report bug command, or even better try to do a pull request on <a class="hover:text-gray-400" href="https://github.com/skillzl/eres">github.com/skillzl.eres</a>, this will help me!
+                                </p>
+                            </div>
+                        </div>
+            
+                        <div>
+                            <div class="inline-block p-3 text-white bg-blue-500 rounded-lg">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8.228 9c.549-1.165 2.03-2 3.772-2 2.21 0 4 1.343 4 3 0 1.4-1.278 2.575-3.006 2.907-.542.104-.994.54-.994 1.093m0 3h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                                </svg>
+                            </div>
+            
+                            <div>
+                                <h1 class="text-xl font-semibold text-white">Is this project open-source?</h1>
+            
+                                <p class="mt-2 text-sm text-gray-300">
+                                    Yes, it is! You can visit now <a class="hover:text-gray-400" href="https://github.com/skillzl/eres">github.com/skillzl/eres</a> and see that this project is open-source under the <a class="hover:text-gray-400" href="https://github.com/skillzl/eres/blob/main/LICENSE">Apache License 2.0</a> license.
+                                </p>
+                            </div>
+                        </div>
+            
+                        <div>
+                            <div class="inline-block p-3 text-white bg-purple-500 rounded-lg">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8.228 9c.549-1.165 2.03-2 3.772-2 2.21 0 4 1.343 4 3 0 1.4-1.278 2.575-3.006 2.907-.542.104-.994.54-.994 1.093m0 3h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                                </svg>
+                            </div>
+            
+                            <div>
+                                <h1 class="text-xl font-semibold text-white">What is the current version of the application?</h1>
+            
+                                <p class="mt-2 text-sm text-gray-300">
+                                    At this moment you are running on <%= eresName %><%= eresVersion %>. The current version is stil in beta so, a lot of features are still in progress. Also you may encounter bugs so if you are trying to help, report them.
+                                </p>
+                            </div>
+                        </div>
+            
+                        <div>
+                            <div class="inline-block p-3 text-white bg-teal-600 rounded-lg">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8.228 9c.549-1.165 2.03-2 3.772-2 2.21 0 4 1.343 4 3 0 1.4-1.278 2.575-3.006 2.907-.542.104-.994.54-.994 1.093m0 3h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                                </svg>
+                            </div>
+            
+                            <div>
+                                <h1 class="text-xl font-semibold text-white">When will the final version gonna release?</h1>
+            
+                                <p class="mt-2 text-sm text-gray-300">
+                                    That's the thing, even I don't know. This project is a hobby of mine so, expect random updates, late works and other things. This project is just made in my free-time so the end of this isn't on line yet.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+        </div>
+    </div>
+    <% } %>
+
+<%- include("partials/footer") %>

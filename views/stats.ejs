@@ -2,81 +2,95 @@
 
 <title><%= bot.user.username.toLowerCase() %>.fun - stats</title>
 
-  <div class="bg-light text-dark has-text-centered" style="padding-top: 145px;">
-    <div class="p-5">
-      <div class="container">
-        <h2 class="is-size-2 has-text-white">Bot Statistics</h2>
-      </div>
-    </div>
+<div class="pt-20">
+<div class="px-4 mx-auto max-w-7xl sm:px-6 lg:px-8 text-center  ">
+  <div class="max-w-2xl mx-auto text-center">
+      <h2 class="text-2xl font-semibold text-white sm:text-4xl sm:leading-tight">See online statistics from our application
+      </h2>
   </div>
-  <div class="container">
-    <div class="notification is-link mt-5" style="background-color: #0c584d;">
-  <nav class="level has-text-white">
-    <div class="level-item has-text-centered">
-      <div>
-        <p class="heading">Users</p>
-        <p class="title has-text-white"><%= bot.users.cache.size || 0 %></p>
+<div class="max-w-full mx-4 py-1 sm:mx-auto sm:px-6 lg:px-8">
+  <div class="sm:flex sm:space-x-4">
+      <div class="inline-block align-bottom bg-white rounded-lg text-left overflow-hidden shadow transition-all mb-4 w-full sm:w-1/3 sm:my-8">
+          <div class="bg-white p-5">
+              <div class="sm:flex sm:items-start">
+                  <div class="text-center sm:mt-0 sm:ml-2 sm:text-left">
+                      <h3 class="text-sm leading-6 font-medium text-gray-400">Users</h3>
+                      <p class="text-3xl font-bold text-black"><%= bot.users.cache.size || 0 %></p>
+                  </div>
+              </div>
+          </div>
       </div>
+      <div class="inline-block align-bottom bg-white rounded-lg text-left overflow-hidden shadow transition-all mb-4 w-full sm:w-1/3 sm:my-8">
+        <div class="bg-white p-5">
+            <div class="sm:flex sm:items-start">
+                <div class="text-center sm:mt-0 sm:ml-2 sm:text-left">
+                    <h3 class="text-sm leading-6 font-medium text-gray-400">Guilds</h3>
+                    <p class="text-3xl font-bold text-black"><%= bot.guilds.cache.size || 0 %></p>
+                </div>
+            </div>
+        </div>
     </div>
-    <div class="level-item has-text-centered">
-      <div>
-        <p class="heading">Guilds</p>
-        <p class="title has-text-white"><%= bot.guilds.cache.size || 0 %></p>
+    <div class="inline-block align-bottom bg-white rounded-lg text-left overflow-hidden shadow transition-all mb-4 w-full sm:w-1/3 sm:my-8">
+      <div class="bg-white p-5">
+          <div class="sm:flex sm:items-start">
+              <div class="text-center sm:mt-0 sm:ml-2 sm:text-left">
+                  <h3 class="text-sm leading-6 font-medium text-gray-400">Ping</h3>
+                  <p class="text-3xl font-bold text-black"><%= bot.ws.ping || 0 %>ms</p>
+              </div>
+          </div>
       </div>
-    </div>
-    <div class="level-item has-text-centered">
-      <div>
-        <p class="heading">Channels</p>
-        <p class="title has-text-white"><%= bot.channels.cache.size || 0 %> (<%= bot.channels.cache.filter(c=> c.type ===
-          channelType.GuildText).size %> text & <%= bot.channels.cache.filter(c=> c.type ===
-            channelType.GuildVoice).size %> voice)</p>
-      </div>
-    </div>
-    <div class="level-item has-text-centered">
-      <div>
-        <p class="heading">Emojis</p>
-        <p class="title has-text-white"><%= bot.emojis.cache.size || 0 %> (<%= bot.emojis.cache.filter(e=> e.animated === false).size %> &
-          <%= bot.emojis.cache.filter(e=> e.animated === true).size %> gif)</p>
-      </div>
-    </div>
-    <div class="level-item has-text-centered">
-      <div>
-        <p class="heading">Uptime</p>
-        <p class="title has-text-white"><%= uptime %></p>
-      </div>
-    </div>
-  </nav>
-  <nav class="level has-text-white">
-    <div class="level-item has-text-centered">
-      <div>
-        <p class="heading">Ping (Latency)</p>
-        <p class="title has-text-white"><%= bot.ws.ping || 0 %>ms</p>
-      </div>
-    </div>
-    <div class="level-item has-text-centered">
-      <div>
-        <p class="heading">Discord.js Version</p>
-        <p class="title has-text-white">v<%= djsVersion %></p>
-      </div>
-    </div>
-    <div class="level-item has-text-centered">
-      <div>
-        <p class="heading">Database Version</p>
-        <p class="title has-text-white"><%= mongoDBVersion %></p>
-      </div>
-    </div>
-    <div class="level-item has-text-centered">
-      <div>
-        <p class="heading">Node.js Version</p>
-        <p class="title has-text-white"><%= process.version %></p>
-      </div>
-    </div>
-    <div class="level-item has-text-centered">
-      <div>
-        <p class="heading">Usage</p>
-        <p class="title has-text-white">mem: <%= (process.memoryUsage().rss / 1024 / 1024).toFixed(2) %> MB</p>
-        <p class="title has-text-white">cpu: <%= (process.cpuUsage().system / 1024 / 1024).toFixed(2) %>%</p>
-      </div>
-    </div>
   </div>
- </div>
+  <div class="inline-block align-bottom bg-white rounded-lg text-left overflow-hidden shadow transition-all mb-4 w-full sm:w-1/3 sm:my-8">
+    <div class="bg-white p-5">
+        <div class="sm:flex sm:items-start">
+            <div class="text-center sm:mt-0 sm:ml-2 sm:text-left">
+                <h3 class="text-sm leading-6 font-medium text-gray-400">Memory Usage</h3>
+                <p class="text-3xl font-bold text-black"><%= (process.memoryUsage().rss / 1024 / 1024).toFixed(2) %> MB</p>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="inline-block align-bottom bg-white rounded-lg text-left overflow-hidden shadow transition-all mb-4 w-full sm:w-1/3 sm:my-8">
+  <div class="bg-white p-5">
+      <div class="sm:flex sm:items-start">
+          <div class="text-center sm:mt-0 sm:ml-2 sm:text-left">
+              <h3 class="text-sm leading-6 font-medium text-gray-400">CPU Usage</h3>
+              <p class="text-3xl font-bold text-black"><%= (process.cpuUsage().system / 1024 / 1024).toFixed(2) %>%</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="shadow-lg rounded-lg overflow-hidden">
+      <canvas class="p-10" id="chartLine"></canvas>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script>
+    const labels = ["6 Months Ago", "31 Days Ago", "7 Days Ago", "Now"];
+    const data = {
+      labels: labels,
+      datasets: [
+        {
+          label: "Guilds",
+          backgroundColor: "hsl(131,82.9%,67.8%)",
+          borderColor: "hsl(131,82.9%,67.8%)",
+          data: [1, 3, 5, '<%= bot.guilds.cache.size || 0 %>'],
+        },
+      ],
+    };
+
+    const configLineChart = {
+      type: "line",
+      data,
+      options: {},
+    };
+
+    var chartLine = new Chart(
+      document.getElementById("chartLine"),
+      configLineChart
+      );
+      </script>
+      </div>
+    </div>
+
+ <%- include("partials/footer") %>

@@ -4,106 +4,166 @@
     <link rel="icon" href="<%= bot.user.displayAvatarURL({ dynamic: true, size: 64, format: 'png' }) %>">
     <link href="https://use.fontawesome.com/releases/v6.0.0/css/all.css" rel="stylesheet" />
     <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Nunito+Sans:ital,wght@0,800;1,800&family=Open+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,300;1,400;1,500;1,600;1,700;1,800&display=swap" rel="stylesheet">    
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.3/css/bulma.min.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.0.0/animate.min.css" />
-    <link rel="stylesheet" href="/css/custom.css">
-
-    <nav class="navbar" style="background-color: #0c584d;" role="navigation" aria-label="main navigation">
-        <div class="container">
-            <div class="navbar-brand">
-                <a href="/" class="navSpace">
-                    <img src="/static/Logo.png" class="navicon-fade" width="150" height="auto">
-                </a>
-            
-                <a role="button" class="navbar-burger" data-target="navMenu" aria-label="menu" aria-expanded="false" data-target="navbarBasicExample">
-                    <span aria-hidden="true"></span>
-                    <span aria-hidden="true"></span>
-                    <span aria-hidden="true"></span>
-                </a>
-            </div>
-        
-            <div id="navMenu" class="navbar-menu">
-                <div class="navbar-start">
-                    <a href="/" class="navbar-item">
-                        Home
-                    </a>
-
-                    <a href="/stats" class="navbar-item">
-                        Stats
-                    </a>
-
-                    <a href="/invite" class="navbar-item">
-                        Invite
-                    </a>
-                    
-                    <a href="<%= process.env.SUPPORT_SERVER %>" class="navbar-item">
-                        Support
-                    </a>
-                </div>
-
-                <% if (user) { %>
-                    <div class="navbar-end">
-                        <div class="navbar-item">
-                            <div class="dropdown is-right is-hoverable">
-                                <div class="dropdown-trigger">
-                                    <button class="button is-light is-rounded" aria-haspopup="true" aria-controls="dropdown-menu4">
-                                    <img style="padding: 4px; border-radius: 8px;" src="https://cdn.discordapp.com/avatars/<%= user.id %>/<%= user.avatar %>"> <br><span><%= user.username %><%= user.discriminator && user.discriminator !== '0' ? `#${user.discriminator}` : '' %></span>
-                                    <span class="icon is-small">
-                                      <i class="fas fa-angle-down" aria-hidden="true"></i>
-                                    </span>
-                                  </button>
-                                </div>
-                                <div class="dropdown-menu" id="dropdown-menu4" role="menu">
-                                  <div class="dropdown-content">
-                                    <a href="/dashboard/servers" class="dropdown-item">
-                                        <i class="fas fa-server" style="padding-right: 5px;"></i> Servers
-                                    </a>
-                                    <a href="/profile/<%= user.id%>/me" class="dropdown-item">
-                                        <i class="fas fa-user" style="padding-right: 5px;"></i> Profile
-                                    </a>
-                                    <hr class="dropdown-divider">
-                                    <a href="/logout" class="dropdown-item">
-                                        <i class="fas fa-sign-out-alt" style="padding-right: 5px;"></i> Log Out
-                                    </a>
-                                  </div>
-                                </div>
-                              </div>
-                        </div>
-                    </div>
-                <% } else { %>
-                    <div class="navbar-end">
-                        <div class="navbar-item">
-                            <div class="buttons">
-                                <a class="button is-light is-rounded" href="/login">
-                                    <i class="fab fa-discord" style="padding-right: 5px;"></i> Login
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                <% } %>
-            </div>
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>   
+    <link rel="stylesheet" href="/public/stylesheets/style.css">
+    <script src="https://cdn.tailwindcss.com?plugins=forms,typography,aspect-ratio"></script>
+    
+    <body class="bg-gray-950">
+	<nav class="sticky top-0 px-4 py-4 flex justify-between items-center bg-gray-950">
+		<a class="text-3xl font-bold leading-none" href="/">
+			<img src="/static/Logo.png" alt="eres.fun Logo" class="navicon-fade" width="150" height="auto">
+		</a>
+		<div class="lg:hidden">
+			<button class="navbar-burger flex items-center text-gray-600 p-3">
+				<svg class="block h-4 w-4 fill-current" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+					<title>Mobile menu</title>
+					<path d="M0 3h20v2H0V3zm0 6h20v2H0V9zm0 6h20v2H0v-2z"></path>
+				</svg>
+			</button>
+		</div>
+		<ul class="hidden absolute top-1/2 left-1/2 transform -translate-y-1/2 -translate-x-1/2 lg:flex lg:mx-auto lg:items-center lg:w-auto lg:space-x-6">
+			<li><a class="text-sm text-gray-400 hover:font-bold hover:text-gray-500" href="/">home</a></li>
+			<li class="text-gray-300">
+				<svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" class="w-4 h-4 current-fill" viewBox="0 0 24 24">
+					<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 5v0m0 7v0m0 7v0m0-13a1 1 0 110-2 1 1 0 010 2zm0 7a1 1 0 110-2 1 1 0 010 2zm0 7a1 1 0 110-2 1 1 0 010 2z" />
+				</svg>
+			</li>
+			<li><a class="text-sm text-gray-400 hover:font-bold hover:text-gray-500" href="/stats">stats</a></li>
+			<li class="text-gray-300">
+				<svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" class="w-4 h-4 current-fill" viewBox="0 0 24 24">
+					<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 5v0m0 7v0m0 7v0m0-13a1 1 0 110-2 1 1 0 010 2zm0 7a1 1 0 110-2 1 1 0 010 2zm0 7a1 1 0 110-2 1 1 0 010 2z" />
+				</svg>
+			</li>
+			<li><a class="text-sm text-gray-400 hover:font-bold hover:text-gray-500" href="/invite">invite</a></li>
+			<li class="text-gray-300">
+				<svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" class="w-4 h-4 current-fill" viewBox="0 0 24 24">
+					<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 5v0m0 7v0m0 7v0m0-13a1 1 0 110-2 1 1 0 010 2zm0 7a1 1 0 110-2 1 1 0 010 2zm0 7a1 1 0 110-2 1 1 0 010 2z" />
+				</svg>
+			</li>
+			<li><a class="text-sm text-gray-400 hover:font-bold hover:text-gray-500" href="/support">support</a></li>
+		</ul>
+        <% if (user) { %>
+            <script src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.x.x/dist/alpine.min.js"></script>
+            <div x-data="{ open: false }" class="w-64 justify-center items-center">
+      <div @click="open = !open" class="relative" :class="{'transform transition duration-300 ': open}" x-transition:enter-end="transform opacity-100 scale-100" x-transition:leave="transition ease-in duration-75" x-transition:leave-start="transform opacity-100 scale-100">
+        <div class="flex justify-center items-center space-x-3 cursor-pointer">
+          <div class="w-10 h-10 rounded-full overflow-hidden border-2 border-white ">
+            <img src="https://cdn.discordapp.com/avatars/<%= user.id %>/<%= user.avatar %>" alt="user avatar" class="w-full h-full object-cover">
+          </div>
+          <div class="font-semibold text-white text-lg">
+            <div class="cursor-pointer"><%= user.username %><%= user.discriminator && user.discriminator !== '0' ? `#${user.discriminator}` : '' %></div>
+          </div>
         </div>
-    </nav>
+        <div x-show="open" x-transition:enter="transition ease-out duration-100" x-transition:enter-start="transform opacity-0 scale-95" x-transition:enter-end="transform opacity-100 scale-100" x-transition:leave="transition ease-in duration-75" x-transition:leave-start="transform opacity-100 scale-100" x-transition:leave-end="transform opacity-0 scale-95" class="absolute w-60 px-5 py-3 bg-gray-800 rounded-lg shadow border dark:border-transparent mt-5">
+          <ul class="space-y-3 text-white">
+            <li class="font-medium">
+              <a href="/profile/<%= user.id%>/me" class="flex items-center transform transition-colors duration-200 border-r-4 border-transparent hover:text-gray-400">
+                <div class="mr-3">
+                  <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"></path></svg>
+                </div>
+                Profile
+              </a>
+            </li>
+            <li class="font-medium">
+              <a href="/dashboard/servers" class="flex items-center transform transition-colors duration-200 border-r-4 border-transparent hover:text-gray-400">
+                <div class="mr-3">
+                  <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path></svg>
+                </div>
+                Manage
+              </a>
+            </li>
+            <hr class="dark:border-gray-700">
+            <li class="font-medium">
+              <a href="/logout" class="flex items-center transform transition-colors duration-200 border-r-4 border-transparent hover:text-red-200">
+                <div class="mr-3 text-red-600">
+                  <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1"></path></svg>
+                </div>
+                Logout
+              </a>
+            </li>
+          </ul>
+        </div>
+      </div>
+      <% } else { %>
+        <a class="hidden lg:inline-block py-2 px-6 bg-green-500 hover:bg-green-600 text-sm text-white font-bold rounded-xl transition duration-200" href="/login"><i class="fab fa-discord" style="padding-right: 5px;"></i> Login</a>
+        <% } %>
+      </nav>
+      <div class="navbar-menu relative z-50 hidden">
+        <div class="navbar-backdrop fixed inset-0 bg-gray-800 opacity-25"></div>
+        <nav class="fixed top-0 left-0 bottom-0 flex flex-col w-5/6 max-w-sm py-6 px-6 bg-gray-950 border-r overflow-y-auto">
+          <div class="flex items-center mb-8">
+            <a class="mr-auto text-3xl font-bold leading-none" href="/">
+              <img src="/static/Logo.png" alt="eres.fun Logo" class="navicon-fade" width="150" height="auto">
+            </a>
+            <button class="navbar-close">
+              <svg class="h-6 w-6 text-gray-400 cursor-pointer hover:text-gray-500" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+              </svg>
+            </button>
+          </div>
+          <div>
+            <ul>
+              <li class="mb-1">
+                <a class="block p-4 text-sm font-semibold text-gray-400 hover:bg-green-50 hover:text-green-600 rounded" href="/">home</a>
+              </li>
+              <li class="mb-1">
+                <a class="block p-4 text-sm font-semibold text-gray-400 hover:bg-green-50 hover:text-green-600 rounded" href="/stats">stats</a>
+              </li>
+              <li class="mb-1">
+                <a class="block p-4 text-sm font-semibold text-gray-400 hover:bg-green-50 hover:text-green-600 rounded" href="/invite">invite</a>
+              </li>
+              <li class="mb-1">
+                <a class="block p-4 text-sm font-semibold text-gray-400 hover:bg-green-50 hover:text-green-600 rounded" href="/support">support</a>
+              </li>
+            </ul>
+          </div>
+          <div class="mt-auto">
+            <% if (user) { %>
+              <% } else { %>
+                <div class="pt-6">
+                  <a class="block px-4 py-3 mb-2 leading-loose text-xs text-center text-white font-semibold bg-green-600 hover:bg-green-700  rounded-xl" href="/login"><i class="fab fa-discord" style="padding-right: 5px;"></i> Login</a>
+                </div>
+                <% } %>
+              </div>
+            </nav>
+          </div>
+        </body>
+        <script>
+        document.addEventListener('DOMContentLoaded', function() {
+          const burger = document.querySelectorAll('.navbar-burger');
+          const menu = document.querySelectorAll('.navbar-menu');
 
-</head>
+          if (burger.length && menu.length) {
+            for (var i = 0; i < burger.length; i++) {
+              burger[i].addEventListener('click', function() {
+                for (var j = 0; j < menu.length; j++) {
+                  menu[j].classList.toggle('hidden');
+                }
+            });
+          }
+        }
+        
+        const close = document.querySelectorAll('.navbar-close');
+        const backdrop = document.querySelectorAll('.navbar-backdrop');
 
-<body>
+        if (close.length) {
+          for (var i = 0; i < close.length; i++) {
+            close[i].addEventListener('click', function() {
+                for (var j = 0; j < menu.length; j++) {
+                    menu[j].classList.toggle('hidden');
+                }
+              });
+            }
+          }
 
-<script>
-    document.addEventListener('DOMContentLoaded', () => {
-        const $navbarBurgers = Array.prototype.slice.call(document.querySelectorAll('.navbar-burger'), 0);
-        if ($navbarBurgers.length > 0) {
-            $navbarBurgers.forEach( el => {
-                el.addEventListener('click', () => {
-                    const target = el.dataset.target;
-                    const $target = document.getElementById(target);
-
-                    el.classList.toggle('is-active');
-                    $target.classList.toggle('is-active');
-                });
+          if (backdrop.length) {
+            for (var i = 0; i < backdrop.length; i++) {
+              backdrop[i].addEventListener('click', function() {
+                for (var j = 0; j < menu.length; j++) {
+                    menu[j].classList.toggle('hidden');
+                }
             });
         }
-    });
+    }
+});
 </script>

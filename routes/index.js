@@ -15,6 +15,9 @@ router.get('/', async (req, res) => {
 	res.render('index', {
 		tag: (req.user ? req.user.tag : 'Login'),
 		bot: req.client,
+		uptime: dayjs(req.client.uptime).format('D [d], H [h], m [m], s [s]'),
+		eresVersion: package.version,
+		eresName: package.name,
 		user: req.user || null,
 	});
 });
@@ -25,6 +28,16 @@ router.get('/profile/:userID/me', checkAuth, async (req, res) => {
 		return res.status(404).send('Not allowed');
 	}
 
+	function calculatePercentage(minXP, maxXP, currentXP) {
+		if (currentXP < minXP || currentXP > maxXP) {
+			return 'Invalid XP value. It should be between minXP and maxXP.';
+		}
+		const totalXP = maxXP - minXP;
+		const gainedXP = currentXP - minXP;
+		const percentage = (gainedXP / totalXP) * 100;
+		return percentage.toFixed(2) + '%';
+	}
+
 	const { user } = await db.getUserById(req.user.id);
 
 	const calculateUserXp = (xp) => Math.floor(0.1 * Math.sqrt(xp));
@@ -32,6 +45,7 @@ router.get('/profile/:userID/me', checkAuth, async (req, res) => {
 
 	const minXp = (level * level) / 0.01;
 	const maxXp = ((level + 1) * (level + 1)) / 0.01;
+	const percentageXp = calculatePercentage(minXp, maxXp, user.xp);
 
 	res.render('profile/me', {
 		bot: req.client,
@@ -43,6 +57,7 @@ router.get('/profile/:userID/me', checkAuth, async (req, res) => {
 		user: req.user || null,
 		minXp: minXp || 0,
 		maxXp: maxXp || 0,
+		percentageXp: percentageXp || 0,
 	});
 });
 
@@ -60,6 +75,10 @@ router.get('/stats', async (req, res) => {
 
 router.get('/invite', async function(req, res) {
 	res.redirect(`https://discord.com/oauth2/authorize?client_id=${req.client.user.id}&permissions=1098974625783&scope=bot%20applications.commands`);
+});
+
+router.get('/support', async function(req, res) {
+	res.redirect('https://discord.gg/P6YKMfZrbT');
 });
 
 router.get('/login', passport.authenticate('discord', { failureRedirect: '/' }), async function(req, res) {
