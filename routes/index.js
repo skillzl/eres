@@ -1,6 +1,7 @@
 const express = require('express');
 const { ChannelType, version } = require('discord.js');
 const passport = require('passport');
+const bodyParser = require('body-parser');
 const dayjs = require('dayjs');
 require('dayjs/plugin/duration');
 
@@ -10,6 +11,8 @@ const router = express.Router();
 
 const db = require('../database/manager');
 const checkAuth = require('../backend/checkAuth');
+
+router.use(bodyParser.urlencoded({ extended: true }));
 
 router.get('/', async (req, res) => {
 	res.render('index', {
@@ -59,6 +62,14 @@ router.get('/profile/:userID/me', checkAuth, async (req, res) => {
 		maxXp: maxXp || 0,
 		percentageXp: percentageXp || 0,
 	});
+});
+
+router.post('/profile/:userID/me', checkAuth, async (req, res) => {
+	const about = req.body.about;
+	if (about) {
+		await db.updateUserById(req.user.id, { about: about });
+	}
+	res.redirect('/profile/' + req.user.id + '/me');
 });
 
 router.get('/stats', async (req, res) => {

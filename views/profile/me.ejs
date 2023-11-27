@@ -26,9 +26,22 @@
         document.getElementById("myBar").style.width = "<%= percentageXp %>";
       </script>
        <div class="px-6 text-center mt-2 font-light text-sm text-gray-300">
-         <p>
-           <%= about %>
-         </p>
+        <script defer src="https://unpkg.com/alpinejs@3.9.1/dist/cdn.min.js"></script>
+        <form action="/profile/<%= user.id %>/me" method="post">
+          <div x-data="{ open : false }" class="w-90 rounded bg-gray-900 p-2 shadow">
+            <div x-show="!open" class="flex items-center justify-between">
+              <div class="ml-2"><%= about %></div>
+              <button type="button" class="btn rounded px-4 py-2 font-medium hover:text-gray-500" @click="open = !open"><i class="fa-solid fa-pen-to-square"></i></button>
+            </div>
+            <div x-show="open" class="flex items-center justify-between">
+              <input class="mr-4 w-full rounded bg-gray-900 p-2" type="text" name="about" placeholder="<%= about %>" maxlength="50" />
+              <div class="flex items-center justify-center space-x-2">
+                <button type="button" @click="open = false" class="btn rounded px-2 py-1 font-medium hover:text-red-600"><i class="fa-solid fa-xmark"></i></button>
+                <button type="submit" class="btn rounded px-2 py-1 font-medium text-white hover:text-green-600"><i class="fa-solid fa-check"></i></button>
+              </div>
+            </div>
+          </div>
+        </form>
        </div>
        <hr class="mt-8">
        <div class="flex p-3">
@@ -44,5 +57,5 @@
        </div>
     </div>
   </div>
-  
+  </div>
   <%- include("../partials/footer") %>
