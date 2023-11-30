@@ -43,7 +43,7 @@ module.exports = class Database extends Command {
 			});
 
 			return interaction.reply(
-				`<:green_emoji:1126936345043030026> Successfully added \`${value}\` exp to ${member.username}.`,
+				`<:green_emoji:1126936345043030026> Successfully added \`${value}\` xp to ${member.username}.`,
 			);
 		}
 		case 'balance': {
