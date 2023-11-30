@@ -1,13 +1,11 @@
 const Command = require('../../structures/CommandClass');
 const db = require('../../database/manager');
+const userModel = require('../../database/userModel');
 
-const NumAbbr = require('number-abbreviate');
 const { loadImage, createCanvas } = require('canvas');
+const { AttachmentBuilder, SlashCommandBuilder } = require('discord.js');
 
 const calculateUserXp = (xp) => Math.floor(0.1 * Math.sqrt(xp));
-const numAbbr = new NumAbbr();
-
-const { AttachmentBuilder, SlashCommandBuilder } = require('discord.js');
 
 module.exports = class Rank extends Command {
 	constructor(client) {
@@ -27,6 +25,17 @@ module.exports = class Rank extends Command {
 		const member = interaction.options.getUser('target') || interaction.user;
 		const { user } = await db.getUserById(member.id);
 
+		const users = await userModel.find({}).sort('-xp');
+		let position = -1;
+
+		for (let i = 0; i < users.length; i++) {
+			if (users[i]) {
+				if (users[i].userId === member.id) {
+					position = i + 1;
+				}
+			}
+		}
+
 		const level = calculateUserXp(user.xp);
 
 		const minXp = (level * level) / 0.01;
@@ -42,7 +51,7 @@ module.exports = class Rank extends Command {
 		ctx.lineWidth = 4;
 		ctx.strokeStyle = '#555555';
 		ctx.globalAlpha = 1;
-		ctx.fillStyle = '#555555';
+		ctx.fillStyle = '#a4a4a4';
 		ctx.fillRect(0, 270, 1026, 20);
 		ctx.fill();
 		ctx.globalAlpha = 1;
@@ -57,23 +66,33 @@ module.exports = class Rank extends Command {
 
 		ctx.font = '25px Arial';
 		ctx.textAlign = 'center';
-		ctx.fillStyle = '#d6d6d6';
-		ctx.fillText(`${numAbbr.abbreviate(user.xp)}/${numAbbr.abbreviate(maxXp)}`, 780, 160);
+		ctx.fillStyle = '#FFFFFF';
+		ctx.fillText(`${user.xp}/${maxXp}`, 810, 163);
 
 		ctx.textAlign = 'center';
 		ctx.font = 'bold 25px Arial';
 		ctx.fillStyle = '#30917d';
-		ctx.fillText('XP', 780, 140);
+		ctx.fillText('XP', 810, 140);
 
 		ctx.textAlign = 'center';
 		ctx.font = 'bold 25px Arial';
 		ctx.fillStyle = '#30917d';
-		ctx.fillText('LEVEL', 510, 140);
+		ctx.fillText('RANK', 640, 140);
 
 		ctx.font = '25px Arial';
 		ctx.textAlign = 'center';
-		ctx.fillStyle = '#d6d6d6';
-		ctx.fillText(`${level}`, 510, 160);
+		ctx.fillStyle = '#FFFFFF';
+		ctx.fillText(`#${position}`, 640, 163);
+
+		ctx.textAlign = 'center';
+		ctx.font = 'bold 25px Arial';
+		ctx.fillStyle = '#30917d';
+		ctx.fillText('LEVEL', 460, 140);
+
+		ctx.font = '25px Arial';
+		ctx.textAlign = 'center';
+		ctx.fillStyle = '#FFFFFF';
+		ctx.fillText(`${level}`, 460, 163);
 
 		ctx.font = 'bold 32px Arial';
 		ctx.fillStyle = '#30917d';
