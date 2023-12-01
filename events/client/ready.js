@@ -1,6 +1,8 @@
 const Event = require('../../structures/EventClass');
+const cron = require('node-cron');
 const mongoose = require('mongoose');
 
+const analyticsModel = require('../../database/analyticsModel');
 const { ActivityType } = require('discord.js');
 
 module.exports = class ReadyEvent extends Event {
@@ -20,6 +22,22 @@ module.exports = class ReadyEvent extends Event {
 
 		const webPortal = require('../../server');
 		webPortal.load(client);
+
+		cron.schedule('0 0 * * 0', async () => {
+			const guilds = client.guilds.cache.size;
+			const users = client.users.cache.size;
+
+			const analytics = await analyticsModel.findOne({});
+			if (analytics) {
+				analytics.guilds = guilds;
+				analytics.users = users;
+				await analytics.save();
+			}
+			else {
+				await analyticsModel.create({ guilds, users });
+			}
+			console.log('[Scheduler]: 🟢 Updated guilds and users analytics stats.');
+		});
 
 		client.user.setActivity('🌴 ' + client.users.cache.size.toLocaleString() + ' users', { type: ActivityType.Watching });
 

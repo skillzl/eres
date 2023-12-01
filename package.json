@@ -37,6 +37,7 @@
     "express-session": "^1.17.3",
     "figlet": "^1.7.0",
     "mongoose": "^7.6.5",
+    "node-cron": "^3.0.3",
     "node-superfetch": "^0.2.3",
     "number-abbreviate": "^2.0.0",
     "passport": "^0.6.0",
