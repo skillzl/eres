@@ -18,7 +18,7 @@ MongoDB Compass Download (GUI)
  If you've run a command you would see the "analytics" collection, open it and then you will see a document where you find your _id. (first row)
 
 Example:
-<img src="./assets/github/id-analytics.webp" width="1024" />
+<img src="./assets/github/id-analytics.png" width="1024" />
 >  **Hint**: There it is! **656a1c4e7459779a005544ef** is the _id you need to copy and put in your .env file.
 
   
