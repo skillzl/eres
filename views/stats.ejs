@@ -34,8 +34,8 @@
       <div class="bg-white p-5">
           <div class="sm:flex sm:items-start">
               <div class="text-center sm:mt-0 sm:ml-2 sm:text-left">
-                  <h3 class="text-sm leading-6 font-medium text-gray-400">Ping</h3>
-                  <p class="text-3xl font-bold text-black"><%= bot.ws.ping || 0 %>ms</p>
+                  <h3 class="text-sm leading-6 font-medium text-gray-400">Commands Used</h3>
+                  <p class="text-3xl font-bold text-black"><%= commands_used %></p>
               </div>
           </div>
       </div>
@@ -74,7 +74,7 @@
           label: "Guilds",
           backgroundColor: "hsl(131,82.9%,67.8%)",
           borderColor: "hsl(131,82.9%,67.8%)",
-          data: [1, 3, 5, '<%= bot.guilds.cache.size || 0 %>'],
+          data: [1, 3, '<%= guilds %>', '<%= bot.guilds.cache.size || 0 %>'],
         },
       ],
     };

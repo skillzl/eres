@@ -89,6 +89,10 @@ router.post('/profile/:userID/me', checkAuth, async (req, res) => {
 });
 
 router.get('/stats', async (req, res) => {
+	const { data } = await db.getAnalysticsById(process.env.ANALYTICS_ID);
+	const guilds = data.guilds;
+	const commands_used = data.commands_used;
+
 	res.render('stats', {
 		tag: (req.user ? req.user.tag : 'Login'),
 		bot: req.client,
@@ -96,6 +100,8 @@ router.get('/stats', async (req, res) => {
 		uptime: dayjs(req.client.uptime).format('D [d], H [h], m [m], s [s]'),
 		channelType: ChannelType,
 		djsVersion: version,
+		guilds: guilds,
+		commands_used: commands_used,
 		mongoDBVersion: package.dependencies['mongoose'],
 	});
 });

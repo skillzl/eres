@@ -73,8 +73,7 @@ module.exports = class Manager {
 		if (typeof id !== 'string') {
 			throw new Error('Invalid ID');
 		}
-		let data = await analyticsModel.findOne({ _id: id });
-		if (!data) { data = await this.createAnalytics(); }
+		const data = await analyticsModel.findOne({ _id: id });
 		return { data };
 	}
 
