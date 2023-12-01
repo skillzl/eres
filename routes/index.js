@@ -29,8 +29,14 @@ router.get('/privacy', async (req, res) => {
 	res.render('privacy', {
 		tag: (req.user ? req.user.tag : 'Login'),
 		bot: req.client,
-		eresVersion: package.version,
-		eresName: package.name,
+		user: req.user || null,
+	});
+});
+
+router.get('/tos', async (req, res) => {
+	res.render('tos', {
+		tag: (req.user ? req.user.tag : 'Login'),
+		bot: req.client,
 		user: req.user || null,
 	});
 });
