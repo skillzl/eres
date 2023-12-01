@@ -23,6 +23,7 @@ module.exports = class InteractionCreate extends Event {
 
 			try {
 				command.run(client, interaction);
+				db.incrementCommandsUsed();
 			}
 			catch (e) {
 				console.log(e);

@@ -1,5 +1,6 @@
 const serverModel = require('./serverModel');
 const userModel = require('./userModel');
+const analyticsModel = require('./analyticsModel');
 
 module.exports = class Manager {
 	static async createServer(id) {
@@ -55,6 +56,36 @@ module.exports = class Manager {
 
 		await user.save();
 		return user;
+	}
+
+	static async createAnalytics() {
+		const analytics = new analyticsModel({
+			commands_used: 0,
+			guilds: 0,
+			users: 0,
+		});
+
+		await analytics.save();
+		return analytics;
+	}
+
+	static async getAnalysticsById(id) {
+		if (typeof id !== 'string') {
+			throw new Error('Invalid ID');
+		}
+		let data = await analyticsModel.findOne({ _id: id });
+		if (!data) { data = await this.createAnalytics(); }
+		return { data };
+	}
+
+	static async incrementCommandsUsed() {
+		const analyticsData = await analyticsModel.findOne();
+		if (!analyticsData) { this.createAnalytics(); }
+
+		if (analyticsData) {
+			analyticsData.commands_used += 1;
+			await analyticsData.save();
+		}
 	}
 
 	static async getUserById(id) {
