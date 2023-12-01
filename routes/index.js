@@ -91,6 +91,7 @@ router.post('/profile/:userID/me', checkAuth, async (req, res) => {
 router.get('/stats', async (req, res) => {
 	const { data } = await db.getAnalysticsById(process.env.ANALYTICS_ID);
 	const guilds = data.guilds;
+	const users = data.users;
 	const commands_used = data.commands_used;
 
 	res.render('stats', {
@@ -101,6 +102,7 @@ router.get('/stats', async (req, res) => {
 		channelType: ChannelType,
 		djsVersion: version,
 		guilds: guilds,
+		users: users,
 		commands_used: commands_used,
 		mongoDBVersion: package.dependencies['mongoose'],
 	});
