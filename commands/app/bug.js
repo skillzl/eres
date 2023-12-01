@@ -53,6 +53,7 @@ module.exports = class Bug extends Command {
 				embeds: [embed],
 			});
 
+			db.incrementReports();
 			db.updateUserById(interaction.user.id, {
 				report_cooldown: Date.now(),
 			});

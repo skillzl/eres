@@ -40,12 +40,12 @@ module.exports = class Process extends Command {
 			.addFields(
 				{ name: 'Process', value: `Memory: ${(process.memoryUsage().rss / 1024 / 1024).toFixed(2)}mb\nCPU:${(process.cpuUsage().system / 1024 / 1024).toFixed(2)}%\nPing: ${client.ws.ping || 0}ms\nUptime: ${dayjs(client.uptime).format('D [d], H [h], m [m], s [s]')}`, inline: true },
 				{ name: 'Packages', value: `discord.js: ^${version}\nexpress: ${packages.dependencies['express']}\nmongoose: ${packages.dependencies['mongoose']}\nnode.js: ^${process.version}`, inline: true },
-				{ name: 'Cache', value: `Guilds: ${client.guilds.cache.size || 0}\nChannels: ${client.channels.cache.size || 0}\nEmojis: ${client.emojis.cache.size || 0 }\nUsers: ${client.users.cache.size || 0}`, inline:true },
+				{ name: 'Cache', value: `Guilds: ${client.guilds.cache.size || 0}\nChannels: ${client.channels.cache.size || 0}\nEmojis: ${client.emojis.cache.size || 0 }\nUsers: ${client.users.cache.size || 0}`, inline: true },
 			)
 			.setFooter({
 				text: 'You are experiencing a beta version of this application that may suffer some unfinished features!',
 			})
-			.setThumbnail(interaction.guild.iconURL({ dynamic: true, size: 2048, extension: 'png' }));
+			.setThumbnail(client.user.displayAvatarURL({ dynamic: true, size: 128, format: 'png' }));
 
 		await interaction.reply({ embeds: [embed], components: [row] });
 

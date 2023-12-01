@@ -63,6 +63,7 @@ module.exports = class Manager {
 			commands_used: 0,
 			guilds: 0,
 			users: 0,
+			reports: 0,
 		});
 
 		await analytics.save();
@@ -75,6 +76,16 @@ module.exports = class Manager {
 		}
 		const data = await analyticsModel.findOne({ _id: id });
 		return { data };
+	}
+
+	static async incrementReports() {
+		const analyticsData = await analyticsModel.findOne();
+		if (!analyticsData) { this.createAnalytics(); }
+
+		if (analyticsData) {
+			analyticsData.reports += 1;
+			await analyticsData.save();
+		}
 	}
 
 	static async incrementCommandsUsed() {
