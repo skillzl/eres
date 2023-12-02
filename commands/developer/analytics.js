@@ -21,7 +21,7 @@ module.exports = class Analytics extends Command {
 	}
 	async run(client, interaction) {
 		if (interaction.user.id !== process.env.DEVELOPER_ID) return interaction.reply('Missing `DEVELOPER` permission.');
-		if (!process.env.ANALYTICS_ID) return interaction.reply({ content: '<:red_emoji:1126936340022435963> Analytics unique identifier not set.' });
+		if (!process.env.ANALYTICS_ID) return interaction.reply('<:red_emoji:1126936340022435963> Analytics unique identifier not set.');
 
 		try {
 			const { data } = await db.getAnalysticsById(process.env.ANALYTICS_ID);
@@ -46,7 +46,7 @@ module.exports = class Analytics extends Command {
 		catch (err) {
 			if (err instanceof mongoose.Error.CastError) {
 				console.error(`[Database]: Invalid 🔴 ObjectId: ${err.value} (Analytics _id in .env file)`);
-				interaction.reply({ content: '<:red_emoji:1126936340022435963> Analytics unique identifier not set.' });
+				interaction.reply('<:red_emoji:1126936340022435963> Analytics unique identifier not set.');
 			}
 			else {
 				console.error(err);
