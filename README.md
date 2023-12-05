@@ -68,9 +68,7 @@ WEBHOOK_TOKEN=
 ANALYTICS_ID=
 ```
 
-> **Note**
-
-Envoirement settings need to be in a ".env" file.
+> **Note**: Envoirement settings need to be in a ".env" file.
 
 ## Analytics
 
