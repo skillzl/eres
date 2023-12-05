@@ -1,13 +1,10 @@
-> <img src="./assets/eres-crop.png"  width="20" /> eres<br/> author: skillzl
+> <img src="./assets/eres-crop.png"  width="24" /> eres.fun<br/> author: [skillzl](https://skillzl.dev)
 
-🍍 Complete journey rewriting the original chrlwv source to discord.js@v14.12.1!
+🍍 A multipurpose discord client written in javascript featuring a lot of util commands and a highly optimized web application with control over the application's settings. Eres is used on over **12** servers, we invite you to try it out and hope you enjoy!
 
 ## Deployment & Features
 
 Deployment support is not here yet! This repository is only for github imigration purposes.
-Current version it is not available for production deployment.
-
-> **Note**: Application is not intended to be used in production environments.
 
 - Modular features with optional congifuration.
 - Experience system with levels and xp.
@@ -28,10 +25,7 @@ npn run start [cls && node bot.js] or nodemon
 
 <img  src="./assets/github/dashboard.png"  width="1042">
 
-> **Live**: Beta release https://eres.fun
-
-> **Tip**: Visit this repository to check out the latest version.
-
+> **Tip**: Visit this repository to check out the latest version available.
 
 ## Widget
 
