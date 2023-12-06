@@ -1,4 +1,3 @@
-/* eslint-disable no-cond-assign */
 /* eslint-disable no-shadow */
 const Event = require('../../structures/EventClass');
 const db = require('../../database/manager');
