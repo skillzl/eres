@@ -7,21 +7,14 @@
        <img class="w-32 mx-auto rounded-full -mt-20 border-8 border-gray-900" src="https://cdn.discordapp.com/avatars/<%= user.id %>/<%= user.avatar %>">
        <div class="text-center mt-2 text-3xl font-medium text-white"><%= user.username %><%= user.discriminator && user.discriminator !== '0' ? `#${user.discriminator}` : '' %></div>
        <div class="text-center font-normal text-lg text-gray-200">LEVEL <%= level %> (<%= xp %>/<%= maxXp %>)</div>
-       <style>
-        #myProgress {
-          width: 100%;
-          background-color: #ddd;
-        }
-        
+       <style>        
         #myBar {
           width: 10%;
           height: 20px;
           background-color: #4CAF50;
         }
         </style>
-       <div id="myProgress">
-        <div id="myBar"></div>
-      </div>
+        <div class="w-full rounded-full h-2.5 mt-8" id="myBar"></div>
       <script>
         document.getElementById("myBar").style.width = "<%= percentageXp %>";
       </script>
