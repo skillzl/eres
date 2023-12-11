@@ -10,7 +10,7 @@ const package = require('../package.json');
 const router = express.Router();
 
 const db = require('../database/manager');
-const checkAuth = require('../backend/checkAuth');
+const checkAuth = require('../middlewares/checkAuth');
 
 router.use(bodyParser.urlencoded({ extended: true }));
 
