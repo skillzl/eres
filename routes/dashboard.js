@@ -44,8 +44,7 @@ router.post('/server/:guildID', checkAuth, async (req, res) => {
 
 	const data = req.body;
 
-	// eslint-disable-next-line no-prototype-builtins
-	if (data.hasOwnProperty('prefix')) {
+	if (Object.prototype.hasOwnProperty.call(data, 'prefix')) {
 		let newprefix;
 		let prefix = await db.getPrefix(req.params.guildID);
 
