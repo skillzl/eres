@@ -41,7 +41,6 @@ module.exports = class ReadyEvent extends Event {
 
 		cron.schedule('*/5 * * * *', async () => {
 			client.user.setActivity('🌴 ' + client.users.cache.size.toLocaleString() + ' users', { type: ActivityType.Watching });
-			console.log('[Scheduler]: 🟢 Updated client activity (5 minutes).');
 		});
 
 		client.user.setActivity('🌴 ' + client.users.cache.size.toLocaleString() + ' users', { type: ActivityType.Watching });
