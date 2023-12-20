@@ -18,7 +18,7 @@ module.exports = class ReadyEvent extends Event {
 		mongoose.connect(process.env.MONGO_URL, {
 			useNewUrlParser: true,
 			useUnifiedTopology: true,
-		}).then(() => console.log('[Database]: Connected to 🥬 mongoose database server. '));
+		}).then(() => console.log('[Database]: Connected to 🥬 mongoose database server.'));
 
 		const webPortal = require('../../server');
 		webPortal.load(client);
@@ -37,6 +37,11 @@ module.exports = class ReadyEvent extends Event {
 				await analyticsModel.create({ guilds, users });
 			}
 			console.log('[Scheduler]: 🟢 Updated guilds and users analytics stats.');
+		});
+
+		cron.schedule('*/5 * * * *', async () => {
+			client.user.setActivity('🌴 ' + client.users.cache.size.toLocaleString() + ' users', { type: ActivityType.Watching });
+			console.log('[Scheduler]: 🟢 Updated client activity (5 minutes).');
 		});
 
 		client.user.setActivity('🌴 ' + client.users.cache.size.toLocaleString() + ' users', { type: ActivityType.Watching });
