@@ -8,6 +8,11 @@ module.exports = class ErrorEvent extends Event {
 		});
 	}
 	async run(error) {
-		console.log(`[Error]: An error 🔴 occurred at (${new Date().toISOString()}): ${error.message}`);
+		if (error.message.includes('Missing')) {
+			return;
+		}
+		else {
+			console.log(`[Error]: An error 🔴 occurred at (${new Date().toISOString()}): ${error.message}`);
+		}
 	}
 };
