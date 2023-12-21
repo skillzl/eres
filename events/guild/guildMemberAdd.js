@@ -1,4 +1,3 @@
-/* eslint-disable no-unused-vars */
 const { AttachmentBuilder } = require('discord.js');
 const { createCanvas, loadImage } = require('canvas');
 
