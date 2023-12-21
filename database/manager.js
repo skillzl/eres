@@ -109,6 +109,28 @@ module.exports = class Manager {
 		await guild.save();
 	}
 
+	static async updateServerWelcome(id, channel) {
+		if (typeof id !== 'string') {
+			throw new Error('Invalid ID');
+		}
+		const guild = await this.findServer(id);
+		if (!guild) { await this.createServer(id); }
+
+		guild.welcome = channel;
+		await guild.save();
+	}
+
+	static async updateServerLeave(id, channel) {
+		if (typeof id !== 'string') {
+			throw new Error('Invalid ID');
+		}
+		const guild = await this.findServer(id);
+		if (!guild) { await this.createServer(id); }
+
+		guild.leave = channel;
+		await guild.save();
+	}
+
 	static async getUserById(id) {
 		if (typeof id !== 'string') {
 			throw new Error('Invalid ID');

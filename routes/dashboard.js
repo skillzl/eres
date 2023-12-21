@@ -63,6 +63,16 @@ router.post('/server/:guildID', checkAuth, async (req, res) => {
 		await db.updateServerAutorole(server.id, newAutorole);
 	}
 
+	if (Object.prototype.hasOwnProperty.call(data, 'welcome')) {
+		const newWelcome = data.welcome;
+		await db.updateServerWelcome(server.id, newWelcome);
+	}
+
+	if (Object.prototype.hasOwnProperty.call(data, 'leave')) {
+		const newLeave = data.leave;
+		await db.updateServerLeave(server.id, newLeave);
+	}
+
 	await res.redirect(`/dashboard/server/${req.params.guildID}`);
 });
 
