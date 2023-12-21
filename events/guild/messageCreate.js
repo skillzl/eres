@@ -20,7 +20,7 @@ module.exports = class MessageCreate extends Event {
 			const newLevel = calculateUserXp(user.xp + xp);
 
 			if (newLevel > level) {
-				const msg = await message.reply(`<:star_emoji:1126279940321574913> Congratulations, you leveled up to level \`${newLevel}\`!`);
+				const msg = await message.reply(`<:star_emoji:1126279940321574913> Congratulations, you leveled up to level \`${newLevel}\`! \`${level}\``);
 				setTimeout(() => {
 					msg?.delete();
 				}, 10000);
