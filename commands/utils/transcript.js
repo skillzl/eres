@@ -35,7 +35,7 @@ module.exports = class TranscriptCommand extends Command {
 					return;
 				}
 				interaction.editReply({
-					content: `Here's the transcript of the last 100 messages in this channel: ${interaction.channel}\nhttp://${process.env.DOMAIN}/transcripts/${interaction.channel.id}-transcript.html`,
+					content: `<:mail_emoji:1170364505616826398> Here's the transcript of the last \`100 messages\` in this channel: ${interaction.channel}\nhttp://${process.env.DOMAIN}/transcripts/${interaction.channel.id}-transcript.html`,
 				});
 			});
 		}
