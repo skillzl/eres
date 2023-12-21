@@ -1,40 +1,46 @@
 const Command = require('../../structures/CommandClass');
-const { SlashCommandBuilder } = require('@discordjs/builders');
-const { createTranscript } = require('discord-html-transcripts'); // Assuming you have it installed
+const { SlashCommandBuilder, PermissionsBitField } = require('discord.js');
+
+const fs = require('fs');
+const { createTranscript } = require('discord-html-transcripts');
 
 module.exports = class TranscriptCommand extends Command {
-  constructor(client) {
-    super(client, {
-      data: new SlashCommandBuilder()
-        .setName('transcript')
-        .setDescription('Generates a transcript of the last 100 messages in the channel')
-        .setDMPermission(false),
-      usage: 'transcript',
-      category: 'Chat Utilities',
-      permissions: ['Use Application Commands', 'Send Messages', 'Embed Links'],
-    });
-  }
+	constructor(client) {
+		super(client, {
+			data: new SlashCommandBuilder()
+				.setName('transcript')
+				.setDescription('Generates a transcript of the last 100 messages in the channel')
+				.setDMPermission(true),
+			usage: 'transcript',
+			category: 'Utils',
+			permissions: ['Use Application Commands', 'Send Messages', 'Embed Links', 'Manage Messages'],
+		});
+	}
 
-  async run(client, interaction) {
-    const channel = interaction.channel;
+	async run(client, interaction) {
+		if (!interaction.member.permissions.has(PermissionsBitField.Flags.ManageMessages)) return await interaction.reply('You are missing `MANAGE_MESSAGES` permission.');
 
-    try {
-      interaction.deferReply({ fetchReply: true }); // Show a loading message
+		interaction.deferReply({ fetchReply: true });
+		interaction.channel.messages.fetch({ limit: 100 });
 
-      const messages = await channel.messages.fetch({ limit: 100 });
-      const transcriptFile = await createTranscript(channel, {
-        limit: 100,
-        returnBuffer: false,
-        fileName: `${channel.name.toLowerCase()}-transcript.html`,
-      });
+		try {
+			const transcript = await createTranscript(interaction.channel, {
+				returnType: 'string',
+				limit: 100,
+			});
 
-      await interaction.editReply({
-        content: `Here's the transcript of the last 100 messages in this channel: ${transcriptFile.url}`,
-        files: [transcriptFile],
-      });
-    } catch (error) {
-      console.error(error);
-      await interaction.editReply({ content: 'Failed to create transcript.' + error});
-    }
-  }
+			fs.writeFile(`./public/transcripts/${interaction.channel.id}-transcript.html`, transcript, err => {
+				if (err) {
+					console.error(err);
+					return;
+				}
+				interaction.editReply({
+					content: `Here's the transcript of the last 100 messages in this channel: ${interaction.channel}\nhttp://${process.env.DOMAIN}/transcripts/${interaction.channel.id}-transcript.html`,
+				});
+			});
+		}
+		catch (err) {
+			console.error(err);
+		}
+	}
 };
