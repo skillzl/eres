@@ -36,7 +36,7 @@ module.exports = class BotClient extends Client {
 		new EventHandler(this).build('../events');
 		new CommandHandler(this).build('../commands');
 	}
-
+	// Login to the bot
 	async login() {
 		await super.login(process.env.TOKEN);
 	}
@@ -46,7 +46,7 @@ module.exports = class BotClient extends Client {
 		this.quitting = true;
 		this.destroy();
 	}
-
+	
 	fetchCommand(cmd) {
 		return this.commands.get(cmd);
 	}
