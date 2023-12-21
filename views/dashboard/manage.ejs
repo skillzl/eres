@@ -15,14 +15,27 @@
 <div class="h-screen flex items-center justify-center -mt-56">
     <div class="max-w-md w-full bg-gray-900 p-8 rounded-lg shadow-md">
         <form role="form" action="/dashboard/server/<%= guild.id %>" method="POST">
-            <div class="mb-6">
+            <div class="mb-2">
                 <label for="postContent" class="block text-white text-sm font-bold mb-2">Prefix <span class="pl-56 text-gray-500 font-normal text-s">Max 5 characters</span></label>
                 <textarea id="postContent" name="prefix" rows="1" class="bg-gray-700 text-white w-full border-2 rounded-md px-4 py-2 leading-5 transition duration-150 ease-in-out sm:text-sm sm:leading-5 resize-none focus:outline-none focus:border-green-500" placeholder="<%= serverData.prefix ? serverData.prefix : '' %>" maxlength="5"></textarea>
             </div>
-            <label for="postContent" class="block text-white text-sm font-bold mb-2">Autorole <span class="pl-60 text-gray-500 font-normal text-s">Max 1 role</span></label>
-            <select name="autorole" class="border text-sm rounded-lg block w-full p-2.5 bg-gray-700 text-white focus:outline-none focus:border-green-500">
+            <label for="postContent" class="block text-white text-sm font-bold mb-2">Autorole</label>
+            <select name="autorole" class="mb-4 border text-sm rounded-lg block w-full p-2.5 bg-gray-700 text-white focus:outline-none focus:border-green-500">
                 <% roles.forEach(function(role) { %>
                     <option value="<%= role.id %>"><%= role.name %></option>
+                <% }); %>
+            </select>
+            <label for="welcomeChannel" class="block text-white text-sm font-bold mb-2">Welcome Channel</label>
+            <select name="welcomeChannel" id="welcomeChannel" class="mb-4 border text-sm rounded-lg block w-full p-2.5 bg-gray-700 text-white focus:outline-none focus:border-green-500">
+                <% channels.forEach(function(channel) { %>
+                    <option value="<%= channel.id %>"><%= channel.name %></option>
+                <% }); %>
+            </select>
+        
+            <label for="leaveChannel" class="block text-white text-sm font-bold mb-2">Leave Channel</label>
+            <select name="leaveChannel" id="leaveChannel" class="mb-4 border text-sm rounded-lg block w-full p-2.5 bg-gray-700 text-white focus:outline-none focus:border-green-500">
+                <% channels.forEach(function(channel) { %>
+                    <option value="<%= channel.id %>"><%= channel.name %></option>
                 <% }); %>
             </select>
             <div class="flex items-center justify-between mt-4">
@@ -34,7 +47,7 @@
         </form>
     </div>
 </div>
-<div class="flex items-center justify-center -mt-60 text-sm text-gray-400">
+<div class="flex items-center justify-center -mt-40 text-sm text-gray-400">
     <a href="/dashboard/server/<%= guild.id %>/members" class="flex-no-shrink bg-violet-500 hover:bg-violet-600 px-5 ml-4 py-2 text-xs shadow-sm hover:shadow-lg font-medium tracking-wider text-white rounded-full transition ease-in duration-300"><i class="fa-solid fa-users"></i> Members</a>
     <a href="/dashboard/server/<%= guild.id %>/stats" class="flex-no-shrink bg-teal-400 hover:bg-teal-500 px-5 ml-4 py-2 text-xs shadow-sm hover:shadow-lg font-medium tracking-wider text-white rounded-full transition ease-in duration-300"><i class="fa-solid fa-signal"></i> Stats</a>
     <a href="/dashboard/servers" class="flex-no-shrink bg-green-500 hover:bg-green-600 px-5 ml-4 py-2 text-xs shadow-sm hover:shadow-lg font-medium tracking-wider text-white rounded-full transition ease-in duration-300"><i class="fa-regular fa-circle-left"></i> Go back</a>

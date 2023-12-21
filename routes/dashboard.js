@@ -13,6 +13,8 @@ router.get('/server/:guildID', checkAuth, async (req, res) => {
 
 	const roles = server.roles.cache.map(role => ({ name: role.name, id: role.id }));
 
+	const channels = server.channels.cache.map(channel => ({ id: channel.id, name: channel.name }));
+
 	if (!req.user.guilds.map(u => u.id).includes(req.params.guildID)) {
 		return res.status(403).send('Forbidden');
 	}
@@ -37,6 +39,7 @@ router.get('/server/:guildID', checkAuth, async (req, res) => {
 		channelType: ChannelType,
 		serverData: serverData,
 		roles: roles,
+		channels: channels,
 	});
 });
 
