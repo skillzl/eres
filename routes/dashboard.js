@@ -44,6 +44,9 @@ router.post('/server/:guildID', checkAuth, async (req, res) => {
 
 	const data = req.body;
 
+	const roles = server.roles.cache.map(role => ({ name: role.name, id: role.id }));
+	res.json(roles);
+
 	if (Object.prototype.hasOwnProperty.call(data, 'prefix')) {
 		let newprefix;
 		let prefix = await db.getPrefix(req.params.guildID);
