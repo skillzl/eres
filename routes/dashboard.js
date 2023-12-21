@@ -11,6 +11,8 @@ const checkAuth = require('../middlewares/checkAuth');
 router.get('/server/:guildID', checkAuth, async (req, res) => {
 	const server = req.client.guilds.cache.get(req.params.guildID);
 
+	const roles = server.roles.cache.map(role => ({ name: role.name, id: role.id }));
+
 	if (!req.user.guilds.map(u => u.id).includes(req.params.guildID)) {
 		return res.status(403).send('Forbidden');
 	}
@@ -34,6 +36,7 @@ router.get('/server/:guildID', checkAuth, async (req, res) => {
 		guild: server,
 		channelType: ChannelType,
 		serverData: serverData,
+		roles: roles,
 	});
 });
 
@@ -43,9 +46,6 @@ router.post('/server/:guildID', checkAuth, async (req, res) => {
 	if (!req.client.guilds.cache.get(req.params.guildID).members.cache.get(req.user.id).permissions.has(PermissionsBitField.Flags.ManageGuild)) return res.redirect('/dashboard/servers');
 
 	const data = req.body;
-
-	const roles = server.roles.cache.map(role => ({ name: role.name, id: role.id }));
-	res.json(roles);
 
 	if (Object.prototype.hasOwnProperty.call(data, 'prefix')) {
 		let newprefix;
