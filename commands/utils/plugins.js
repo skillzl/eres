@@ -21,7 +21,7 @@ module.exports = class Plugins extends Command {
 			.setThumbnail(client.user.displayAvatarURL({ dynamic: true, size: 128, format: 'png' }))
 			.setDescription('Hey there!\nGlad to have you here. Let me guess. Plugins!\nWell you have some, autorole and the good old welcome message and leave message.')
 			.addFields(
-				{ name: 'Autorole', value: 'The basic role for your newcomers, just add one and see the magic.', inline: true },
+				{ name: 'Autorole', value: 'The basic autorole for your newcomers, just add one and see the magic.', inline: true },
 				{ name: 'Welcome Message', value: 'Classic welcome message, but this time it\'s a minimalistic image, with good taste, tho!', inline: true },
 				{ name: 'Leave Message', value: 'And also, why not, the leave message, you can either set both in a channel or make it your way.\nBe different!', inline: true },
 			)
