@@ -1,60 +1,72 @@
 const Command = require('../../structures/CommandClass');
-const { AttachmentBuilder } = require('discord.js');
+
+const { SlashCommandBuilder, AttachmentBuilder } = require('discord.js');
 const { createCanvas, loadImage } = require('canvas');
-const { EmbedBuilder, SlashCommandBuilder } = require('discord.js');
-const { stripIndents } = require('common-tags');
 
 module.exports = class Ping extends Command {
-  constructor(client) {
-    super(client, {
-      data: new SlashCommandBuilder()
-        .setName('ping')
-        .setDescription('Returns the bot ping')
-        .setDMPermission(true),
-      usage: 'ping',
-      category: 'General',
-      permissions: ['Use Application Commands', 'Send Messages', 'Attach Files'],
-    });
-  }
+	constructor(client) {
+		super(client, {
+			data: new SlashCommandBuilder()
+				.setName('ping')
+				.setDescription('Returns the bot ping')
+				.setDMPermission(true),
+			usage: 'ping',
+			category: 'General',
+			permissions: ['Use Application Commands', 'Send Messages', 'Attach Files'],
+		});
+	}
 
-  async run(client, interaction) {
-    const now = Date.now();
-    await interaction.deferReply();
+	async run(client, interaction) {
+		const now = Date.now();
 
-    // Load background image
-    const background = await loadImage('./assets/canva/ping-background.png'); // Replace with your background image path
+		function roundRect(ctx, x, y, width, height, radius, fill, stroke) {
+			ctx.beginPath();
+			ctx.moveTo(x + radius, y);
+			ctx.lineTo(x + width - radius, y);
+			ctx.quadraticCurveTo(x + width, y, x + width, y + radius);
+			ctx.lineTo(x + width, y + height - radius);
+			ctx.quadraticCurveTo(x + width, y + height, x + width - radius, y + height);
+			ctx.lineTo(x + radius, y + height);
+			ctx.quadraticCurveTo(x, y + height, x, y + height - radius);
+			ctx.lineTo(x, y + radius);
+			ctx.quadraticCurveTo(x, y, x + radius, y);
+			ctx.closePath();
+			if (stroke) {
+				ctx.strokeStyle = stroke;
+				ctx.stroke();
+			}
+			if (fill) {
+				ctx.fillStyle = fill;
+				ctx.fill();
+			}
+		}
 
-    // Create canvas with background image dimensions
-    const canvas = createCanvas(background.width, background.height);
-    const ctx = canvas.getContext('2d');
+		const canvas = createCanvas(550, 215);
+		const ctx = canvas.getContext('2d');
+		roundRect(ctx, 0, 0, 550, 215, 20, '#23272A');
 
-    // Draw background image on the canvas
-    ctx.drawImage(background, 0, 0);
+		ctx.fillStyle = '#ffffff';
+		ctx.font = '20px Sans-serif';
 
-    // Customize canvas text and styles
-    ctx.fillStyle = '#ffffff';
-    ctx.font = '20px Sans-serif';
+		const eres = await loadImage('././assets/eres-transparent.png');
+		ctx.drawImage(eres, 50, 150, 35, 35);
 
-    // Draw ping information on the canvas
-    ctx.fillText(` Roundtrip: ${Math.round(Date.now() - now)} ms`, 110, 125);
-    ctx.fillText(` API: ${Math.round(client.ws.ping)} ms`, 125, 200);
+		const medal = await loadImage('././assets/canva/reputation-asset.png');
+		ctx.drawImage(medal, 200, 25, 35, 35);
 
-    // Convert canvas to a buffer
-    const attachment = new AttachmentBuilder(canvas.toBuffer(), 'ping.png');
+		const globe = await loadImage('././assets/canva/online.png');
+		const globeSize = 35;
+		const globeX = canvas.width - globeSize - 100;
+		const globeY = (canvas.height - globeSize) / 2;
+		ctx.drawImage(globe, globeX, globeY, globeSize, globeSize);
 
-    // Create an embedded message with ping details
-    const pingEmbed = new EmbedBuilder()
-      .setAuthor({
-        name: 'Process Ping',
-        iconURL: client.user.displayAvatarURL({ size: 2048 }),
-      })
-      .setColor(0x36393e)
-      .setDescription(stripIndents`
-        ⏱ Roundtrip: **${Math.round(Date.now() - now)} ms**
-        💓 API: **${Math.round(client.ws.ping)} ms**
-      `);
+		ctx.fillText('All Systems Operational', 330, 150);
+		ctx.fillText('Roundtrip', 170, 110);
+		ctx.fillText(`${Math.round(Date.now() - now)} ms`, 170, 150);
+		ctx.fillText('API', 100, 110);
+		ctx.fillText(`${Math.round(client.ws.ping)} ms`, 100, 150);
 
-    await interaction.followUp({ embeds: [pingEmbed] });
-    await interaction.channel.send({ files: [attachment] });
-  }
+		const attachment = new AttachmentBuilder(canvas.toBuffer(), 'ping.png');
+		await interaction.reply({ files: [attachment] });
+	}
 };

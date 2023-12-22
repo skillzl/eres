@@ -7,4 +7,5 @@ const serverSchema = new mongoose.Schema({
 	welcome: { type: String, default: null },
 	leave: { type: String, default: null },
 });
+
 module.exports = mongoose.model('server', serverSchema);

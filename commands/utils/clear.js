@@ -21,7 +21,7 @@ module.exports = class Clear extends Command {
 		});
 	}
 	async run(client, interaction) {
-		if (!interaction.member.permissions.has(PermissionsBitField.Flags.ManageMessages)) return await interaction.reply('You are missing the `MANAGE_MESSAGES` permission.');
+		if (!interaction.member.permissions.has(PermissionsBitField.Flags.ManageMessages)) return await interaction.reply('You are missing `MANAGE_MESSAGES` permission.');
 
 		const number = interaction.options.getNumber('number');
 
