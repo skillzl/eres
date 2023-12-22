@@ -21,12 +21,14 @@
             </div>
             <label for="postContent" class="block text-white text-sm font-bold mb-2">Autorole</label>
             <select name="autorole" class="mb-4 border text-sm rounded-lg block w-full p-2.5 bg-gray-700 text-white focus:outline-none focus:border-green-500">
+                <option selected>Choose a role</option>
                 <% roles.forEach(function(role) { %>
                     <option value="<%= role.id %>"><%= role.name %></option>
                 <% }); %>
             </select>
             <label for="welcomeChannel" class="block text-white text-sm font-bold mb-2">Welcome Channel</label>
             <select name="welcomeChannel" id="welcomeChannel" class="mb-4 border text-sm rounded-lg block w-full p-2.5 bg-gray-700 text-white focus:outline-none focus:border-green-500">
+                <option selected>Choose a channel</option>
                 <% channels.forEach(function(channel) { %>
                     <option value="<%= channel.id %>"><%= channel.name %></option>
                 <% }); %>
@@ -34,6 +36,7 @@
         
             <label for="leaveChannel" class="block text-white text-sm font-bold mb-2">Leave Channel</label>
             <select name="leaveChannel" id="leaveChannel" class="mb-4 border text-sm rounded-lg block w-full p-2.5 bg-gray-700 text-white focus:outline-none focus:border-green-500">
+                <option selected>Choose a channel</option>
                 <% channels.forEach(function(channel) { %>
                     <option value="<%= channel.id %>"><%= channel.name %></option>
                 <% }); %>
