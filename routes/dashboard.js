@@ -5,6 +5,8 @@ require('dayjs/plugin/duration');
 
 const router = express.Router();
 
+const validator = require('validator');
+
 const db = require('../database/manager');
 const checkAuth = require('../middlewares/checkAuth');
 
@@ -62,6 +64,22 @@ router.post('/server/:guildID', checkAuth, async (req, res) => {
 
 	const data = req.body;
 
+	function sanitizeData(parse_data) {
+		return validator.escape(parse_data);
+	}
+
+	function validateData(parse_data) {
+		if (validator.isEmpty(parse_data)) {
+			return false;
+		}
+
+		if (parse_data === 'Choose a role' || parse_data === 'Choose a channel') {
+			return false;
+		}
+
+		return true;
+	}
+
 	if (Object.prototype.hasOwnProperty.call(data, 'prefix')) {
 		let newprefix;
 		let prefix = await db.getPrefix(req.params.guildID);
@@ -74,22 +92,29 @@ router.post('/server/:guildID', checkAuth, async (req, res) => {
 	}
 
 	if (Object.prototype.hasOwnProperty.call(data, 'autorole')) {
-		const newAutorole = data.autorole;
-		await db.updateServerAutorole(server.id, newAutorole);
+		const autorole = sanitizeData(data.autorole);
+		if (validateData(autorole)) {
+			await db.updateServerAutorole(server.id, autorole);
+		}
 	}
 
-	if (Object.prototype.hasOwnProperty.call(data, 'welcome')) {
-		const newWelcome = data.welcome;
-		await db.updateServerWelcome(server.id, newWelcome);
+	if (Object.prototype.hasOwnProperty.call(data, 'welcomeChannel')) {
+		const welcomeChannel = sanitizeData(data.welcomeChannel);
+		if (validateData(welcomeChannel)) {
+			await db.updateServerWelcome(server.id, welcomeChannel);
+		}
 	}
 
-	if (Object.prototype.hasOwnProperty.call(data, 'leave')) {
-		const newLeave = data.leave;
-		await db.updateServerLeave(server.id, newLeave);
+	if (Object.prototype.hasOwnProperty.call(data, 'leaveChannel')) {
+		const leaveChannel = sanitizeData(data.leaveChannel);
+		if (validateData(leaveChannel)) {
+			await db.updateServerLeave(server.id, leaveChannel);
+		}
 	}
 
 	await res.redirect(`/dashboard/server/${req.params.guildID}`);
 });
+
 
 router.get('/server/:guildID/members', checkAuth, async (req, res) => {
 	const server = req.client.guilds.cache.get(req.params.guildID);
