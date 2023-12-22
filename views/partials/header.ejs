@@ -16,12 +16,15 @@
   <meta property="twitter:description" content="A multipurpose discord client written in javascript featuring new commands and a highly optimized web application with control over the bot." />
   <meta property="twitter:image" content="/public/static/dashboard.png" />
   
-  <link rel="icon" type="image/png" href="/public/static/eres-transparent.png">
+  <link rel="icon" href="<%= bot.user.displayAvatarURL({ dynamic: true, size: 64, format: 'png' }) %>">
   <link href="https://use.fontawesome.com/releases/v6.0.0/css/all.css" rel="stylesheet" />
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>   
   <link rel="stylesheet" href="/public/stylesheets/style.css">
+  <link rel="stylesheet" href="/public/stylesheets/tailwind.css">
+
   <script src="https://cdn.tailwindcss.com?plugins=forms,typography,aspect-ratio"></script>
+
   </head>
 
     <body class="bg-gray-950">

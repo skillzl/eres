@@ -11,6 +11,10 @@ const checkAuth = require('../middlewares/checkAuth');
 router.get('/server/:guildID', checkAuth, async (req, res) => {
 	const server = req.client.guilds.cache.get(req.params.guildID);
 
+	const roles = server.roles.cache.map(role => ({ name: role.name, id: role.id }));
+
+	const channels = server.channels.cache.map(channel => ({ id: channel.id, name: channel.name }));
+
 	if (!req.user.guilds.map(u => u.id).includes(req.params.guildID)) {
 		return res.status(403).send('Forbidden');
 	}
@@ -34,6 +38,8 @@ router.get('/server/:guildID', checkAuth, async (req, res) => {
 		guild: server,
 		channelType: ChannelType,
 		serverData: serverData,
+		roles: roles,
+		channels: channels,
 	});
 });
 
@@ -53,6 +59,21 @@ router.post('/server/:guildID', checkAuth, async (req, res) => {
 		if (newprefix) {
 			await db.updateServerPrefix(server.id, newprefix);
 		}
+	}
+
+	if (Object.prototype.hasOwnProperty.call(data, 'autorole')) {
+		const newAutorole = data.autorole;
+		await db.updateServerAutorole(server.id, newAutorole);
+	}
+
+	if (Object.prototype.hasOwnProperty.call(data, 'welcome')) {
+		const newWelcome = data.welcome;
+		await db.updateServerWelcome(server.id, newWelcome);
+	}
+
+	if (Object.prototype.hasOwnProperty.call(data, 'leave')) {
+		const newLeave = data.leave;
+		await db.updateServerLeave(server.id, newLeave);
 	}
 
 	await res.redirect(`/dashboard/server/${req.params.guildID}`);
