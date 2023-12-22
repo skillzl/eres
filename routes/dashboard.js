@@ -13,7 +13,19 @@ router.get('/server/:guildID', checkAuth, async (req, res) => {
 
 	const roles = server.roles.cache.map(role => ({ name: role.name, id: role.id }));
 
-	const channels = server.channels.cache.map(channel => ({ id: channel.id, name: channel.name }));
+	await server.channels.fetch();
+	const allChannels = server.channels.cache;
+	let textChannelsArray = [];
+
+	const textChannels = allChannels.filter(channel => channel.type === 0);
+
+	if (textChannels.size) {
+		textChannelsArray = textChannels.map(channel => ({ name: channel.name, id: channel.id }));
+
+	}
+	else {
+		console.log('[Dashboard]: No text channels found.');
+	}
 
 	if (!req.user.guilds.map(u => u.id).includes(req.params.guildID)) {
 		return res.status(403).send('Forbidden');
@@ -39,7 +51,7 @@ router.get('/server/:guildID', checkAuth, async (req, res) => {
 		channelType: ChannelType,
 		serverData: serverData,
 		roles: roles,
-		channels: channels,
+		channels: textChannelsArray,
 	});
 });
 
