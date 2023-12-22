@@ -34,7 +34,7 @@ module.exports = class Process extends Command {
 		);
 
 		const embed = new EmbedBuilder()
-			.setAuthor({ name: `${packages.name}@${packages.version}`, iconURL: interaction.guild.iconURL({ dynamic: true, size: 2048, extension: 'png' }) })
+			.setAuthor({ name: `${packages.name}@${packages.version}`, iconURL: client.user.displayAvatarURL({ dynamic: true, size: 2048, extension: 'png' }) })
 			.setColor(0x36393e)
 			.setDescription('Live process values, also seen on our website.')
 			.addFields(
