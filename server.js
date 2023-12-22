@@ -10,6 +10,7 @@ const { Strategy } = require('passport-discord');
 module.exports.load = async (client) => {
 	app.use(bodyparser.json());
 	app.use(bodyparser.urlencoded({ extended: true }));
+	app.use(express.json());
 	app.engine('html', ejs.renderFile);
 	app.set('view engine', 'ejs');
 	app.set('views', path.join(__dirname, '/views'));

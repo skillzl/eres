@@ -66,6 +66,12 @@ WEBHOOK_TOKEN=
 
 ## Analytics unique identifier
 ANALYTICS_ID=
+
+## Domain 
+DOMAIN=
+
+## api.skillzl.dev unique key (api.skillz.dev for key)
+SKILLZL_API_KEY=
 ```
 
 > **Note**: Envoirement settings need to be in a ".env" file.
