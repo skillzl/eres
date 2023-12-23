@@ -13,13 +13,30 @@ const checkAuth = require('../middlewares/checkAuth');
 router.get('/server/:guildID', checkAuth, async (req, res) => {
 	const server = req.client.guilds.cache.get(req.params.guildID);
 
-	const roles = server.roles.cache.map(role => ({ name: role.name, id: role.id }));
+	if (!server && req.user.guilds.filter(u => ((u.permissions & 2146958591) === 2146958591)).map(u => u.id).includes(req.params.guildID)) {
+		return res.redirect(`https://discord.com/oauth2/authorize?client_id=${req.client.user.id}&scope=bot%20applications.commands&permissions=1098974625783&guild_id=${req.params.guildID}`);
+	}
+	else if (!server) {
+		return res.redirect('/dashboard/servers');
+	}
 
+	await server.roles.fetch();
 	await server.channels.fetch();
+
+	const allRoles = server.roles.cache;
 	const allChannels = server.channels.cache;
+
+	let allRolesArray = [];
 	let textChannelsArray = [];
 
 	const textChannels = allChannels.filter(channel => channel.type === 0);
+
+	if (allRoles.size) {
+		allRolesArray = allRoles.map(role => ({ name: role.name, id: role.id }));
+	}
+	else {
+		console.log('[Dashboard]: No roles found.');
+	}
 
 	if (textChannels.size) {
 		textChannelsArray = textChannels.map(channel => ({ name: channel.name, id: channel.id }));
@@ -39,20 +56,13 @@ router.get('/server/:guildID', checkAuth, async (req, res) => {
 		serverData = await db.createServer(req.params.guildID);
 	}
 
-	if (!server && req.user.guilds.filter(u => ((u.permissions & 2146958591) === 2146958591)).map(u => u.id).includes(req.params.guildID)) {
-		return res.redirect(`https://discord.com/oauth2/authorize?client_id=${req.client.user.id}&scope=bot%20applications.commands&permissions=1098974625783&guild_id=${req.params.guildID}`);
-	}
-	else if (!server) {
-		return res.redirect('/dashboard/servers');
-	}
-
 	res.render('dashboard/manage.ejs', {
 		bot: req.client,
 		user: req.user || null,
 		guild: server,
 		channelType: ChannelType,
 		serverData: serverData,
-		roles: roles,
+		roles: allRolesArray,
 		channels: textChannelsArray,
 	});
 });
