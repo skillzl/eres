@@ -1,6 +1,5 @@
 const { Client, GatewayIntentBits, Partials, ActivityType } = require('discord.js');
 const { Collection } = require('@discordjs/collection');
-
 const CommandHandler = require('../handler/Command');
 const EventHandler = require('../handler/Event');
 const Util = require('./Util');
@@ -23,7 +22,6 @@ module.exports = class BotClient extends Client {
 				GatewayIntentBits.GuildBans,
 				GatewayIntentBits.GuildEmojisAndStickers,
 				GatewayIntentBits.GuildIntegrations,
-				GatewayIntentBits.GuildVoiceStates,
 			],
 			presence: {
 				status: 'online',

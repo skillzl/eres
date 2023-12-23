@@ -5,7 +5,6 @@ const analyticsSchema = new mongoose.Schema({
 	guilds: { type: Number, default: 0 },
 	users: { type: Number, default: 0 },
 	reports : { type: Number, default: 0 },
-	songs_played: { type: Number, default: 0 },
 });
 
 module.exports = mongoose.model('analytics', analyticsSchema);

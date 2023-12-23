@@ -67,10 +67,10 @@ WEBHOOK_TOKEN=
 ## Analytics unique identifier
 ANALYTICS_ID=
 
-## Domain setting
-DOMAIN=eres.fun
+## Domain 
+DOMAIN=
 
-## Unique key for api.skillzl.dev (api.skillz.dev for key)
+## api.skillzl.dev unique key (api.skillz.dev for key)
 SKILLZL_API_KEY=
 ```
 
