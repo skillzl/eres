@@ -8,9 +8,12 @@ module.exports = class Play extends Command {
 		super(client, {
 			data: new SlashCommandBuilder()
 				.setName('play')
-				.setDescription('Adds a track to the end of the server queue.')
+				.setDescription('Adds a track to the end of the server queue')
 				.setDMPermission(false)
-				.addStringOption((option) => option.setName('query').setDescription('Enter a track name, artist name, or URL.').setRequired(true).setAutocomplete(false)),
+				.addStringOption((option) => option.setName('query')
+					.setDescription('Enter a track name, artist name, or URL')
+					.setRequired(true)
+					.setAutocomplete(false)),
 			usage: 'play [string]',
 			category: 'Player',
 			permissions: ['Use Application Commands', 'Send Messages', 'Embed Links'],
