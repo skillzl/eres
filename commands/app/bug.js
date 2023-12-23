@@ -41,7 +41,7 @@ module.exports = class Bug extends Command {
 
 			const embed = new EmbedBuilder()
 				.setAuthor({ name: `${interaction.user.username} (ID: ${interaction.user.id})`, iconURL: interaction.guild.iconURL({ dynamic: true, size: 2048, extension: 'png' }) })
-				.setColor(0x36393e)
+				.setColor(0x2B2D31)
 				.addFields(
 					{ name: 'Bug Description', value: `${string}` },
 				)

@@ -29,7 +29,7 @@ module.exports = class Avatar extends Command {
 
 		const embed = new EmbedBuilder()
 			.setTitle(user.username)
-			.setColor(0x36393e)
+			.setColor(0x2B2D31)
 			.setImage(user.displayAvatarURL({ dynamic: true, size: 2048, extension: 'png' }));
 
 		await interaction.reply({ embeds: [embed], components: [buttonRow] });

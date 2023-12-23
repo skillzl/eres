@@ -60,7 +60,7 @@ module.exports = class Whois extends Command {
 		const userFlags = user.flags.toArray();
 
 		const embed = new EmbedBuilder()
-			.setColor(0x36393e)
+			.setColor(0x2B2D31)
 			.setTitle(`${user.username}`)
 			.setThumbnail(user.displayAvatarURL({ dynamic: true, size: 2048, extension: 'png' }))
 			.setDescription(`ID: ${user.id}`)

@@ -28,12 +28,12 @@ module.exports = class Eval extends Command {
 			const evalled = eval(toEval.replace(toRemove, ''));
 			embed.setTitle('Evaluation Successful');
 			embed.addFields({ name: 'Output', value: '```js\n' + evalled + '\n```' });
-			embed.setColor(0x36393e);
+			embed.setColor(0x2B2D31);
 		}
 		catch (err) {
 			embed.setTitle('Evaluation Failed');
 			embed.addFields({ name: 'Output', value: '```js\n' + err + '\n```' });
-			embed.setColor(0x36393e);
+			embed.setColor(0x2B2D31);
 		}
 
 		interaction.reply({ embeds: [embed] });

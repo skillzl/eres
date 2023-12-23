@@ -57,7 +57,7 @@ module.exports = class Server extends Command {
 		const owner = await interaction.guild.fetchOwner();
 
 		const embed = new EmbedBuilder()
-			.setColor(0x36393e)
+			.setColor(0x2B2D31)
 			.setTitle(`${interaction.guild.name}`)
 			.setThumbnail(interaction.guild.iconURL({ dynamic: true, size: 2048, extension: 'png' }))
 			.setDescription(

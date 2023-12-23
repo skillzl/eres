@@ -24,7 +24,7 @@ module.exports = class Cat extends Command {
 		const result = await fetch(`https://api.skillzl.dev/cat/?key=${process.env.SKILLZL_API_KEY}`).then((res) => res.json());
 
 		const embed = new EmbedBuilder()
-			.setColor(0x36393e)
+			.setColor(0x2B2D31)
 			.setTitle('cat 🐈')
 			.setURL(result.url)
 			.setImage(result.url)

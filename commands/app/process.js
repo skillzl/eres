@@ -35,7 +35,7 @@ module.exports = class Process extends Command {
 
 		const embed = new EmbedBuilder()
 			.setAuthor({ name: `${packages.name}@${packages.version}`, iconURL: client.user.displayAvatarURL({ dynamic: true, size: 2048, extension: 'png' }) })
-			.setColor(0x36393e)
+			.setColor(0x2B2D31)
 			.setDescription('Live process values, also seen on our website.')
 			.addFields(
 				{ name: 'Process', value: `Memory: ${(process.memoryUsage().rss / 1024 / 1024).toFixed(2)}mb\nCPU:${(process.cpuUsage().system / 1024 / 1024).toFixed(2)}%\nPing: ${client.ws.ping || 0}ms\nUptime: ${dayjs(client.uptime).format('D [d], H [h], m [m], s [s]')}`, inline: true },

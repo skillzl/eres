@@ -34,7 +34,7 @@ module.exports = class Commands extends Command {
 			if (command) {
 				const usage = command.usage;
 				const embed = new EmbedBuilder()
-					.setColor(0x36393e)
+					.setColor(0x2B2D31)
 					.setDescription(`Usage for command ${commandName}: ${usage}`);
 				await interaction.reply({ embeds: [embed] });
 				return;
@@ -44,7 +44,7 @@ module.exports = class Commands extends Command {
 
 		const embed = new EmbedBuilder()
 			.setAuthor({ name: `${client.user.username} • Commands`, iconURL: interaction.guild.iconURL({ dynamic: true, size: 2048, extension: 'png' }) })
-			.setColor(0x36393e)
+			.setColor(0x2B2D31)
 			.setDescription('Before using any of these commands you are welcomed with a guide.')
 			.setFooter({
 				text: 'You are experiencing a beta version of this application that may suffer some unfinished features!',
