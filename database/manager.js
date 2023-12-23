@@ -98,6 +98,16 @@ module.exports = class Manager {
 		}
 	}
 
+	static async incrementSongsPlayed() {
+		const analyticsData = await analyticsModel.findOne();
+		if (!analyticsData) { this.createAnalytics(); }
+
+		if (analyticsData) {
+			analyticsData.songs_played += 1;
+			await analyticsData.save();
+		}
+	}
+
 	static async updateServerAutorole(id, role) {
 		if (typeof id !== 'string') {
 			throw new Error('Invalid ID');
