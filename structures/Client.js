@@ -22,6 +22,7 @@ module.exports = class BotClient extends Client {
 				GatewayIntentBits.GuildBans,
 				GatewayIntentBits.GuildEmojisAndStickers,
 				GatewayIntentBits.GuildIntegrations,
+				GatewayIntentBits.GuildVoiceStates,
 			],
 			presence: {
 				status: 'online',

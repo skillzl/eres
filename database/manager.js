@@ -88,6 +88,16 @@ module.exports = class Manager {
 		}
 	}
 
+	static async incrementSongsPlayed() {
+		const analyticsData = await analyticsModel.findOne();
+		if (!analyticsData) { this.createAnalytics(); }
+
+		if (analyticsData) {
+			analyticsData.songs_played += 1;
+			await analyticsData.save();
+		}
+	}
+
 	static async incrementCommandsUsed() {
 		const analyticsData = await analyticsModel.findOne();
 		if (!analyticsData) { this.createAnalytics(); }

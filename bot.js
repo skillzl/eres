@@ -29,6 +29,7 @@ for (const file of functions) {
 	require(`./functions/${file}`)(client);
 }
 
+client.Player();
 client.login();
 
 process.on('uncaughtException', err => console.error(err.stack));
