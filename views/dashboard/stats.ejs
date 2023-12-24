@@ -43,7 +43,7 @@
               </tr>
               <tr>
                 <td class="px-6 py-4 whitespace-nowrap">Members</td>
-                <td class="px-6 py-4 whitespace-nowrap"><%= guild.memberCount - guild.members.cache.filter(m => m.user.bot).size %> Users, <%= guild.members.cache.filter(m => m.user.bot).size %> Bots</td>
+                <td class="px-6 py-4 whitespace-nowrap"><%= bot.guilds.cache.reduce((a, g) => a + g.memberCount, 0); %> Users, <%= guild.members.cache.filter(m => m.user.bot).size %> Bots</td>
               </tr>
               <tr>
                 <td class="px-6 py-4 whitespace-nowrap">Channels</td>
