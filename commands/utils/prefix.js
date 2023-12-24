@@ -10,7 +10,7 @@ module.exports = class Prefix extends Command {
 				.setDescription('Sets a new bot prefix by filling out the modal')
 				.setDMPermission(false),
 			usage: 'prefix',
-			category: 'Settings',
+			category: 'Utils',
 			permissions: ['Use Application Commands', 'Send Messages', 'Embed Links', 'Manage Guild'],
 		});
 	}
