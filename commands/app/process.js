@@ -1,4 +1,5 @@
 const Command = require('../../structures/CommandClass');
+const db = require('../../database/manager');
 
 const dayjs = require('dayjs');
 const packages = require('../../package.json');
@@ -33,6 +34,8 @@ module.exports = class Process extends Command {
 			btn_two,
 		);
 
+		const { data } = await db.getAnalysticsById(process.env.ANALYTICS_ID);
+
 		const embed = new EmbedBuilder()
 			.setAuthor({ name: `${packages.name}@${packages.version}`, iconURL: client.user.displayAvatarURL({ dynamic: true, size: 2048, extension: 'png' }) })
 			.setColor(0x2B2D31)
@@ -43,7 +46,7 @@ module.exports = class Process extends Command {
 				{ name: 'Cache', value: `Guilds: ${client.guilds.cache.size || 0}\nChannels: ${client.channels.cache.size || 0}\nEmojis: ${client.emojis.cache.size || 0 }\nUsers: ${client.users.cache.size || 0}`, inline: true },
 			)
 			.setFooter({
-				text: 'You are experiencing a beta version of this application that may suffer some unfinished features!',
+				text: `In total used: ${data.commands_used + 1 || 0} slash commands and played ${data.songs_played} songs.`,
 			})
 			.setThumbnail(client.user.displayAvatarURL({ dynamic: true, size: 128, format: 'png' }));
 

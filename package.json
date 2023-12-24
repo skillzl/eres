@@ -1,6 +1,6 @@
 {
   "name": "eres-main",
-  "version": "1.7.1-b",
+  "version": "1.8.1-b",
   "description": "🍍 Eres; new Discord application with modern web dashboard and new features for your community.",
   "main": "bot.js",
   "scripts": {
