@@ -34,7 +34,7 @@ module.exports = class Analytics extends Command {
 					{ name: '7 Days Ago', value: `Guilds: ${data.guilds || 0}\nUsers: ${data.users || 0}`, inline: true },
 					{ name: 'Now', value: `Guilds: ${client.guilds.cache.size || 0}\nUsers: ${client.users.cache.size || 0}`, inline: true },
 					{ name: 'Others', value: `Commands Used: ${data.commands_used + 1 || 0}\nReports: ${data.reports || 0}`, inline: true },
-					{ name: 'Client', value: `\`\`\`js\nLicense :: ${packages.license}\nEmoji ::  ${client.emojis.cache.size || 0 }\nChannels :: ${client.channels.cache.size || 0}\nCpu :: ${(process.cpuUsage().system / 1024 / 1024).toFixed(2)}%\nPing :: ${client.ws.ping || 0}ms\nMemory :: ${(process.memoryUsage().rss / 1024 / 1024).toFixed(2)}mb\nUptime :: ${dayjs(client.uptime).format('D [d], H [h], m [m], s [s]')}\nReady :: ${client.uptime ? 'True' : 'False'}\`\`\`` },
+					{ name: 'Client', value: `\`\`\`js\nSongs played :: ${data.songs_played}\nEmoji ::  ${client.emojis.cache.size || 0 }\nChannels :: ${client.channels.cache.size || 0}\nCpu :: ${(process.cpuUsage().system / 1024 / 1024).toFixed(2)}%\nPing :: ${client.ws.ping || 0}ms\nMemory :: ${(process.memoryUsage().rss / 1024 / 1024).toFixed(2)}mb\nUptime :: ${dayjs(client.uptime).format('D [d], H [h], m [m], s [s]')}\nReady :: ${client.uptime ? 'True' : 'False'}\`\`\`` },
 				)
 				.setFooter({
 					text: 'Cron scheduler work: \'0 0 * * 0\' (every 7 days).',
