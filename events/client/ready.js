@@ -40,12 +40,22 @@ module.exports = class ReadyEvent extends Event {
 		});
 
 		cron.schedule('*/5 * * * *', async () => {
-			client.user.setActivity('🌴 ' + client.users.cache.size.toLocaleString() + ' users', { type: ActivityType.Watching });
+			const users = client.guilds.cache.reduce(
+				(a, g) => a + g.memberCount,
+				0,
+			);
+
+			client.user.setActivity('🌴 ' + users.toLocaleString() + ' users', { type: ActivityType.Watching });
 		});
 
-		client.user.setActivity('🌴 ' + client.users.cache.size.toLocaleString() + ' users', { type: ActivityType.Watching });
+		const users = client.guilds.cache.reduce(
+			(a, g) => a + g.memberCount,
+			0,
+		);
+
+		client.user.setActivity('🌴 ' + users.toLocaleString() + ' users', { type: ActivityType.Watching });
 
 		console.log(`[Deploy]: 🟢 ${client.user.tag} is online. `);
-		console.log(`[Info]: Interacted with ${client.users.cache.size.toLocaleString()} users 👥 and ${client.guilds.cache.size.toLocaleString()} guilds 🈂️.`);
+		console.log(`[Info]: Interacted with ${users.toLocaleString()} users 👥 and ${client.guilds.cache.size.toLocaleString()} guilds 🈂️.`);
 	}
 };

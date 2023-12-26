@@ -94,6 +94,12 @@ router.get('/stats', async (req, res) => {
 	const users = data.users;
 	const commands_used = data.commands_used;
 
+	const cachedUsers = req.client.guilds.cache.reduce(
+		(a, g) => a + g.memberCount,
+		0,
+	);
+
+
 	res.render('stats', {
 		tag: (req.user ? req.user.tag : 'Login'),
 		bot: req.client,
@@ -105,6 +111,7 @@ router.get('/stats', async (req, res) => {
 		users: users,
 		commands_used: commands_used,
 		mongoDBVersion: package.dependencies['mongoose'],
+		cachedUsers: cachedUsers,
 	});
 });
 
