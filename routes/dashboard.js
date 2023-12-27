@@ -103,21 +103,30 @@ router.post('/server/:guildID', checkAuth, async (req, res) => {
 
 	if (Object.prototype.hasOwnProperty.call(data, 'autorole')) {
 		const autorole = sanitizeData(data.autorole);
-		if (validateData(autorole)) {
+		if (autorole === 'null') {
+			await db.updateServerAutorole(server.id, null);
+		}
+		else if (validateData(autorole)) {
 			await db.updateServerAutorole(server.id, autorole);
 		}
 	}
 
 	if (Object.prototype.hasOwnProperty.call(data, 'welcomeChannel')) {
 		const welcomeChannel = sanitizeData(data.welcomeChannel);
-		if (validateData(welcomeChannel)) {
+		if (welcomeChannel === 'null') {
+			await db.updateServerWelcome(server.id, null);
+		}
+		else if (validateData(welcomeChannel)) {
 			await db.updateServerWelcome(server.id, welcomeChannel);
 		}
 	}
 
 	if (Object.prototype.hasOwnProperty.call(data, 'leaveChannel')) {
 		const leaveChannel = sanitizeData(data.leaveChannel);
-		if (validateData(leaveChannel)) {
+		if (leaveChannel === 'null') {
+			await db.updateServerLeave(server.id, null);
+		}
+		else if (validateData(leaveChannel)) {
 			await db.updateServerLeave(server.id, leaveChannel);
 		}
 	}

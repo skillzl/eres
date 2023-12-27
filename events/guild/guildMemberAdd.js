@@ -26,10 +26,6 @@ module.exports = class guildMemberAdd extends Event {
 			const welcome = database?.welcome;
 			const autorole = database?.autorole;
 
-			if (welcome.includes('null')) {
-				return;
-			}
-
 			if (welcome) {
 				const canvas = createCanvas(750, 256);
 				const ctx = canvas.getContext('2d');
@@ -61,10 +57,6 @@ module.exports = class guildMemberAdd extends Event {
 
 				const attachment = new AttachmentBuilder(canvas.toBuffer(), { name: 'image.png' });
 				this.client.channels.cache.get(welcome).send({ files: [attachment] });
-			}
-
-			if (autorole.includes('null')) {
-				return;
 			}
 
 			if (autorole) {

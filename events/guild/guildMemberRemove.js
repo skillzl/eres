@@ -25,10 +25,6 @@ module.exports = class guildMemberRemove extends Event {
 			const database = await db.findServer(member.guild.id);
 			const leave = database?.leave;
 
-			if (leave.includes('null')) {
-				return;
-			}
-
 			if (leave) {
 				const canvas = createCanvas(750, 256);
 				const ctx = canvas.getContext('2d');
