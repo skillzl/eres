@@ -23,6 +23,7 @@ module.exports = class Bug extends Command {
 	}
 	async run(client, interaction) {
 		const { user } = await db.getUserById(interaction.user.id);
+		const { data } = await db.getAnalysticsById(process.env.ANALYTICS_ID);
 
 		const timeout = 1800000;
 		const string = interaction.options.getString('string');
@@ -40,7 +41,7 @@ module.exports = class Bug extends Command {
 			});
 
 			const embed = new EmbedBuilder()
-				.setAuthor({ name: `${interaction.user.username} (ID: ${interaction.user.id})`, iconURL: interaction.guild.iconURL({ dynamic: true, size: 2048, extension: 'png' }) })
+				.setAuthor({ name: `${interaction.user.username} (ID: ${interaction.user.id})`, iconURL: interaction.user.displayAvatarURL({ extension: 'png', size: 1024 }) })
 				.setColor(0x2B2D31)
 				.addFields(
 					{ name: 'Bug Description', value: `${string}` },
@@ -50,6 +51,7 @@ module.exports = class Bug extends Command {
 			webhookClient.send({
 				username: client.user.username,
 				avatarURL: client.user.displayAvatarURL({ extension: 'png', size: 1024 }),
+				content: `\`Report: ${data.reports}\``,
 				embeds: [embed],
 			});
 
