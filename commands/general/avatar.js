@@ -22,9 +22,24 @@ module.exports = class Avatar extends Command {
 		const buttonRow = new ActionRowBuilder()
 			.addComponents(
 				new ButtonBuilder()
-					.setLabel('download')
+					.setLabel('png')
 					.setStyle(ButtonStyle.Link)
 					.setURL(`${user.displayAvatarURL({ dynamic: true, size: 2048, extension: 'png' })}`),
+
+				new ButtonBuilder()
+					.setLabel('jpg')
+					.setStyle(ButtonStyle.Link)
+					.setURL(`${user.displayAvatarURL({ dynamic: true, size: 2048, extension: 'jpg' })}`),
+
+				new ButtonBuilder()
+					.setLabel('jpeg')
+					.setStyle(ButtonStyle.Link)
+					.setURL(`${user.displayAvatarURL({ dynamic: true, size: 2048, extension: 'jpeg' })}`),
+
+				new ButtonBuilder()
+					.setLabel('webp')
+					.setStyle(ButtonStyle.Link)
+					.setURL(`${user.displayAvatarURL({ dynamic: true, size: 2048, extension: 'webp' })}`),
 			);
 
 		const embed = new EmbedBuilder()

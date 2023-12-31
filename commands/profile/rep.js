@@ -16,7 +16,7 @@ module.exports = class Reputation extends Command {
 				.setDMPermission(false),
 			usage: 'rep [user]',
 			category: 'Profile',
-			permissions: ['Use Application Commands', 'Send Messages', 'Embed Links'],
+			permissions: ['Use Application Commands', 'Send Messages'],
 		});
 	}
 	async run(client, interaction) {

@@ -93,6 +93,7 @@ router.get('/stats', async (req, res) => {
 	const guilds = data.guilds;
 	const users = data.users;
 	const commands_used = data.commands_used;
+	const songs_played = data.songs_played;
 
 	const cachedUsers = req.client.guilds.cache.reduce(
 		(a, g) => a + g.memberCount,
@@ -110,6 +111,7 @@ router.get('/stats', async (req, res) => {
 		guilds: guilds,
 		users: users,
 		commands_used: commands_used,
+		songs_played: songs_played,
 		mongoDBVersion: package.dependencies['mongoose'],
 		cachedUsers: cachedUsers,
 	});
@@ -120,7 +122,7 @@ router.get('/invite', async function(req, res) {
 });
 
 router.get('/support', async function(req, res) {
-	res.redirect('https://discord.gg/P6YKMfZrbT');
+	res.redirect(process.env.SUPPORT_SERVER);
 });
 
 router.get('/login', passport.authenticate('discord', { failureRedirect: '/' }), async function(req, res) {

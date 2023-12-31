@@ -14,7 +14,7 @@ module.exports = class Xp extends Command {
 				.setDMPermission(false),
 			usage: 'xp [user]',
 			category: 'Levels',
-			permissions: ['Use Application Commands', 'Send Messages', 'Embed Links'],
+			permissions: ['Use Application Commands', 'Send Messages'],
 		});
 	}
 	async run(client, interaction) {

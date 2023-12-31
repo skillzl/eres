@@ -41,9 +41,8 @@ module.exports = class Commands extends Command {
 			}
 		}
 
-
 		const embed = new EmbedBuilder()
-			.setAuthor({ name: `${client.user.username} • Commands`, iconURL: interaction.guild.iconURL({ dynamic: true, size: 2048, extension: 'png' }) })
+			.setAuthor({ name: `${client.user.username} • Commands`, iconURL: client.user.displayAvatarURL({ dynamic: true, size: 2048, format: 'png' }) })
 			.setColor(0x2B2D31)
 			.setDescription('Before using any of these commands you are welcomed with a guide.')
 			.setFooter({

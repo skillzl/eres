@@ -14,7 +14,7 @@ module.exports = class Balance extends Command {
 				.setDMPermission(false),
 			usage: 'balance [user]',
 			category: 'Economy',
-			permissions: ['Use Application Commands', 'Send Messages', 'Embed Links'],
+			permissions: ['Use Application Commands', 'Send Messages'],
 		});
 	}
 	async run(client, interaction) {

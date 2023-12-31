@@ -20,7 +20,7 @@ module.exports = class Fish extends Command {
 				.setDMPermission(false),
 			usage: 'fish',
 			category: 'Economy',
-			permissions: ['Use Application Commands', 'Send Messages', 'Embed Links'],
+			permissions: ['Use Application Commands', 'Send Messages'],
 		});
 	}
 	async run(client, interaction) {

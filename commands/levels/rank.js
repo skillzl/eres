@@ -18,7 +18,7 @@ module.exports = class Rank extends Command {
 				.setDMPermission(false),
 			usage: 'rank [user]',
 			category: 'Levels',
-			permissions: ['Use Application Commands', 'Send Messages', 'Embed Links'],
+			permissions: ['Use Application Commands', 'Send Messages', 'Attach Files'],
 		});
 	}
 	async run(client, interaction) {

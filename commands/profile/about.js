@@ -16,7 +16,7 @@ module.exports = class About extends Command {
 				.setDMPermission(false),
 			usage: 'about [string]',
 			category: 'Profile',
-			permissions: ['Use Application Commands', 'Send Messages', 'Embed Links'],
+			permissions: ['Use Application Commands', 'Send Messages'],
 		});
 	}
 	async run(client, interaction) {

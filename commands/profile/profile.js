@@ -19,7 +19,7 @@ module.exports = class Profile extends Command {
 				.setDMPermission(false),
 			usage: 'profile [user]',
 			category: 'Profile',
-			permissions: ['Use Application Commands', 'Send Messages', 'Embed Links'],
+			permissions: ['Use Application Commands', 'Send Messages', 'Embed Links', 'Attach Files'],
 		});
 	}
 	async run(client, interaction) {

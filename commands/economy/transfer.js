@@ -20,7 +20,7 @@ module.exports = class Transfer extends Command {
 				.setDMPermission(false),
 			usage: 'transfer [user] [number]',
 			category: 'Economy',
-			permissions: ['Use Application Commands', 'Send Messages', 'Embed Links'],
+			permissions: ['Use Application Commands', 'Send Messages'],
 		});
 	}
 	async run(client, interaction) {

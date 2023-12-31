@@ -17,7 +17,7 @@ module.exports = class Clear extends Command {
 				.setDMPermission(false),
 			usage: 'clear [number]',
 			category: 'Utils',
-			permissions: ['Use Application Commands', 'Send Messages', 'Embed Links', 'Manage Messages'],
+			permissions: ['Use Application Commands', 'Send Messages', 'Manage Messages'],
 		});
 	}
 	async run(client, interaction) {

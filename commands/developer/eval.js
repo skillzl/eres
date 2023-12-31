@@ -14,7 +14,7 @@ module.exports = class Eval extends Command {
 				.setDMPermission(false),
 			usage: 'eval [string]',
 			category: 'Developer',
-			permissions: ['Use Application Commands', 'Send Messages', 'Embed Links'],
+			permissions: ['Use Application Commands', 'Send Messages'],
 		});
 	}
 	async run(client, interaction) {

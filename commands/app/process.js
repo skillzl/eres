@@ -19,20 +19,18 @@ module.exports = class Process extends Command {
 		});
 	}
 	async run(client, interaction) {
-		const btn_one = new ButtonBuilder()
-			.setURL(process.env.CALLBACK_URL)
-			.setLabel('website')
-			.setStyle(ButtonStyle.Link);
+		const buttonRow = new ActionRowBuilder()
+			.addComponents(
+				new ButtonBuilder()
+					.setURL('https://github.com/skillzl/eres')
+					.setLabel('GitHub')
+					.setStyle(ButtonStyle.Link),
 
-		const btn_two = new ButtonBuilder()
-			.setURL('https://github.com/skillzl/eres')
-			.setLabel('github')
-			.setStyle(ButtonStyle.Link);
-
-		const row = new ActionRowBuilder().addComponents(
-			btn_one,
-			btn_two,
-		);
+				new ButtonBuilder()
+					.setURL(`https://${process.env.DOMAIN}`)
+					.setLabel('Website')
+					.setStyle(ButtonStyle.Link),
+			);
 
 		const { data } = await db.getAnalysticsById(process.env.ANALYTICS_ID);
 
@@ -41,12 +39,24 @@ module.exports = class Process extends Command {
 			0,
 		);
 
+		const startUsage = process.cpuUsage();
+
+		const now = Date.now();
+		while (Date.now() - now < 500);
+
+		const endUsage = process.cpuUsage(startUsage);
+		const userCPU = endUsage.user / 1000000;
+		const systemCPU = endUsage.system / 1000000;
+
+		const totalCPU = userCPU + systemCPU;
+		const cpuPercent = (totalCPU / 0.5) * 100;
+
 		const embed = new EmbedBuilder()
 			.setAuthor({ name: `${packages.name}@${packages.version}`, iconURL: client.user.displayAvatarURL({ dynamic: true, size: 2048, extension: 'png' }) })
 			.setColor(0x2B2D31)
 			.setDescription('Live process values, also seen on our website.')
 			.addFields(
-				{ name: 'Process', value: `Memory: ${(process.memoryUsage().rss / 1024 / 1024).toFixed(2)}mb\nCPU:${(process.cpuUsage().system / 1024 / 1024).toFixed(2)}%\nPing: ${client.ws.ping || 0}ms\nUptime: ${dayjs(client.uptime).format('D [d], H [h], m [m], s [s]')}`, inline: true },
+				{ name: 'Process', value: `Memory: ${(process.memoryUsage().rss / 1024 / 1024).toFixed(2)}mb\nProcess Usage: ${cpuPercent.toFixed(2)}%\nPing: ${client.ws.ping || 0}ms\nUptime: ${dayjs(client.uptime).format('D [d], H [h], m [m], s [s]')}`, inline: true },
 				{ name: 'Packages', value: `discord.js: ^${version}\nexpress: ${packages.dependencies['express']}\nmongoose: ${packages.dependencies['mongoose']}\nnode.js: ^${process.version}`, inline: true },
 				{ name: 'Cache', value: `Guilds: ${client.guilds.cache.size || 0}\nChannels: ${client.channels.cache.size || 0}\nEmojis: ${client.emojis.cache.size || 0 }\nUsers: ${users || 0}`, inline: true },
 			)
@@ -55,7 +65,7 @@ module.exports = class Process extends Command {
 			})
 			.setThumbnail(client.user.displayAvatarURL({ dynamic: true, size: 128, format: 'png' }));
 
-		await interaction.reply({ embeds: [embed], components: [row] });
+		await interaction.reply({ embeds: [embed], components: [buttonRow] });
 
 	}
 };
