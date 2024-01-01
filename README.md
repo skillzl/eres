@@ -85,6 +85,11 @@ As a developer, see how your application grow.
 To set the  `_id` just follow this tutorial I made real quick!
 [click here](./ANALYTICS.md)
 
+## Emojis
+
+Import these emojis to your server [click here](./assets/emojis/)
+Change the emojis here [click here](./functions/Emojis.js)
+
 ## License
 
 This project is licensed under the Apache License 2.0 License - see the [LICENSE](https://github.com/skillzl/eres/blob/main/LICENSE) file for details.
