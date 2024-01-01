@@ -18,7 +18,7 @@ module.exports = class TranscriptCommand extends Command {
 	}
 
 	async run(client, interaction) {
-		if (!interaction.member.permissions.has(PermissionsBitField.Flags.ManageMessages)) return await interaction.reply('You are missing `MANAGE_MESSAGES` permission.');
+		if (!interaction.member.permissions.has(PermissionsBitField.Flags.ManageMessages)) return await interaction.reply(`${client.emoji.red_emoji} You are missing \`MANAGE_MESSAGES\` permission.`);
 
 		interaction.deferReply({ fetchReply: true });
 		interaction.channel.messages.fetch({ limit: 100 });
@@ -35,7 +35,7 @@ module.exports = class TranscriptCommand extends Command {
 					return;
 				}
 				interaction.editReply({
-					content: `<:mail_emoji:1170364505616826398> Here's the transcript of the last \`100 messages\` in this channel: ${interaction.channel}\nhttp://${process.env.DOMAIN}/transcripts/${interaction.channel.id}-transcript.html`,
+					content: `${client.emoji.mail} Here's the transcript of the last \`100 messages\` in this channel: ${interaction.channel}\nhttp://${process.env.DOMAIN}/transcripts/${interaction.channel.id}-transcript.html`,
 				});
 			});
 		}

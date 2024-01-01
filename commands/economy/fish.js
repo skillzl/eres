@@ -55,9 +55,9 @@ Fisherman:
 Caught:
 \u3000 ${fish.symbol}
 Coins earned:
-\u3000 ${worth} <:balance_emoji:1129875960188112966>
+\u3000 ${worth} ${client.emoji.balance}
 XP earned:
-\u3000 ${xp} <:star_emoji:1126279940321574913>
+\u3000 ${xp} ${client.emoji.star}
 ----------------------------
 [ :: **FISH MINIGAME** :: ]
 `);

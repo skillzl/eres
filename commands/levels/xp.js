@@ -21,6 +21,6 @@ module.exports = class Xp extends Command {
 		const member = interaction.options.getUser('target') || interaction.user;
 		const { user } = await db.getUserById(member.id);
 
-		interaction.reply(`<:star_emoji:1126279940321574913> ${member.username} has earned **${user.xp.toLocaleString()}** xp points.`);
+		interaction.reply(`${client.emoji.star} ${member.username} has earned **${user.xp.toLocaleString()}** xp points.`);
 	}
 };

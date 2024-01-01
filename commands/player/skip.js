@@ -23,7 +23,7 @@ module.exports = class Skip extends Command {
 		const queue = player.nodes.get(interaction.guild.id);
 
 		if (!queue || !queue.isPlaying()) {
-			return await interaction.reply('<:red_emoji:1126936340022435963> There isn\'t currently any music playing.');
+			return await interaction.reply(`${client.emoji.red_emoji} There isn't currently any music playing.`);
 		}
 
 		const usersInChannel = interaction.member.voice.channel.members.size;
@@ -36,7 +36,7 @@ module.exports = class Skip extends Command {
 		if (skipVotesTotal.size >= Math.ceil(usersInChannel * 0.35)) {
 			queue.node.skip();
 			skipVotes[interaction.guild.id] = new Set();
-			return await interaction.reply(`<:green_emoji:1126936345043030026> The track **${queue.currentTrack.title}** was skipped.`);
+			return await interaction.reply(`${client.emoji.green_emoji} The track **${queue.currentTrack.title}** was skipped.`);
 		}
 		else {
 			return await interaction.reply(`You voted to skip. Required ${Math.ceil(usersInChannel * 0.35) - skipVotes.size - 1} more vote(s) needed to skip the track.`);

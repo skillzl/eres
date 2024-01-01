@@ -27,7 +27,7 @@ module.exports = class Process extends Command {
 					.setStyle(ButtonStyle.Link),
 
 				new ButtonBuilder()
-					.setURL(`https://${process.env.DOMAIN}`)
+					.setURL(`https://${process.env.DOMAIN}/stats`)
 					.setLabel('Website')
 					.setStyle(ButtonStyle.Link),
 			);

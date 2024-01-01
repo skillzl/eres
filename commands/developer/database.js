@@ -28,7 +28,7 @@ module.exports = class Database extends Command {
 		});
 	}
 	async run(client, interaction) {
-		if (interaction.user.id !== process.env.DEVELOPER_ID) return interaction.reply('Missing `DEVELOPER` permission.');
+		if (interaction.user.id !== process.env.DEVELOPER_ID) return interaction.reply(`${client.emoji.red_emoji} Missing \`DEVELOPER\` permission.`);
 
 		const member = interaction.options.getUser('target');
 		const type = interaction.options.getString('type');
@@ -43,7 +43,7 @@ module.exports = class Database extends Command {
 			});
 
 			return interaction.reply(
-				`<:green_emoji:1126936345043030026> Successfully added \`${value}\` xp to ${member.username}.`,
+				`${client.emoji.green_emoji} Successfully added \`${value}\` xp to ${member.username}.`,
 			);
 		}
 		case 'balance': {
@@ -53,7 +53,7 @@ module.exports = class Database extends Command {
 				balance: user.balance + Number(value),
 			});
 			return interaction.reply(
-				`<:green_emoji:1126936345043030026> Successfully added \`${value}\` coins to ${member.username}.`,
+				`${client.emoji.green_emoji} Successfully added \`${value}\` coins to ${member.username}.`,
 			);
 		}
 		case 'reputation': {
@@ -63,11 +63,11 @@ module.exports = class Database extends Command {
 				reputation: user.reputation + Number(value),
 			});
 			return interaction.reply(
-				`<:green_emoji:1126936345043030026> Successfully added \`${value}\` reputation points to ${member.username}.`,
+				`${client.emoji.green_emoji} Successfully added \`${value}\` reputation points to ${member.username}.`,
 			);
 		}
 		default: {
-			return interaction.reply(`<:red_emoji:1126936340022435963> Error: \`${type}\` is not a valid type.`);
+			return interaction.reply(`${client.emoji.red_emoji} Error: \`${type}\` is not a valid type.`);
 		}
 		}
 	}

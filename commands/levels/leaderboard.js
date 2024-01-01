@@ -30,7 +30,7 @@ module.exports = class Leaderboard extends Command {
 
 		const embed = new EmbedBuilder()
 			.setColor(0x2B2D31)
-			.setTitle('<:star_emoji:1126279940321574913> Ranking Leaderboard')
+			.setTitle(`${client.emoji.star} Ranking Leaderboard`)
 			.setThumbnail(client.user.displayAvatarURL({ dynamic: true, size: 128, format: 'png' }))
 			.setDescription('You can easily earn xp points and achievements by texting on your favorite communities. Our text-based leveling system is global and will reward you at some accomplishments.\n\n' + leaderboard.join('\n'));
 

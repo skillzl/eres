@@ -18,7 +18,7 @@ module.exports = class Cat extends Command {
 	}
 	async run(client, interaction) {
 		if (!process.env.SKILLZL_API_KEY || process.env.SKILLZL_API_KEY === '') {
-			return interaction.reply('<:red_emoji:1126936340022435963> Missing `SKILLZL_API_KEY` in .env file.');
+			return interaction.reply(`${client.emoji.red_emoji} Missing \`SKILLZL_API_KEY\` in .env file.`);
 		}
 
 		const result = await fetch(`https://api.skillzl.dev/cat/?key=${process.env.SKILLZL_API_KEY}`).then((res) => res.json());

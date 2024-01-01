@@ -49,7 +49,7 @@ module.exports = class Reputation extends Command {
 				reputation_cooldown: Date.now(),
 			});
 
-			interaction.reply(`<:green_emoji:1126936345043030026> You gave a reputation point to ${member.username}!`);
+			interaction.reply(`${client.emoji.green_emoji} You gave a reputation point to ${member.username}!`);
 		}
 	}
 };

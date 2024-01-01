@@ -4,7 +4,7 @@ const path = require('path');
 const { Player } = require('discord-player');
 
 module.exports = (client) => {
-	client.Player = async () => {
+	client.events.player = async () => {
 		const playerEventsPath = path.join(__dirname, '../events/player');
 		const playerEventFiles = fs.readdirSync(playerEventsPath).filter((file) => file.endsWith('.js'));
 

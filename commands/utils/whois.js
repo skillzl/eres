@@ -35,20 +35,20 @@ module.exports = class Whois extends Command {
 		}
 
 		const DISCORD_BADGES = {
-			STAFF: '<:staff_badge:1139567579371946064>',
-			PARTNER: '<:partner_badge:1139567761287282698>',
-			HYPESQUAD: '<:hypesquad_badge:1139568237764427806>',
-			BUG_HUNTER_LEVEL_1: '<:bughunter_level1_badge:1139571311534931978>',
-			BUG_HUNTER_LEVEL_2: '<:bughunter_level2_badge:1139571316542947468>',
-			HYPESQUAD_ONLINE_HOUSE_1: '<:house1_badge:1139571326621843496>',
-			HYPESQUAD_ONLINE_HOUSE_2: '<:house2_badge:1139571331671793685>',
-			HYPESQUAD_ONLINE_HOUSE_3: '<:house3_badge:1139571337136963695>',
-			PREMIUM_EARLY_SUPPORTER: '<:early_supporter_badge:1139571489671229631>',
-			SYSTEM: '<:system_badge:1139571345039036487>',
-			VERIFIED_BOT: '<:verified_bot_badge:1139571349262696509>',
-			VERIFIED_DEVELOPER: '<:verified_developer_badge:1139571354325237790>',
-			CERTIFIED_MODERATOR: '<:certified_moderator_badge:1139571322368835685>',
-			ACTIVE_DEVELOPER: '<:active_developer_badge:1139571306313039872>',
+			STAFF: client.emoji.staff_emoji,
+			PARTNER: client.emoji.partnered_badge,
+			HYPESQUAD: client.emoji.hypesquad,
+			BUG_HUNTER_LEVEL_1: client.emoji.hunter_one,
+			BUG_HUNTER_LEVEL_2: client.emoji.hunter_two,
+			HYPESQUAD_ONLINE_HOUSE_1: client.emoji.hypesquad_house_one,
+			HYPESQUAD_ONLINE_HOUSE_2: client.emoji.hypesquad_house_two,
+			HYPESQUAD_ONLINE_HOUSE_3: client.emoji.hypesquad_house_tree,
+			PREMIUM_EARLY_SUPPORTER: client.emoji.early_supporter,
+			SYSTEM: client.emoji.discord_system,
+			VERIFIED_BOT: client.emoji.verified_bot,
+			VERIFIED_DEVELOPER: client.emoji.verified_developer,
+			CERTIFIED_MODERATOR: client.emoji.certified_moderator,
+			ACTIVE_DEVELOPER: client.emoji.active_developer,
 		};
 
 		const member = interaction.guild.members.cache.get(user.id);
@@ -65,7 +65,7 @@ module.exports = class Whois extends Command {
 			.setThumbnail(user.displayAvatarURL({ dynamic: true, size: 2048, extension: 'png' }))
 			.setDescription(`ID: ${user.id}`)
 			.addFields(
-				{ name: 'SYSTEM USER', value: user.system ? '<:green_emoji:1126936345043030026>' : '<:red_emoji:1126936340022435963>', inline: true },
+				{ name: 'SYSTEM USER', value: user.system ? client.emoji.green_emoji : client.emoji.red_emoji, inline: true },
 				{ name: 'NICKNAME', value: user.nickname ? user.nickname : user.username, inline: true },
 				{ name: 'BOOSTING', value: user.premiumSince?.toLocaleDateString('en-US') || 'Not Boosting', inline: true },
 				{ name: 'ROLES', value: roles, inline: true },

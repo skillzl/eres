@@ -23,7 +23,7 @@ module.exports = class Queue extends Command {
 			.setColor(0x2F3136);
 
 		if (!queue || !queue.isPlaying()) {
-			return await interaction.reply('<:red_emoji:1126936340022435963> There isn\'t currently any music playing.');
+			return await interaction.reply(`${client.emoji.red_emoji} There isn't currently any music playing.`);
 		}
 
 		const queuedTracks = queue.tracks.toArray();

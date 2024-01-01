@@ -20,11 +20,11 @@ module.exports = class Stop extends Command {
 		const queue = player.nodes.get(interaction.guild.id);
 
 		if (!queue || !queue.isPlaying()) {
-			return await interaction.reply('<:red_emoji:1126936340022435963> There isn\'t currently any music playing.');
+			return await interaction.reply(`${client.emoji.red_emoji} There isn't currently any music playing.`);
 		}
 		else {
 			queue.delete();
-			return await interaction.reply('<:green_emoji:1126936345043030026> The music has been stopped.');
+			return await interaction.reply(`${client.emoji.green_emoji} The music has been stopped.`);
 		}
 	}
 };

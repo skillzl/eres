@@ -21,12 +21,12 @@ module.exports = class Clear extends Command {
 		});
 	}
 	async run(client, interaction) {
-		if (!interaction.member.permissions.has(PermissionsBitField.Flags.ManageMessages)) return await interaction.reply('You are missing `MANAGE_MESSAGES` permission.');
+		if (!interaction.member.permissions.has(PermissionsBitField.Flags.ManageMessages)) return await interaction.reply(`${client.emoji.red_emoji} You are missing \`MANAGE_MESSAGES\` permission.`);
 
 		const number = interaction.options.getNumber('number');
 
 		const fetched = await interaction.channel.messages.fetch({ limit: number });
-		await interaction.channel.bulkDelete(fetched).then(interaction.reply(`<:green_emoji:1126936345043030026> Deleted ${number} messages.`).then(reply => {
+		await interaction.channel.bulkDelete(fetched).then(interaction.reply(`${client.emoji.green_emoji} Deleted ${number} messages.`).then(reply => {
 			setTimeout(() => {
 				reply.delete();
 			}, 2000);

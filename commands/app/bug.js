@@ -60,7 +60,7 @@ module.exports = class Bug extends Command {
 				report_cooldown: Date.now(),
 			});
 
-			await interaction.reply('Successfully sent the report. Thanks for your feedback!');
+			await interaction.reply(`${client.emoji.green_emoji} Successfully sent the report. Thanks for your feedback!`);
 		}
 	}
 };

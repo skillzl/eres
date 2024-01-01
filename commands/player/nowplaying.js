@@ -20,11 +20,11 @@ module.exports = class Nowplaying extends Command {
 		const queue = player.nodes.get(interaction.guild.id);
 
 		const embed = new EmbedBuilder()
-			.setTitle('<:music_emoji:1188172803934011442> Now Playing')
+			.setTitle(`${client.emoji.music} Now Playing`)
 			.setColor(0x2B2D31);
 
 		if (!queue || !queue.isPlaying()) {
-			return await interaction.reply('<:red_emoji:1126936340022435963> There isn\'t currently any music playing.');
+			return await interaction.reply(`${client.emoji.red_emoji} There isn't currently any music playing.`);
 		}
 
 		const progress = queue.node.createProgressBar();

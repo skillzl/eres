@@ -36,7 +36,7 @@ module.exports = class Daily extends Command {
 				balance: user.balance + amount,
 			});
 
-			interaction.reply(`<:balance_emoji:1129875960188112966> ${interaction.user.username}, you collected your daily bonus worth of **${amount.toLocaleString()}** coins.`);
+			interaction.reply(`${client.emoji.balance} ${interaction.user.username}, you collected your daily bonus worth of **${amount.toLocaleString()}** coins.`);
 		}
 	}
 };

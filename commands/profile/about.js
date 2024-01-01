@@ -27,7 +27,7 @@ module.exports = class About extends Command {
 				about: input,
 			});
 
-			await interaction.reply('<:green_emoji:1126936345043030026> Successfully updated your personal bio.');
+			await interaction.reply(`${client.emoji.green_emoji} Successfully updated your personal bio.`);
 		}
 	}
 };

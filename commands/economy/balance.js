@@ -21,6 +21,6 @@ module.exports = class Balance extends Command {
 		const member = interaction.options.getUser('target') || interaction.user;
 		const { user } = await db.getUserById(member.id);
 
-		interaction.reply(`<:balance_emoji:1129875960188112966> ${member.username} has **${user.balance.toLocaleString()}** coins in total.`);
+		interaction.reply(`${client.emoji.balance} ${member.username} has **${user.balance.toLocaleString()}** coins in total.`);
 	}
 };

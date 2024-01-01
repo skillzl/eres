@@ -20,8 +20,8 @@ module.exports = class Analytics extends Command {
 		});
 	}
 	async run(client, interaction) {
-		if (interaction.user.id !== process.env.DEVELOPER_ID) return interaction.reply('Missing `DEVELOPER` permission.');
-		if (!process.env.ANALYTICS_ID) return interaction.reply('<:red_emoji:1126936340022435963> Analytics unique identifier not set.');
+		if (interaction.user.id !== process.env.DEVELOPER_ID) return interaction.reply(`${client.emoji.red_emoji} Missing \`DEVELOPER\` permission.`);
+		if (!process.env.ANALYTICS_ID) return interaction.reply(`${client.emoji.red_emoji} Analytics unique identifier not set.`);
 
 		try {
 			const { data } = await db.getAnalysticsById(process.env.ANALYTICS_ID);
@@ -34,7 +34,7 @@ module.exports = class Analytics extends Command {
 			const embed = new EmbedBuilder()
 				.setAuthor({ name: `${packages.name}@${packages.version}`, iconURL: client.user.displayAvatarURL({ dynamic: true, size: 2048, extension: 'png' }) })
 				.setColor(0x2B2D31)
-				.setDescription(`Analytics ${client.user.username.toLowerCase()}.fun`)
+				.setDescription(`Analytics ${process.env.DOMAIN}`)
 				.addFields(
 					{ name: '7 Days Ago', value: `Guilds: ${data.guilds || 0}\nUsers: ${data.users || 0}`, inline: true },
 					{ name: 'Now', value: `Guilds: ${client.guilds.cache.size || 0}\nUsers: ${users || 0}`, inline: true },
@@ -51,7 +51,7 @@ module.exports = class Analytics extends Command {
 		catch (err) {
 			if (err instanceof mongoose.Error.CastError) {
 				console.error(`[Database]: Invalid 🔴 ObjectId: ${err.value} (Analytics _id in .env file)`);
-				interaction.reply('<:red_emoji:1126936340022435963> Analytics unique identifier not set.');
+				interaction.reply(`${client.emoji.red_emoji} Analytics unique identifier not set.`);
 			}
 			else {
 				console.error(err);

@@ -48,6 +48,6 @@ module.exports = class Transfer extends Command {
 			balance: sender.balance - amount,
 		});
 
-		return interaction.reply(`<:green_emoji:1126936345043030026> Successfully transfered \`${amount.toLocaleString()}\` coins to ${member.username}. \`fee: ${fee.toLocaleString()} (${Math.round((1 - 0.729) * 100)}%)\``);
+		return interaction.reply(`${client.emoji.green_emoji} Successfully transfered \`${amount.toLocaleString()}\` coins to ${member.username}. \`fee: ${fee.toLocaleString()} (${Math.round((1 - 0.729) * 100)}%)\``);
 	}
 };

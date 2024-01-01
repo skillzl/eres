@@ -6,16 +6,6 @@ const { SlashCommandBuilder } = require('discord.js');
 
 const { stripIndents } = require('common-tags');
 
-const slots = [
-	'<:balance_emoji:1129875960188112966>',
-	'<:flag_emoji:1129876196549738626>',
-	'<:gheart_emoji:1129876399134625902>',
-	'<:heart_emoji:1129876126047670403>',
-	'<:seven_emoji:1129876077041422356>',
-	'<:skull_emoji:1129876004748411041>',
-	'<:snowman_emoji:1129876037493334017>',
-];
-
 function shuffle(array) {
 	const arr = array.slice(0);
 	for (let i = arr.length - 1; i >= 0; i--) {
@@ -50,6 +40,16 @@ module.exports = class Slots extends Command {
 
 		const amount = interaction.options.getNumber('amount');
 		const availableCoins = user.balance;
+
+		const slots = [
+			client.emoji.balance,
+			client.emoji.flag_emoji,
+			client.emoji.gheart,
+			client.emoji.heart,
+			client.emoji.seven,
+			client.emoji.skull,
+			client.emoji.snowman,
+		];
 
 		if (isNaN(amount)) return interaction.reply('Make sure you enter a valid number.');
 		if (!isFinite(amount)) interaction.reply('Make sure you enter a valid number.');
@@ -139,7 +139,7 @@ ${array_one[1]} : ${array_two[1]} : ${array_tree[1]} **«**
 ${array_one[0]} : ${array_two[2]} : ${array_tree[0]}
 ----------------
 [ :: **SLOTS** :: ]
-${interaction.user.username} won ${random.toLocaleString()} <:balance_emoji:1129875960188112966>. \`(bet: ${amount.toLocaleString()})\`\nXP earned: ${xp} <:star_emoji:1126279940321574913>`),
+${interaction.user.username} won ${random.toLocaleString()} ${client.emoji.balance}. \`(bet: ${amount.toLocaleString()})\`\nXP earned: ${xp} ${client.emoji.star}`),
 							2300,
 						);
 					}
@@ -159,7 +159,7 @@ ${array_one[1]} : ${array_two[1]} : ${array_tree[1]} **«**
 ${array_one[0]} : ${array_two[2]} : ${array_tree[0]}
 ----------------
 [ :: **SLOTS** :: ]
-${interaction.user.username} lost everything <:balance_emoji:1129875960188112966>. \`(bet: ${amount.toLocaleString()})\``),
+${interaction.user.username} lost everything ${client.emoji.balance}. \`(bet: ${amount.toLocaleString()})\``),
 						2300,
 					);
 				}

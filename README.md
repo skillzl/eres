@@ -67,11 +67,14 @@ WEBHOOK_TOKEN=
 ## Analytics unique identifier
 ANALYTICS_ID=
 
-## Domain 
-DOMAIN=
+## Domain
+DOMAIN= (e.g: localhost:3000 => if used locally)
 
 ## api.skillzl.dev unique key (api.skillz.dev for key)
 SKILLZL_API_KEY=
+
+## Custom youtube cookie (for 419 rate limits)
+YOUTUBE_COOKIE=
 ```
 
 > **Note**: Envoirement settings need to be in a ".env" file.

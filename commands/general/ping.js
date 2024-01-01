@@ -27,8 +27,8 @@ module.exports = class Ping extends Command {
 			})
 			.setColor(0x36393e)
 			.setDescription(stripIndents`
-            ⏱ roundtrip: **${Math.round(Date.now() - now)} ms**
-            💓 api: **${Math.round(client.ws.ping)} ms**
+            ${client.emoji.clock} roundtrip: **${Math.round(Date.now() - now)} ms**
+            ${client.emoji.heartbeat} api: **${Math.round(client.ws.ping)} ms**
             `);
 
 		return await interaction.followUp({ embeds: [pingEmbed] });

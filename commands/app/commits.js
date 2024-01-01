@@ -41,7 +41,7 @@ module.exports = class Commits extends Command {
 
 			const embed = new EmbedBuilder()
 				.setColor(0x2B2D31)
-				.setTitle('<:ticket_emoji:1170117538433212538> GitHub Commits')
+				.setTitle(`${client.emoji.ticket} GitHub Commits`)
 				.setThumbnail(client.user.displayAvatarURL({ dynamic: true, size: 128, format: 'png' }))
 				.setDescription(`Last **5** fetched commits from the public reporitory [github.com/${owner}/${repo}](https://github.com/${owner}/${repo}). Use this information to know what's up with the client's journey.\n\n` + commits.join('\n'));
 

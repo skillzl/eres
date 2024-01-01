@@ -17,7 +17,7 @@ module.exports = class Plugins extends Command {
 	async run(client, interaction) {
 		const embed = new EmbedBuilder()
 			.setColor(0x2B2D31)
-			.setTitle('<:moon_emoji:1139513847238119425> Plugins')
+			.setTitle(`${client.emoji.moon} Plugins`)
 			.setThumbnail(client.user.displayAvatarURL({ dynamic: true, size: 128, format: 'png' }))
 			.setDescription('Hey there!\nGlad to have you here. Let me guess. Plugins!\nWell you have some, autorole and the good old welcome message and leave message.')
 			.addFields(

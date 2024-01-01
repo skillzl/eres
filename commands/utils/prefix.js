@@ -15,7 +15,7 @@ module.exports = class Prefix extends Command {
 		});
 	}
 	async run(client, interaction) {
-		if (!interaction.member.permissions.has(PermissionsBitField.Flags.ManageGuild)) return await interaction.reply('You are missing `MANAGE_GUILD` permission.');
+		if (!interaction.member.permissions.has(PermissionsBitField.Flags.ManageGuild)) return await interaction.reply(`${client.emoji.red_emoji} You are missing \`MANAGE_GUILD\` permission.`);
 
 		const prefixModal = new ModalBuilder()
 			.setTitle('Set Bot Prefix')

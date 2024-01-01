@@ -20,14 +20,14 @@ module.exports = class Resume extends Command {
 		const queue = player.nodes.get(interaction.guild.id);
 
 		if (!queue || !queue.isPlaying()) {
-			return await interaction.reply('<:red_emoji:1126936340022435963> There isn\'t currently any music playing.');
+			return await interaction.reply(`${client.emoji.red_emoji} There isn't currently any music playing.`);
 		}
 
 		if (!queue.node.isPaused()) {
-			return await interaction.reply('<:red_emoji:1126936340022435963> The queue isn\'t currently paused.');
+			return await interaction.reply(`${client.emoji.red_emoji} The queue isn't currently paused.`);
 		}
 
 		queue.node.setPaused(false);
-		return await interaction.reply(`<:green_emoji:1126936345043030026> Successfully unpaused **${queue.currentTrack.title}**.`);
+		return await interaction.reply(`${client.emoji.green_emoji} Successfully unpaused **${queue.currentTrack.title}**.`);
 	}
 };
