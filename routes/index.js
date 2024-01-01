@@ -15,6 +15,8 @@ const checkAuth = require('../middlewares/checkAuth');
 router.use(bodyParser.urlencoded({ extended: true }));
 
 router.get('/', async (req, res) => {
+	const currentYear = new Date().getFullYear();
+
 	res.render('index', {
 		tag: (req.user ? req.user.tag : 'Login'),
 		bot: req.client,
@@ -22,22 +24,29 @@ router.get('/', async (req, res) => {
 		eresVersion: package.version,
 		eresName: package.name,
 		user: req.user || null,
+		year: currentYear,
 	});
 });
 
 router.get('/privacy', async (req, res) => {
+	const currentYear = new Date().getFullYear();
+
 	res.render('privacy', {
 		tag: (req.user ? req.user.tag : 'Login'),
 		bot: req.client,
 		user: req.user || null,
+		year: currentYear,
 	});
 });
 
 router.get('/tos', async (req, res) => {
+	const currentYear = new Date().getFullYear();
+
 	res.render('tos', {
 		tag: (req.user ? req.user.tag : 'Login'),
 		bot: req.client,
 		user: req.user || null,
+		year: currentYear,
 	});
 });
 
@@ -56,6 +65,8 @@ router.get('/profile/:userID/me', checkAuth, async (req, res) => {
 		const percentage = (gainedXP / totalXP) * 100;
 		return percentage.toFixed(2) + '%';
 	}
+
+	const currentYear = new Date().getFullYear();
 
 	const { user } = await db.getUserById(req.user.id);
 
@@ -77,6 +88,7 @@ router.get('/profile/:userID/me', checkAuth, async (req, res) => {
 		minXp: minXp || 0,
 		maxXp: maxXp || 0,
 		percentageXp: percentageXp || 0,
+		year: currentYear,
 	});
 });
 
@@ -100,6 +112,7 @@ router.get('/stats', async (req, res) => {
 		0,
 	);
 
+	const currentYear = new Date().getFullYear();
 
 	res.render('stats', {
 		tag: (req.user ? req.user.tag : 'Login'),
@@ -114,6 +127,7 @@ router.get('/stats', async (req, res) => {
 		songs_played: songs_played,
 		mongoDBVersion: package.dependencies['mongoose'],
 		cachedUsers: cachedUsers,
+		year: currentYear,
 	});
 });
 

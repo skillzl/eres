@@ -56,6 +56,8 @@ router.get('/server/:guildID', checkAuth, async (req, res) => {
 		serverData = await db.createServer(req.params.guildID);
 	}
 
+	const currentYear = new Date().getFullYear();
+
 	res.render('dashboard/manage.ejs', {
 		bot: req.client,
 		user: req.user || null,
@@ -64,6 +66,7 @@ router.get('/server/:guildID', checkAuth, async (req, res) => {
 		serverData: serverData,
 		roles: allRolesArray,
 		channels: textChannelsArray,
+		year: currentYear,
 	});
 });
 
@@ -147,12 +150,15 @@ router.get('/server/:guildID/members', checkAuth, async (req, res) => {
 
 	const members = server.members.cache.toJSON();
 
+	const currentYear = new Date().getFullYear();
+
 	res.render('dashboard/members.ejs', {
 		bot: req.client,
 		user: req.user || null,
 		guild: server,
 		members: members,
 		dayjs: dayjs,
+		year: currentYear,
 	});
 });
 
@@ -166,21 +172,27 @@ router.get('/server/:guildID/stats', checkAuth, async (req, res) => {
 		return res.redirect('/dashboard/servers');
 	}
 
+	const currentYear = new Date().getFullYear();
+
 	res.render('dashboard/stats.ejs', {
 		bot: req.client,
 		user: req.user || null,
 		guild: server,
 		channelType: ChannelType,
 		dayjs: dayjs,
+		year: currentYear,
 	});
 });
 
 router.get('/servers', checkAuth, async (req, res) => {
+	const currentYear = new Date().getFullYear();
+
 	res.render('dashboard/servers', {
 		tag: (req.user ? req.user.tag : 'Login'),
 		bot: req.client,
 		user: req.user || null,
 		guilds: req.user.guilds.filter(u => (u.permissions & 2146958591) === 2146958591),
+		year: currentYear,
 	});
 });
 
