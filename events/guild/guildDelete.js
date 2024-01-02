@@ -7,8 +7,20 @@ module.exports = class guildDelete extends Event {
 			name: 'guildDelete', once: false,
 		});
 	}
+	/**
+ * Remove server from the database if guild is not available
+ * @param {Guild} guild - The guild object
+ */
 	async run(guild) {
-		if (guild.available) return; await db.removeServer(guild.id);
+		// Check if the guild is available
+		if (guild.available) {
+			return;
+		}
+
+		// Remove the server from the database
+		await db.removeServer(guild.id);
+
+		// Log the information
 		console.log(`[Info]: Left guild: ${guild.name} ⬇️.`);
 	}
 };

@@ -7,6 +7,11 @@ module.exports = class ErrorEvent extends Event {
 			once: false,
 		});
 	}
+	/**
+ * Runs the error handler.
+ *
+ * @param {Error} error - The error object.
+ */
 	async run(error) {
 		if (error.message.includes('Missing')) {
 			return;

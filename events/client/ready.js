@@ -12,17 +12,25 @@ module.exports = class ReadyEvent extends Event {
 			once: true,
 		});
 	}
+	/**
+ * This function is responsible for running the application.
+ * It connects to the database, loads the web portal, and sets up scheduled tasks.
+ */
 	async run() {
 		const client = this.client;
 
-		mongoose.connect(process.env.MONGO_URL, {
+		// Connect to the MongoDB database
+		await mongoose.connect(process.env.MONGO_URL, {
 			useNewUrlParser: true,
 			useUnifiedTopology: true,
-		}).then(() => console.log('[Database]: Connected to 🥬 mongoose database server.'));
+		});
+		console.log('[Database]: Connected to 🥬 mongoose database server.');
 
+		// Load the web portal
 		const webPortal = require('../../server');
 		webPortal.load(client);
 
+		// Schedule task to update guilds and users analytics stats every Sunday at midnight
 		cron.schedule('0 0 * * 0', async () => {
 			const guilds = client.guilds.cache.size;
 			const users = client.users.cache.size;
@@ -39,6 +47,7 @@ module.exports = class ReadyEvent extends Event {
 			console.log('[Scheduler]: 🟢 Updated guilds and users analytics stats.');
 		});
 
+		// Schedule task to update user activity every 5 minutes
 		cron.schedule('*/5 * * * *', async () => {
 			const users = client.guilds.cache.reduce(
 				(a, g) => a + g.memberCount,
@@ -48,6 +57,7 @@ module.exports = class ReadyEvent extends Event {
 			client.user.setActivity('🌴 ' + users.toLocaleString() + ' users', { type: ActivityType.Watching });
 		});
 
+		// Update user activity immediately
 		const users = client.guilds.cache.reduce(
 			(a, g) => a + g.memberCount,
 			0,
