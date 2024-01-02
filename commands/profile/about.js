@@ -19,14 +19,22 @@ module.exports = class About extends Command {
 			permissions: ['Use Application Commands', 'Send Messages'],
 		});
 	}
+	/**
+ * Updates the user's personal bio in the database.
+ * @param {Client} client - The Discord client object.
+ * @param {Interaction} interaction - The interaction object.
+ */
 	async run(client, interaction) {
+		// Get the input from the interaction options
 		const input = interaction.options.getString('input');
 
 		if (input) {
+			// Update the user's personal bio in the database
 			db.updateUserById(interaction.user.id, {
 				about: input,
 			});
 
+			// Send a reply to indicate successful update
 			await interaction.reply(`${client.emoji.green_emoji} Successfully updated your personal bio.`);
 		}
 	}

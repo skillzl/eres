@@ -14,7 +14,18 @@ module.exports = class Server extends Command {
 			permissions: ['Use Application Commands', 'Send Messages', 'Embed Links'],
 		});
 	}
+	/**
+ * Run function for handling a specific interaction.
+ * @param {Client} client - The Discord client instance.
+ * @param {Interaction} interaction - The interaction object.
+ */
 	async run(client, interaction) {
+		/**
+		 * Calculates the number of days between a given time and the current date.
+		 *
+		 * @param {Date} time - The time to calculate the number of days ago from.
+		 * @return {number} The number of days between the given time and the current date.
+		 */
 		function daysAgo(time) {
 			const today = new Date();
 			const createdOn = new Date(time);
@@ -28,8 +39,10 @@ module.exports = class Server extends Command {
 			return diff;
 		}
 
+		// Get the guild creation date
 		const _createdAt = new Date(interaction.guild.createdAt);
 
+		// Get the guild emojis
 		const guildEmojis = interaction.guild.emojis.cache.size ?
 			interaction.guild.emojis.cache
 				.map(
@@ -41,12 +54,14 @@ module.exports = class Server extends Command {
 				.replace(/\s\S+[^>]$/, '') :
 			'none';
 
+		// Get the guild roles
 		const guildRoles = interaction.guild.roles.cache
 			.map((role) => role.toString())
 			.join(' ')
 			.substring(0, 1024)
 			.replace(/\s\S+[^>]$/, '');
 
+		// Get the members in the guild with their statuses
 		const members = {
 			online: interaction.guild.members.cache.filter(member => member.presence?.status === 'online').size,
 			dnd: interaction.guild.members.cache.filter(member => member.presence?.status === 'dnd').size,
@@ -54,8 +69,10 @@ module.exports = class Server extends Command {
 			bots: interaction.guild.members.cache.filter(member => member.user.bot).size,
 		};
 
+		// Get the guild owner
 		const owner = await interaction.guild.fetchOwner();
 
+		// Create an embed with the guild information
 		const embed = new EmbedBuilder()
 			.setColor(0x2B2D31)
 			.setTitle(`${interaction.guild.name}`)
@@ -80,15 +97,18 @@ module.exports = class Server extends Command {
 				{ name: `ROLES (${interaction.guild.roles.cache.size})`, value: `${guildRoles}`, inline: true },
 			);
 
+		// Add server banner if it exists and send the embed as a reply to the interaction
 		const inviteBanner = interaction.guild.bannerURL({
 			size: 2048,
 			format: 'png',
 		});
 
+		// Add server banner if it exists
 		if (inviteBanner !== null) {
 			embed.setImage(inviteBanner);
 		}
 
+		// Send the embed as a reply to the interaction
 		await interaction.reply({ embeds: [embed] });
 	}
 };

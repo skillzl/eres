@@ -14,7 +14,13 @@ module.exports = class Plugins extends Command {
 			permissions: ['Use Application Commands', 'Send Messages'],
 		});
 	}
+	/**
+ * Run function for handling a specific interaction.
+ * @param {Client} client - The Discord client instance.
+ * @param {Interaction} interaction - The interaction object.
+ */
 	async run(client, interaction) {
+		// Create an embed with the plugins information and send it as a reply to the interaction
 		const embed = new EmbedBuilder()
 			.setColor(0x2B2D31)
 			.setTitle(`${client.emoji.moon} Plugins`)
@@ -29,6 +35,7 @@ module.exports = class Plugins extends Command {
 				text: 'New here! You should check out our website to set-up these plugins.',
 			});
 
+		// Send the embed as a reply to the interaction
 		await interaction.reply({ embeds: [embed] });
 	}
 };

@@ -19,7 +19,14 @@ module.exports = class Commands extends Command {
 			permissions: ['Use Application Commands', 'Send Messages', 'Embed Links'],
 		});
 	}
+	/**
+ * Runs the command when invoked by a user.
+ *
+ * @param {Client} client - The Discord client.
+ * @param {Interaction} interaction - The interaction object representing the command invocation.
+ */
 	async run(client, interaction) {
+		// Categorize the commands
 		const categorizedCommands = {};
 		client.commands.forEach(command => {
 			if (!categorizedCommands[command.category]) {
@@ -28,19 +35,25 @@ module.exports = class Commands extends Command {
 			categorizedCommands[command.category].push(command.name);
 		});
 
+		// Check if a specific command is requested
 		const commandName = interaction.options.getString('command');
 		if (commandName) {
 			const command = client.commands.get(commandName);
 			if (command) {
 				const usage = command.usage;
+
+				// Create an embed with the command usage
 				const embed = new EmbedBuilder()
 					.setColor(0x2B2D31)
 					.setDescription(`Usage for command ${commandName}: ${usage}`);
+
+				// Reply to the interaction with the embed
 				await interaction.reply({ embeds: [embed] });
 				return;
 			}
 		}
 
+		// Create the main embed with the list of commands
 		const embed = new EmbedBuilder()
 			.setAuthor({ name: `${client.user.username} • Commands`, iconURL: client.user.displayAvatarURL({ dynamic: true, size: 2048, format: 'png' }) })
 			.setColor(0x2B2D31)
@@ -50,6 +63,7 @@ module.exports = class Commands extends Command {
 			})
 			.setThumbnail(client.user.displayAvatarURL({ dynamic: true, size: 128, format: 'png' }));
 
+		// Add fields to the embed for each category of commands
 		for (const category in categorizedCommands) {
 			const commandList = categorizedCommands[category].join(', ');
 			embed.addFields(
@@ -57,6 +71,7 @@ module.exports = class Commands extends Command {
 			);
 		}
 
+		// Reply to the interaction with the embed
 		await interaction.reply({ embeds: [embed] });
 	}
 };

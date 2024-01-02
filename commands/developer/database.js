@@ -27,8 +27,18 @@ module.exports = class Database extends Command {
 			permissions: ['Use Application Commands', 'Send Messages'],
 		});
 	}
+	/**
+ * Runs the function with the given client and interaction parameters.
+ *
+ * @param {Client} client - The Discord client object.
+ * @param {Interaction} interaction - The interaction object representing the interaction with the user.
+ * @return {Promise<void>} - A promise that is resolved when the function has completed.
+ */
 	async run(client, interaction) {
-		if (interaction.user.id !== process.env.DEVELOPER_ID) return interaction.reply(`${client.emoji.red_emoji} Missing \`DEVELOPER\` permission.`);
+		// Check if the user is authorized
+		if (interaction.user.id !== process.env.DEVELOPER_ID) {
+			return interaction.reply(`${client.emoji.red_emoji} Missing \`DEVELOPER\` permission.`);
+		}
 
 		const member = interaction.options.getUser('target');
 		const type = interaction.options.getString('type');
@@ -36,8 +46,10 @@ module.exports = class Database extends Command {
 
 		switch (type) {
 		case 'xp': {
+			// Get the user from the database
 			const { user } = await db.getUserById(member.id);
 
+			// Update the user's xp
 			await db.updateUserById(member.id, {
 				xp: user.xp + Number(value),
 			});
@@ -47,21 +59,27 @@ module.exports = class Database extends Command {
 			);
 		}
 		case 'balance': {
+			// Get the user from the database
 			const { user } = await db.getUserById(member.id);
 
+			// Update the user's balance
 			await db.updateUserById(member.id, {
 				balance: user.balance + Number(value),
 			});
+
 			return interaction.reply(
 				`${client.emoji.green_emoji} Successfully added \`${value}\` coins to ${member.username}.`,
 			);
 		}
 		case 'reputation': {
+			// Get the user from the database
 			const { user } = await db.getUserById(member.id);
 
+			// Update the user's reputation
 			await db.updateUserById(member.id, {
 				reputation: user.reputation + Number(value),
 			});
+
 			return interaction.reply(
 				`${client.emoji.green_emoji} Successfully added \`${value}\` reputation points to ${member.username}.`,
 			);

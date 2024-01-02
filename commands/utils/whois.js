@@ -17,10 +17,23 @@ module.exports = class Whois extends Command {
 			permissions: ['Use Application Commands', 'Send Messages', 'Embed Links'],
 		});
 	}
+	/**
+	 * Calculate the number of days between a given time and today.
+	 *
+	 * @param {string} time - The time to calculate the days from.
+	 * @return {number} The number of days between the given time and today.
+	 */
 	async run(client, interaction) {
+		// Get the user from the interaction
 		const user = interaction.options.getUser('target') || interaction.user;
 		const formatter = new Intl.ListFormat('en-US', { style: 'narrow', type: 'conjunction' });
 
+		/**
+		 * Calculate the number of days between a given time and today.
+		 *
+		 * @param {string} time - The time to calculate the days from.
+		 * @return {number} The number of days between the given time and today.
+		 */
 		function daysAgo(time) {
 			const today = new Date();
 			const createdOn = new Date(time);
@@ -34,6 +47,7 @@ module.exports = class Whois extends Command {
 			return diff;
 		}
 
+		// Get the Discord badges emojis
 		const DISCORD_BADGES = {
 			STAFF: client.emoji.staff_emoji,
 			PARTNER: client.emoji.partnered_badge,
@@ -51,14 +65,18 @@ module.exports = class Whois extends Command {
 			ACTIVE_DEVELOPER: client.emoji.active_developer,
 		};
 
+		// Get the user's roles
 		const member = interaction.guild.members.cache.get(user.id);
 		const roles = member.roles.cache.map(r => `${r}`).join(' ').substring(0, 248);
 
+		// Get the user creation date
 		const _createdAt = new Date(user.createdAt);
 		const _joinedAt = new Date(member.joinedAt);
 
+		// Get the user flags
 		const userFlags = user.flags.toArray();
 
+		// Build the embed with the user's information
 		const embed = new EmbedBuilder()
 			.setColor(0x2B2D31)
 			.setTitle(`${user.username}`)
@@ -73,9 +91,11 @@ module.exports = class Whois extends Command {
 				{ name: 'BADGES', value: userFlags.lenght ? formatter.format(userFlags.map(flag => `${DISCORD_BADGES[flag]}`)) : 'None', inline: true },
 			);
 
+		// Get the user's activity information
 		if (member.presence) {
 			const activities = member.presence.activities;
 
+			// Get the user's activity details
 			if (activities.length > 0) {
 				const activity = activities[0];
 				let details = '';
@@ -92,6 +112,7 @@ module.exports = class Whois extends Command {
 					details += `${activity.state}\n`;
 				}
 
+				// Get the elapsed time of the activity
 				if (activity.timestamps && activity.timestamps.start) {
 					const elapsed = Date.now() - activity.timestamps.start.getTime();
 					const elapsedSec = Math.floor(elapsed / 1000);
@@ -101,6 +122,7 @@ module.exports = class Whois extends Command {
 					details += `${elapsedHrs} hrs, ${elapsedMin % 60} mins, ${elapsedSec % 60} secs elapsed\n`;
 				}
 
+				// Add the activity details to the embed fields
 				if (details !== '') {
 					embed.addFields(
 						{ name: 'ACTIVITY', value: details },
@@ -109,11 +131,13 @@ module.exports = class Whois extends Command {
 			}
 		}
 
+		// Add the user's creation and join date to the embed fields
 		embed.addFields(
 			{ name: 'CREATED ON', value: `<t:${Math.floor(_createdAt / 1000) + 3600}:F>` + `\n${daysAgo(user.createdAt).toFixed(0)} (days ago)`, inline: true },
 			{ name: 'JOINED AT', value: `<t:${Math.floor(_joinedAt / 1000) + 3600}:F>` + `\n${daysAgo(member.joinedAt).toFixed(0)} (days ago)`, inline: true },
 		);
 
+		// Send the embed as a reply to the interaction message
 		await interaction.reply({ embeds: [embed] });
 
 	}
