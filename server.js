@@ -7,6 +7,12 @@ const ejs = require('ejs');
 const passport = require('passport');
 const { Strategy } = require('passport-discord');
 
+/**
+ * Load function is responsible for initializing and configuring the express app, setting up middleware,
+ * defining routes, and starting the web server.
+ *
+ * @param {Client} client - the client object used for interacting with external services
+ */
 module.exports.load = async (client) => {
 	app.use(bodyparser.json());
 	app.use(bodyparser.urlencoded({ extended: true }));
@@ -21,6 +27,7 @@ module.exports.load = async (client) => {
 		saveUninitialized: false,
 	}));
 
+	// Initialize passport and restore authentication state, if any, from the session.
 	app.use(async function(req, res, next) {
 		req.client = client;
 		next();
@@ -48,9 +55,11 @@ module.exports.load = async (client) => {
 		});
 	}));
 
+	// Define routes here
 	app.use('/', require('./routes/index'));
 	app.use('/dashboard', require('./routes/dashboard'));
 
+	// 404 handler
 	app.get('*', (req, res) => {
 		res.render('../views/404', {
 			bot: req.client,
@@ -58,6 +67,7 @@ module.exports.load = async (client) => {
 		});
 	});
 
+	// Start the web server
 	app.listen(process.env.PORT, () => {
 		console.log(`[Dashboard]: Web server now online on port:${process.env.PORT} 📶.`);
 	});

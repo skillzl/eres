@@ -12,7 +12,7 @@ module.exports = class Bug extends Command {
 				.setName('bug')
 				.setDescription('Report a bug you\'ve discovered')
 				.addStringOption(option =>
-					option.setName('bugDetails')
+					option.setName('string')
 						.setDescription('Bug details (e.g. got less xp than it\'s showed I should get)')
 						.setRequired(true))
 				.setDMPermission(false),
