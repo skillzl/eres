@@ -12,7 +12,8 @@ module.exports = class Play extends Command {
 				.setDMPermission(false)
 				.addStringOption((option) => option.setName('song')
 					.setDescription('Enter a track name, artist name, or URL')
-					.setRequired(true)),
+					.setRequired(true)
+					.setAutocomplete(true)),
 			usage: 'play [string]',
 			category: 'Player',
 			permissions: ['Use Application Commands', 'Send Messages', 'Embed Links'],
