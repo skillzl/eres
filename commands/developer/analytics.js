@@ -47,6 +47,21 @@ module.exports = class Analytics extends Command {
 				0,
 			);
 
+			// Start measuring CPU usage
+			const startUsage = process.cpuUsage();
+
+			// Delay for 500 milliseconds
+			const now = Date.now();
+			while (Date.now() - now < 500);
+
+			// Calculate CPU usage
+			const endUsage = process.cpuUsage(startUsage);
+			const userCPU = endUsage.user / 1000000;
+			const systemCPU = endUsage.system / 1000000;
+
+			const totalCPU = userCPU + systemCPU;
+			const cpuPercent = (totalCPU / 0.5) * 100;
+
 			// Build the embed for the analytics
 			const embed = new EmbedBuilder()
 				.setAuthor({
@@ -61,7 +76,7 @@ module.exports = class Analytics extends Command {
 					{ name: 'Others', value: `Commands Used: ${data.commands_used + 1 || 0}\nReports: ${data.reports || 0}`, inline: true },
 					{
 						name: 'Client',
-						value: `\`\`\`js\nLicense :: ${packages.license}\nEmoji ::  ${client.emojis.cache.size || 0 }\nChannels :: ${client.channels.cache.size || 0}\nCpu :: ${(process.cpuUsage().system / 1024 / 1024).toFixed(2)}%\nPing :: ${client.ws.ping || 0}ms\nMemory :: ${(process.memoryUsage().rss / 1024 / 1024).toFixed(2)}mb\nUptime :: ${dayjs(client.uptime).format('D [d], H [h], m [m], s [s]')}\nReady :: ${client.uptime ? 'True' : 'False'}\`\`\``,
+						value: `\`\`\`js\nLicense :: ${packages.license}\nEmoji ::  ${client.emojis.cache.size || 0 }\nChannels :: ${client.channels.cache.size || 0}\nProcess Usage :: ${cpuPercent.toFixed(2)}%\nPing :: ${client.ws.ping || 0}ms\nMemory :: ${(process.memoryUsage().rss / 1024 / 1024).toFixed(2)}mb\nUptime :: ${dayjs(client.uptime).format('D [d], H [h], m [m], s [s]')}\nReady :: ${client.uptime ? 'True' : 'False'}\`\`\``,
 					},
 				)
 				.setFooter({
