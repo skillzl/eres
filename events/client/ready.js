@@ -33,7 +33,10 @@ module.exports = class ReadyEvent extends Event {
 		// Schedule task to update guilds and users analytics stats every Sunday at midnight
 		cron.schedule('0 0 * * 0', async () => {
 			const guilds = client.guilds.cache.size;
-			const users = client.users.cache.size;
+			const users = client.guilds.cache.reduce(
+				(a, g) => a + g.memberCount,
+				0,
+			);
 
 			const analytics = await analyticsModel.findOne({});
 			if (analytics) {
