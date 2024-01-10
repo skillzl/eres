@@ -132,12 +132,12 @@ router.get('/stats', async (req, res) => {
 		uptime: dayjs(req.client.uptime).format('D [d], H [h], m [m], s [s]'),
 		channelType: ChannelType,
 		djsVersion: version,
-		guilds: guilds,
-		users: users,
-		commands_used: commands_used,
-		songs_played: songs_played,
+		guilds: guilds || 0,
+		users: users || 0,
+		commands_used: commands_used || 0,
+		songs_played: songs_played || 0,
 		mongoDBVersion: package.dependencies['mongoose'],
-		cachedUsers: cachedUsers,
+		cachedUsers: cachedUsers || 0,
 	});
 });
 
