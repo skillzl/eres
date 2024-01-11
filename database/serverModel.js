@@ -6,6 +6,7 @@ const serverSchema = new mongoose.Schema({
 	autorole: { type: String, default: null },
 	welcome: { type: String, default: null },
 	leave: { type: String, default: null },
+	i18n: { type: String, default: 'en', required: true },
 });
 
 module.exports = mongoose.model('server', serverSchema);

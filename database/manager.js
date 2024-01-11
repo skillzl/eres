@@ -7,6 +7,7 @@ module.exports = class Manager {
 		const result = new serverModel({
 			serverId: id,
 			prefix: null,
+			i18n: 'en',
 		});
 
 		await result.save();

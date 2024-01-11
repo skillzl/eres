@@ -1,0 +1,10 @@
+{
+    "GLOBAL": {
+      "SUCCESS": "Success",
+      "ERROR": "An unexpected error occurred"
+    },
+    "GENERAL": {
+      "TEST": "Test message"
+    }
+  }
+  
