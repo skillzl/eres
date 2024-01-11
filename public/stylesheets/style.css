@@ -22,10 +22,102 @@ html {
   background: #111520;
 }
 
+.button-simple { 
+  background: rgba(170, 170, 170, 0.062);
+  transition: 0.2s;
+  padding: 10px 10px;
+  border-radius: 10px;
+}
 
 .navbar-item:hover { 
   background: rgba(170, 170, 170, 0.062);
   transition: 0.2s;
   padding: 10px 10px;
   border-radius: 10px;
+}
+
+.login-button {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  width: 45px;
+  height: 45px;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
+  transition-duration: .3s;
+  border-radius: 10px;
+  box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.199);
+  background-color: rgba(170, 170, 170, 0.062);
+}
+
+.sign {
+  width: 100%;
+  transition-duration: .3s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.text {
+  position: absolute;
+  right: 0%;
+  width: 0%;
+  opacity: 0;
+  color: white;
+  font-size: 1.2em;
+  font-weight: 600;
+  transition-duration: .3s;
+}
+
+.login-button:hover {
+  width: 125px;
+  border-radius: 5px;
+  transition-duration: .3s;
+}
+
+.login-button:hover .sign {
+  width: 30%;
+  transition-duration: .3s;
+  padding-left: 20px;
+}
+
+.login-button:hover .text {
+  opacity: 1;
+  width: 70%;
+  transition-duration: .3s;
+  padding-right: 10px;
+}
+
+.login-button:active {
+  transform: translate(2px ,2px);
+}
+
+.button-dashboard {
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 7px;
+  border: none;
+  background: #0ba360;
+  background: linear-gradient(
+    to right,
+    #0ba360,#3cba92
+  );
+  color: white;
+  font-family: inherit;
+  text-align: center;
+  font-size: 13px;
+  box-shadow: 0px 14px 56px -11px #0ba360;
+  width: 11em;
+  padding: 0.7em;
+  transition: all 0.4s;
+  cursor: pointer;
+}
+
+.button-dashboard:hover {
+  box-shadow: 0px 14px 56px -11px #0ba360;
+  transform: translateY(-3px);
 }

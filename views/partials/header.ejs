@@ -103,7 +103,13 @@
         </div>
       </div>
       <% } else { %>
-        <a class="hidden lg:inline-block py-2 px-6 bg-green-500 hover:bg-green-600 text-sm text-white font-bold rounded-xl transition duration-200" href="/login"><i class="fab fa-discord" style="padding-right: 5px;"></i> Login</a>
+        <a href="/login">
+        <button class="hidden lg:inline-block login-button">
+          <div class="sign">
+            <i class="fa-solid fa-right-to-bracket text-white"></i>
+          <div class="text">Login</div>
+        </button> 
+      </a>
         <% } %>
       </nav>
       <div class="navbar-menu relative z-50 hidden">
