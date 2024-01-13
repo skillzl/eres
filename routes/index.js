@@ -2,6 +2,7 @@ const express = require('express');
 const { ChannelType, version } = require('discord.js');
 const passport = require('passport');
 const bodyParser = require('body-parser');
+const fetch = require('node-fetch');
 const dayjs = require('dayjs');
 require('dayjs/plugin/duration');
 
@@ -41,11 +42,107 @@ router.get('/tos', async (req, res) => {
 	});
 });
 
+router.get('/admin/panel', checkAuth, async (req, res) => {
+	// Check if the user is allowed
+	if (req.user.id !== process.env.DEVELOPER_ID) {
+		return res.status(403).send('Not allowed');
+	}
+
+	// Set owner and repo variables
+	const owner = 'skillzl';
+	const repo = 'eres';
+
+	// Construct the URL for fetching commits
+	const url = `https://api.github.com/repos/${owner}/${repo}/commits?per_page=5`;
+
+	// Add headers for the fetch request
+	const headers = {
+		'Authorization': `token ${process.env.GITHUB_TOKEN}`,
+	};
+
+	const response = await fetch(url, { headers });
+	const data_commit = await response.json();
+	const commits = data_commit.map(commit => ({
+		author: commit.commit.author.name,
+		message: commit.commit.message,
+		date: commit.commit.author.date,
+		url: commit.html_url,
+	}));
+
+	// Get the stats from the database
+	const { data } = await db.getAnalysticsById(process.env.ANALYTICS_ID);
+	const users = data.users;
+	const guilds = data.guilds;
+	const commands_used = data.commands_used;
+	const songs_played = data.songs_played;
+
+	// Fetchh all users from all servers
+	const cachedUsers = req.client.guilds.cache.reduce(
+		(a, g) => a + g.memberCount,
+		0,
+	);
+
+	const cachedGuilds = req.client.guilds.cache.size;
+
+	/**
+ * Calculates the percentage change in user count between last week and the current week.
+ * @param {number} lastWeekUsers - The user count from last week.
+ * @param {number} currentWeekUsers - The user count from the current week.
+ * @returns {string} - A message indicating the percentage change in user count.
+ */
+	function calculatePercentageChange(lastWeekUsers, currentWeekUsers) {
+	// Calculate the difference in user count between the current week and last week
+		const difference = currentWeekUsers - lastWeekUsers;
+
+		// Calculate the percentage change in user count
+		const percentageChange = (difference / lastWeekUsers) * 100;
+
+		// Initialize the result variable
+		let result = '';
+
+		// Check if the percentage change is positive
+		if (percentageChange > 0) {
+		// Set the result message for an increase in user count
+			result = `${percentageChange.toFixed(2)}% increase from last week`;
+		}
+		// Check if the percentage change is negative
+		else if (percentageChange < 0) {
+		// Set the result message for a decrease in user count
+			result = `${Math.abs(percentageChange.toFixed(2))}% decrease from last week`;
+		}
+		// If the percentage change is zero
+		else {
+		// Set the result message for no change in user count
+			result = 'count remained the same';
+		}
+
+		// Return the result message
+		return result;
+	}
+
+	// Calculate the percentage change
+	const usersStatus = calculatePercentageChange(users, cachedUsers);
+	const guildsStatus = calculatePercentageChange(guilds, cachedGuilds);
+
+	res.render('admin/panel', {
+		tag: (req.user ? req.user.tag : 'Login'),
+		bot: req.client,
+		user: req.user || null,
+		usersStatus: usersStatus || 'count remained the same',
+		guildsStatus: guildsStatus || 'count remained the same',
+		guilds: cachedGuilds || 0,
+		cachedUsers: cachedUsers || 0,
+		commands_used: commands_used || 0,
+		songs_played: songs_played || 0,
+		commits: commits || [],
+	});
+});
+
 router.get('/profile/:userID/me', checkAuth, async (req, res) => {
 	// Check if the user exists
 	const userReq = req.client.users.cache.get(req.params.userID);
 	if (!userReq) {
-		return res.status(404).send('Not allowed');
+		return res.status(403).send('Not allowed');
 	}
 
 	/**
