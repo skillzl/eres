@@ -161,28 +161,6 @@ router.post('/restart', checkAuth, async (req, res) => {
 	await res.send('Server is restarting');
 });
 
-router.post('/restart', checkAuth, async (req, res) => {
-	// Check if the user is allowed
-	if (req.user.id !== process.env.DEVELOPER_ID) {
-		return res.status(403).send('Not allowed');
-	}
-
-	// Restart the bot
-	exec('git pull', (error, stdout, stderr) => {
-		if (error) {
-			console.log(`error: ${error.message}`);
-			return;
-		}
-		if (stderr) {
-			console.log(`stderr: ${stderr}`);
-			return;
-		}
-		console.log(`stdout: ${stdout}`);
-	});
-
-	await res.send('Server is restarting');
-});
-
 router.get('/logs', checkAuth, async (req, res) => {
 	// Check if the user is allowed
 	if (req.user.id !== process.env.DEVELOPER_ID) {
