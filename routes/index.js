@@ -8,6 +8,7 @@ require('dayjs/plugin/duration');
 
 const package = require('../package.json');
 
+const { exec } = require('child_process');
 const router = express.Router();
 
 const db = require('../database/manager');
@@ -135,6 +136,48 @@ router.get('/admin/panel', checkAuth, async (req, res) => {
 		commands_used: commands_used || 0,
 		songs_played: songs_played || 0,
 		commits: commits || [],
+	});
+});
+
+router.post('/restart', checkAuth, async (req, res) => {
+	// Check if the user is allowed
+	if (req.user.id !== process.env.DEVELOPER_ID) {
+		return res.status(403).send('Not allowed');
+	}
+
+	// Restart the bot
+	exec('pm2 restart all', (error, stdout, stderr) => {
+		if (error) {
+			console.log(`error: ${error.message}`);
+			return;
+		}
+		if (stderr) {
+			console.log(`stderr: ${stderr}`);
+			return;
+		}
+		console.log(`stdout: ${stdout}`);
+	});
+
+	await res.send('Server is restarting');
+});
+
+router.get('/logs', checkAuth, async (req, res) => {
+	// Check if the user is allowed
+	if (req.user.id !== process.env.DEVELOPER_ID) {
+		return res.status(403).send('Not allowed');
+	}
+
+	// Get the logs
+	exec('pm2 logs --nostream', (error, stdout, stderr) => {
+		if (error) {
+			console.log(`error: ${error.message}`);
+			return;
+		}
+		if (stderr) {
+			console.log(`stderr: ${stderr}`);
+			return;
+		}
+		res.send(stdout);
 	});
 });
 
