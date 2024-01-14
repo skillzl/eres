@@ -201,6 +201,9 @@
                     </p>
                   </div>
                   <pre id="logs" class="mt-4"></pre>
+                  <div id="spinner" style="display: none;">
+                    <div class="loader size-5"></div>
+                  </div>
               </div>
               </div>
             </div>
@@ -209,7 +212,10 @@
           <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
           <script>
           $('#logs-button').click(function() {
+            $('#spinner').show();
+
             $.get('/logs', function(data) {
+              $('#spinner').hide();
               $('#logs').text(data);
             });
           });
