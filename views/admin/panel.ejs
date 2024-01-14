@@ -1,8 +1,8 @@
 <%- include("../partials/header") %>
 
     <title><%= bot.user.username.toLowerCase() %>.fun - admin zone</title>
-
-<div class="min-h-screen">
+    
+    <div class="min-h-screen">
     <aside class="bg-[#aaaaaa10] border border-[#aaaaaa10] shadow-lg -translate-x-80 fixed inset-1 z-80 mt-36 ml-4 w-72 h-min rounded-xl duration-300 xl:translate-x-0">
       <div>
         <a class="flex items-center gap-4 py-6 px-8">
@@ -26,18 +26,16 @@
               </button>
             </a>
           </li>
-          <form action="/restart" method="post">
             <li>
-                <button type="submit" class="middle none font-sans font-bold center transition-all disabled:opacity-50 disabled:shadow-none disabled:pointer-events-none text-xs py-3 rounded-lg text-white hover:bg-white/10 active:bg-white/30 w-full flex items-center gap-4 px-4 capitalize" type="button">
+                <button onclick="openModal()" class="middle none font-sans font-bold center transition-all disabled:opacity-50 disabled:shadow-none disabled:pointer-events-none text-xs py-3 rounded-lg text-white hover:bg-white/10 active:bg-white/30 w-full flex items-center gap-4 px-4 capitalize" type="button">
                   <i class="fa-solid fa-arrows-rotate w-5 h-5 text-inherit mt-2"></i>
-                  <p class="font-sans text-base leading-relaxed text-inherit font-medium capitalize">Restart pm2 app</p>
+                  <p class="font-sans text-base leading-relaxed text-inherit font-medium capitalize">Restart</p>
                 </button>
             </li>
-        </form>
           <li>
               <button id="logs-button" class="middle none font-sans font-bold center transition-all disabled:opacity-50 disabled:shadow-none disabled:pointer-events-none text-xs py-3 rounded-lg text-white hover:bg-white/10 active:bg-white/30 w-full flex items-center gap-4 px-4 capitalize" type="button">
                 <i class="fa-solid fa-terminal h-5 w-5 text-inherit mt-2"></i>
-                <p class="font-sans text-base leading-relaxed text-inherit font-medium capitalize">Generate pm2 logs</p>
+                <p class="font-sans text-base leading-relaxed text-inherit font-medium capitalize">Show Logs</p>
               </button>
           </li>
         <li>
@@ -50,7 +48,33 @@
         </li>
       </div>
     </aside>
-
+    <div class="main-modal text-white fixed w-full h-100 inset-0 z-50 overflow-hidden flex justify-center items-center animated fadeIn faster bg-[#1d1c1c88]">
+		<div
+			class="modal-container bg-[#0E121C] border border-[#aaaaaa10] shadow-lg w-11/12 md:max-w-md mx-auto rounded z-50 overflow-y-auto">
+			<div class="modal-content py-4 text-left px-6">
+				<div class="flex justify-between items-center pb-3">
+					<p class="text-2xl font-bold">Confirmation</p>
+					<div class="modal-close cursor-pointer z-50">
+						<button class="button-close">
+              <span class="X"></span>
+              <span class="Y"></span>
+            </button>            
+					</div>
+				</div>
+				<div class="my-5">
+					<p>Are you sure you want to restart the pm2 app process?</p>
+				</div>
+				<div class="flex justify-end pt-2">
+          <form action="/restart" method="post">
+					<button type="submit"
+						class="button-simple px-4 p-3 rounded-lg bg-[#aaaaaa10] hover:bg-[#4dbe579a]">Confirm</button>
+          </form>
+					<button
+						class="button-simple modal-close px-4 bg-[#aaaaaa10] hover:bg-[#cf545488] p-3 ml-3 rounded-lg">Deny</button>
+				</div>
+			</div>
+		</div>
+	</div>
     <div class="p-4 xl:ml-80">
       <div class="mt-12">
         <div class="mb-12 grid gap-y-10 gap-x-6 md:grid-cols-2 xl:grid-cols-4">
@@ -111,17 +135,16 @@
             </div>
           </div>
         </div>
-
-                <div class="flex flex-col bg-clip-border rounded-xl bg-[#aaaaaa10] border border-[#aaaaaa10] shadow-lg text-white overflow-hidden xl:col-span-2">
-                    <div class="bg-clip-border rounded-xl overflow-hidden bg-transparent text-white shadow-none m-0 flex items-center justify-between p-6">
-                      <div>
-                        <h6 class="block antialiased tracking-normal font-sans text-base font-semibold leading-relaxed text-blue-gray-900 mb-1">Last 5 GitHub commits</h6>
-                        <p class="antialiased font-sans text-sm leading-normal flex items-center gap-1 font-normal text-blue-gray-600">
-                            <i class="fa-solid fa-code-commit h-4 w-4 text-orange-400"></i>
-                          <a class="font-extrabold" href="https://github.com/skillzl/eres">github.com/skillzl/eres</a> <span class="text-gray-500">-</span> public repo
-                        </p>
-                      </div>
+        <div class="flex flex-col bg-clip-border rounded-xl bg-[#aaaaaa10] border border-[#aaaaaa10] shadow-lg text-white overflow-hidden xl:col-span-2">
+            <div class="bg-clip-border rounded-xl overflow-hidden bg-transparent text-white shadow-none m-0 flex items-center justify-between p-6">
+              <div>
+                  <h6 class="block antialiased tracking-normal font-sans text-base font-semibold leading-relaxed text-blue-gray-900 mb-1">Last 5 GitHub commits</h6>
+                      <p class="antialiased font-sans text-sm leading-normal flex items-center gap-1 font-normal text-blue-gray-600">
+                          <i class="fa-solid fa-code-commit h-4 w-4 text-orange-400"></i>
+                        <a class="font-extrabold" href="https://github.com/skillzl/eres">github.com/skillzl/eres</a> <span class="text-gray-500">-</span> public repo
+                      </p>
                     </div>
+                  </div>
                     <div class="p-6 overflow-x-scroll px-0 pt-0 pb-2">
                       <table class="w-full min-w-[640px] table-auto">
                         <thead>
@@ -171,10 +194,10 @@
                 </div>
                 <div class="rounded-xl bg-[#aaaaaa10] border border-[#aaaaaa10] shadow-lg text-white p-6 mt-3" id="logs-card">
                   <div>
-                    <h6 class="block antialiased tracking-normal font-sans text-base font-semibold leading-relaxed text-blue-gray-900 mb-1">pm2 Logs</h6>
+                    <h6 class="block antialiased tracking-normal font-sans text-base font-semibold leading-relaxed text-blue-gray-900 mb-1">Process Logs</h6>
                     <p class="antialiased font-sans text-sm leading-normal flex items-center gap-1 font-normal text-blue-gray-600">
                         <i class="fa-solid fa-terminal h-4 w-4 text-green-500"></i>
-                        press on <span class="text-green-100">generate pm2 logs</span> button to generate
+                        <span class="font-extrabold">pm2 process logs</span> <span class="text-gray-500">-</span> use button to generate
                     </p>
                   </div>
                   <pre id="logs" class="mt-4"></pre>
@@ -190,6 +213,36 @@
               $('#logs').text(data);
             });
           });
+          </script>
+          
+          <script>
+          const modal = document.querySelector('.main-modal');
+          const closeButton = document.querySelectorAll('.modal-close');
+          
+          const modalClose = () => {
+            modal.classList.remove('fadeIn');
+            modal.classList.add('fadeOut');
+            
+            setTimeout(() => {
+              modal.style.display = 'none';
+            }, 500);
+          }
+          
+          const openModal = () => {
+            modal.classList.remove('fadeOut');
+            modal.classList.add('fadeIn');
+            modal.style.display = 'flex';
+          }
+
+          for (let i = 0; i < closeButton.length; i++) {
+
+            const elements = closeButton[i];
+            elements.onclick = (e) => modalClose();
+            modal.style.display = 'none';
+            window.onclick = function (event) {
+              if (event.target == modal) modalClose();
+             }
+            }
           </script>
 
     <%- include("../partials/footer") %>

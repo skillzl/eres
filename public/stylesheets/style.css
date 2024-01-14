@@ -121,3 +121,85 @@ html {
   box-shadow: 0px 14px 56px -11px #0ba360;
   transform: translateY(-3px);
 }
+
+.button-close {
+  position: relative;
+  width: 2em;
+  height: 2em;
+  border: none;
+  background: rgba(170, 170, 170, 0.062);
+  border-radius: 5px;
+  transition: background 0.5s;
+}
+
+.X {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 1em;
+  height: 1.5px;
+  background-color: rgb(255, 255, 255);
+  transform: translateX(-50%) rotate(45deg);
+}
+
+.Y {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 1em;
+  height: 1.5px;
+  background-color: #fff;
+  transform: translateX(-50%) rotate(-45deg);
+}
+
+.button-close:hover {
+  background-color: #cf545488
+}
+
+.button-close:active {
+  background-color: #c4323288
+}
+
+.animated {
+  -webkit-animation-duration: 1s;
+  animation-duration: 1s;
+  -webkit-animation-fill-mode: both;
+  animation-fill-mode: both;
+}
+
+.animated.faster {
+  -webkit-animation-duration: 500ms;
+  animation-duration: 500ms;
+}
+
+.fadeIn {
+  -webkit-animation-name: fadeIn;
+  animation-name: fadeIn;
+}
+
+.fadeOut {
+  -webkit-animation-name: fadeOut;
+  animation-name: fadeOut;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes fadeOut {
+  from {
+    opacity: 1;
+  }
+
+  to {
+    opacity: 0;
+  }
+}
