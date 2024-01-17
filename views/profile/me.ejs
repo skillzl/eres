@@ -20,7 +20,7 @@
       </script>
        <div class="px-6 text-center mt-2 font-light text-sm text-gray-300">
         <script defer src="https://unpkg.com/alpinejs@3.9.1/dist/cdn.min.js"></script>
-        <form action="/profile/<%= user.id %>/me" method="post">
+        <form action="/profile/me" method="post">
           <div x-data="{ open : false }" class="w-90 rounded bg-transparent p-2 shadow">
             <div x-show="!open" class="flex items-center justify-between">
               <div class="ml-2"><%= about %></div>

@@ -181,13 +181,7 @@ router.get('/logs', checkAuth, async (req, res) => {
 	});
 });
 
-router.get('/profile/:userID/me', checkAuth, async (req, res) => {
-	// Check if the user exists
-	const userReq = req.client.users.cache.get(req.params.userID);
-	if (!userReq) {
-		return res.status(403).send('Not allowed');
-	}
-
+router.get('/profile/me', checkAuth, async (req, res) => {
 	/**
  * Calculates the percentage of XP gained within a given range.
  *
@@ -242,13 +236,13 @@ router.get('/profile/:userID/me', checkAuth, async (req, res) => {
 	});
 });
 
-router.post('/profile/:userID/me', checkAuth, async (req, res) => {
+router.post('/profile/me', checkAuth, async (req, res) => {
 	// Update the user in the database
 	const about = req.body.about;
 	if (about) {
 		await db.updateUserById(req.user.id, { about: about });
 	}
-	res.redirect('/profile/' + req.user.id + '/me');
+	res.redirect('/profile/me');
 });
 
 router.get('/stats', async (req, res) => {
