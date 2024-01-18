@@ -205,6 +205,42 @@ html {
   animation: spin89345 1s linear infinite;
 }
 
+.current-page {
+  background-color: #25d46e9c;
+  border: 1px solid #aaaaaa10;
+}
+
+.table-responsive {
+  display: block;
+  width: 100%;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+}
+
+.table-responsive > .table {
+  margin-bottom: 0;
+}
+
+.table {
+  border-spacing: 0 15px;
+}
+
+i {
+  font-size: 1rem !important;
+}
+
+.table tr {
+  border-radius: 20px;
+}
+
+tr td:nth-child(n+5), tr th:nth-child(n+5) {
+  border-radius: 0 .625rem .625rem 0;
+}
+
+tr td:nth-child(1), tr th:nth-child(1) {
+  border-radius: .625rem 0 0 .625rem;
+}
+
 @keyframes spin89345 {
   0% {
     transform: rotate(0deg);

@@ -6,6 +6,7 @@ require('dayjs/plugin/duration');
 const router = express.Router();
 
 const validator = require('validator');
+const url = require('url');
 
 const db = require('../database/manager');
 const checkAuth = require('../middlewares/checkAuth');
@@ -177,13 +178,38 @@ router.get('/server/:guildID/members', checkAuth, async (req, res) => {
 	}
 
 	// Get the members from the server
-	const members = server.members.cache.toJSON();
+	let members = server.members.cache.toJSON();
+
+	// Get search query from query params
+	let searchQuery = req.query.search || '';
+	if (searchQuery) {
+		// Convert search query and member names to lowercase for case-insensitive search
+		searchQuery = searchQuery.toLowerCase();
+		members = members.filter(member => member.user.username && member.user.username.toLowerCase().includes(searchQuery));
+	}
+
+	// Set items per page
+	const itemsPerPage = 65;
+
+	// Get current page from query params, default to 1
+	const currentPage = Number(req.query.page) || 1;
+
+	// Calculate total pages
+	const totalPages = Math.ceil(members.length / itemsPerPage);
+
+	// Get members for current page
+	const membersOnPage = members.slice((currentPage - 1) * itemsPerPage, currentPage * itemsPerPage);
 
 	res.render('dashboard/members.ejs', {
 		bot: req.client,
 		user: req.user || null,
 		guild: server,
-		members: members,
+		members: membersOnPage,
+		totalPages: totalPages,
+		currentPage: currentPage,
+		searchQuery: searchQuery,
+		url: url,
+		req: req,
 		dayjs: dayjs,
 	});
 });
