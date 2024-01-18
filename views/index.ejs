@@ -65,6 +65,9 @@
               <div class="flex pt-5 text-sm text-gray-400">
                 <a href="dashboard/servers" class="flex-no-shrink bg-green-500 hover:bg-green-600 px-5 ml-4 py-2 text-xs shadow-sm hover:shadow-lg font-medium tracking-wider text-white rounded-full transition ease-in duration-300"><i class="fa-solid fa-server"></i> Servers</a>
                 <a href="profile/me" class="flex-no-shrink bg-yellow-400 hover:bg-yellow-500 px-5 ml-4 py-2 text-xs shadow-sm hover:shadow-lg font-medium tracking-wider text-white rounded-full transition ease-in duration-300"><i class="fa-solid fa-user"></i> Profile</a>
+                <% if (user.id === process.env.DEVELOPER_ID) { %>
+                  <a href="admin/panel" class="flex-no-shrink bg-purple-600 hover:bg-purple-700 px-5 ml-4 py-2 text-xs shadow-sm hover:shadow-lg font-medium tracking-wider text-white rounded-full transition ease-in duration-300"><i class="ml-1 fa-solid fa-fingerprint"></i> Panel</a>
+                  <% } %>
                 <a href="/logout" class="flex-no-shrink bg-red-500 hover:bg-red-600 px-5 ml-4 py-2 text-xs shadow-sm hover:shadow-lg font-medium tracking-wider text-white rounded-full transition ease-in duration-300"><i class="fa-solid fa-right-from-bracket"></i> Log out</a>
               </div>
             </div>
