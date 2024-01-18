@@ -79,8 +79,15 @@
 </div>
 <% } else { %>
         <div class="px-4 py-16 mx-auto sm:max-w-xl md:max-w-full lg:max-w-screen-xl md:px-24 lg:px-8 lg:py-20">
+          <div class="flex justify-center mb-10">
+            <a href="/release">
+              <button type="button" class="rounded-full px-4 mr-2 bg-[#aaaaaa10] border border-[#aaaaaa10] text-white p-2 leading-none flex items-center hover:-translate-y-0.5 duration-300">
+              <%= eresName %>@<%= eresVersion %> is live! <span class="mx-3 text-gray-500"> | </span><span class="text-cyan-300">see what's new <i class="fa-solid fa-arrow-right text-gray-300"></i></span>
+              </button>
+            </a>
+          </div>
             <div class="flex justify-center">
-                <a href="/"><img src="/static/eres-crop.png" alt="eres.fun logo" class="navicon-fade" width="78" height="auto"></a>
+              <a href="/"><img src="/static/eres-crop.png" alt="eres.fun logo" class="navicon-fade" width="78" height="auto"></a>
         </div>
           <div class="max-w-xl sm:mx-auto lg:max-w-2xl">
             <div class="flex flex-col mb-16 sm:text-center sm:mb-0">
@@ -230,7 +237,7 @@
                                 <h1 class="text-xl font-semibold text-white">What is the current version of the application?</h1>
             
                                 <p class="mt-2 text-sm text-gray-300">
-                                    At this moment you are running on <%= eresName %><%= eresVersion %>. The current version is stil in beta so, a lot of features are still in progress. Also you may encounter bugs so if you are trying to help, report them.
+                                    At this moment you are running on <%= eresName %>@<%= eresVersion %>. The current version is stil in beta so, a lot of features are still in progress. Also you may encounter bugs so if you are trying to help, report them.
                                 </p>
                             </div>
                         </div>

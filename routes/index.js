@@ -43,6 +43,40 @@ router.get('/tos', async (req, res) => {
 	});
 });
 
+router.get('/release', async (req, res) => {
+	// Set owner and repo variables
+	const owner = 'skillzl';
+	const repo = 'eres';
+
+	// Construct the URL for fetching the latest release
+	const url = `https://api.github.com/repos/${owner}/${repo}/releases/latest`;
+
+	// Add headers for the fetch request
+	const headers = {
+		'Authorization': `token ${process.env.GITHUB_TOKEN}`,
+	};
+
+	const response = await fetch(url, { headers });
+	const data = await response.json();
+
+	// Extract only the necessary information
+	const release = {
+		tagName: data.tag_name,
+		name: data.name,
+		publishedAt: data.published_at,
+		body: data.body,
+		author: data.author.login,
+		avatarUrl: data.author.avatar_url,
+	};
+
+	res.render('release', {
+		tag: (req.user ? req.user.tag : 'Login'),
+		bot: req.client,
+		user: req.user || null,
+		release: release,
+	});
+});
+
 router.get('/admin/panel', checkAuth, async (req, res) => {
 	// Check if the user is allowed
 	if (req.user.id !== process.env.DEVELOPER_ID) {
