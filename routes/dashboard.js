@@ -117,14 +117,13 @@ router.post('/server/:guildID', checkAuth, async (req, res) => {
 	}
 
 	// Update the server data in the database
-	if (Object.prototype.hasOwnProperty.call(data, 'prefix')) {
-		let newprefix;
-		let prefix = await db.getPrefix(req.params.guildID);
-
-		if (!prefix || prefix == null) prefix = '!';
-		if (data.prefix.length > 0) newprefix = data.prefix;
-		if (newprefix) {
-			await db.updateServerPrefix(server.id, newprefix);
+	if (Object.prototype.hasOwnProperty.call(data, 'djrole')) {
+		const djrole = sanitizeData(data.djrole);
+		if (djrole === 'null') {
+			await db.updateServerDjRole(server.id, null);
+		}
+		else if (validateData(djrole)) {
+			await db.updateServerDjRole(server.id, djrole);
 		}
 	}
 

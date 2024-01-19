@@ -57,18 +57,6 @@ module.exports = class InteractionCreate extends Event {
 		}
 
 		// Handle modal submit interactions
-		if (interaction.type === InteractionType.ModalSubmit) {
-			if (interaction.customId === 'prefixForm') {
-				const prefix = interaction.fields.getTextInputValue('prefix');
-				const reason = interaction.fields.getTextInputValue('reason');
-
-				db.updateServerPrefix(interaction.guild.id, prefix);
-				return await interaction.reply({
-					content: `Prefix has been set to: **\`${prefix}\`**\n**Reason:** ${reason}`,
-				});
-			}
-		}
-
 		if (!interaction.isAutocomplete()) return;
 		if (interaction.commandName === 'play') {
 			if (interaction.options.getString('song')) {

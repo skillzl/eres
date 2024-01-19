@@ -15,10 +15,14 @@
 <div class="h-screen flex items-center justify-center -mt-40">
     <div class="max-w-md w-full bg-[#aaaaaa10] border border-[#aaaaaa10] shadow-lg p-8 rounded-lg">
         <form role="form" action="/dashboard/server/<%= guild.id %>" method="POST">
-            <div class="mb-2">
-                <label for="postContent" class="block text-white text-sm font-bold mb-2">Prefix <span class="pl-56 text-gray-500 font-normal text-s">Max 5 characters</span></label>
-                <textarea id="postContent" name="prefix" rows="1" class="bg-[#aaaaaa10] border border-[#aaaaaa10] shadow-lg text-white w-full rounded-md px-4 py-2 leading-5 transition duration-150 ease-in-out sm:text-sm sm:leading-5 resize-none focus:outline-none focus:border-green-500" placeholder="<%= serverData.prefix ? serverData.prefix : '' %>" maxlength="5"></textarea>
-            </div>
+            <label for="postContent" class="block text-white text-sm font-bold mb-2">DJ Role</label>
+            <select name="djrole" class="mb-4 bg-[#aaaaaa10] border border-[#aaaaaa10] shadow-lg text-sm rounded-lg block w-full p-2.5 text-gray-500 focus:text-white focus:bg-[#0E121C] focus:outline-none">
+                <option selected>Choose a role</option>
+                <option value="null">Disable</option>
+                <% roles.forEach(function(role) { %>
+                    <option value="<%= role.id %>"><%= role.name %></option>
+                <% }); %>
+            </select>
             <label for="postContent" class="block text-white text-sm font-bold mb-2">Autorole</label>
             <select name="autorole" class="mb-4 bg-[#aaaaaa10] border border-[#aaaaaa10] shadow-lg text-sm rounded-lg block w-full p-2.5 text-gray-500 focus:text-white focus:bg-[#0E121C] focus:outline-none">
                 <option selected>Choose a role</option>

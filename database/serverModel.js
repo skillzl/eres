@@ -1,8 +1,7 @@
 const mongoose = require('mongoose');
 
 const serverSchema = new mongoose.Schema({
-	serverId: { type: String },
-	prefix: { type: String },
+	serverId: { type: String, required: true },
 	autorole: { type: String, default: null },
 	djrole : { type: String, default: null },
 	welcome: { type: String, default: null },
