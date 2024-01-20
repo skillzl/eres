@@ -12,7 +12,7 @@ module.exports = class Skip extends Command {
 		super(client, {
 			data: new SlashCommandBuilder()
 				.setName('skip')
-				.setDescription('Skips the current track')
+				.setDescription('Skips the current track (add a djrole on dashboard to skip without the vote request)')
 				.setDMPermission(false),
 			usage: 'skip',
 			category: 'Player',
