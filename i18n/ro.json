@@ -7,6 +7,8 @@
 		"TEST": "Mesaj de test"
 	},
 	"WEB": {
+		"NOTIFICATION": "Notificare",
+		"NOTIFICATION_DESC": "Momentan experimentezi o versiune beta al acestei aplicatii deci poti observa unele lucruri nefunctionale sau chiar poti intampina probleme pe unele browsere. Te rog, sa creezi un ticket pe {GitHub}.",
 		"RELEASE_CHIP": "{eresName}@{eresVersion} este online!",
 		"RELEASE_CHIP_DESC": "vezi ce e nou",
 		"HEADER": "Client modern de discord scris in javascript cu {commands} comenzi si un website foarte bine optimizat. {bot} este folosit pe {servers} servere. Te invitam sa-l folosesti!",

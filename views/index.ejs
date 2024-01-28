@@ -12,7 +12,7 @@
         <div class="shadow-lg rounded-lg bg-[#aaaaaa10] border border-[#aaaaaa10] mx-auto m-8 p-4 notification-box flex">
             <div>
                 <div class="text-sm pb-2 text-gray-300">
-                    Notification
+                  <%- __('WEB.NOTIFICATION') %>
                    <span class="float-right">
                         <svg
                         class="fill-current text-gray-300 hover:text-gray-500"
@@ -28,9 +28,11 @@
                     </svg>
                 </span>
             </div>
+            <%
+            var github_link_notification = `<a href="https://github.com/skillzl/eres/issues"  class="hover:text-white">GitHub</a>`;
+            %>
           <div class="text-sm text-gray-500  tracking-tight">
-            You are experiencing a beta version of this web application that may suffer some unfinished features and it can be incompatible with some devices or browsers.
-            Please create an issue ticket on <a href="https://github.com/skillzl/eres/issues" class="hover:text-white">GitHub</a>.
+            <%- __('WEB.NOTIFICATION_DESC').replace('{GitHub}', github_link_notification) %>
           </div>
         </div>
       </div>
@@ -105,14 +107,6 @@
                   </span>
                   <%= bot.user.username %>, discord app
                 </h2>
-                <form action="/change-locale" method="post">
-                  <select class="bg-[#0E121C] border border-[#aaaaaa10] text-white rounded-lg" name="locale">
-                      <option value="en">English</option>
-                      <option value="ro">Romanian</option>
-                      <!-- Add more options as needed -->
-                  </select>
-                  <input class="rounded-lg p-[10px] bg-[#0E121C] border border-[#aaaaaa10] hover:bg-[#5f5d5d10] text-white" type="submit" value="Change Locale">
-              </form>
               <%
               var commands = `<span class="text-yellow-200">${bot.commands.size}</span>`;
               var servers = `<span class="text-yellow-200">${bot.guilds.cache.size || 0}</span>`;

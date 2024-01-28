@@ -7,6 +7,8 @@
 		"TEST": "Test message"
 	},
 	"WEB": {
+		"NOTIFICATION": "Notification",
+		"NOTIFICATION_DESC": "You are experiencing a beta version of this web application that may suffer some unfinished features and it can be incompatible with some devices or browsers. Please create an issue ticket on {GitHub}.",
 		"RELEASE_CHIP": "{eresName}@{eresVersion} is live!",
 		"RELEASE_CHIP_DESC": "see what's new",
 		"HEADER": "A multipurpose discord client written in javascript featuring {commands} commands and a highly optimized web application with control over the application's settings. {bot} is used on over {servers} servers, we invite you to try it out and hope you enjoy!",
