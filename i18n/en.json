@@ -1,10 +1,35 @@
 {
-    "GLOBAL": {
-      "SUCCESS": "Success",
-      "ERROR": "An unexpected error occurred"
-    },
-    "GENERAL": {
-      "TEST": "Test message"
-    }
-  }
-  
+	"GLOBAL": {
+		"SUCCESS": "Success",
+		"ERROR": "An unexpected error occurred"
+	},
+	"GENERAL": {
+		"TEST": "Test message"
+	},
+	"WEB": {
+		"RELEASE_CHIP": "{eresName}@{eresVersion} is live!",
+		"RELEASE_CHIP_DESC": "see what's new",
+		"HEADER": "A multipurpose discord client written in javascript featuring {commands} commands and a highly optimized web application with control over the application's settings. {bot} is used on over {servers} servers, we invite you to try it out and hope you enjoy!",
+		"ADD": "Add on Discord",
+		"DASH": "Dashboard",
+		"UPTIME": "Uptime",
+		"UPTIME_DESC": "Persistently online, with a current uptime for {uptime}. Almost 99% online application.",
+		"FEATURES": "Features",
+		"FEATURES_DESC": "Improved and new light features with custom UI and different types of actions. Also open-source so pull requests are welcomed.",
+		"EASY": "Easy-to-use",
+		"EASY_DESC": "All app's feature are open-minded and easy to work with. Just try them!",
+		"FAQ": "Frequently asked questions",
+		"HOW_TO_RANK": "How do I rank in levels?",
+		"HOW_TO_RANK_DESC": "Well, its easy! You need to just send a message in your favorite community channel and you will get between 1 to 5 xp per message. Also you can get xp with the economy commands which are fish, hunt, slots.",
+		"HOW_TO_DASH": "How can I use the dashboard?",
+		"HOW_TO_DASH_DESC": "First of all, you will need to login, just click the Login button from the navigation bar. After you logged in you will have complete control to you servers and even your profile.",
+		"HOW_TO_SUGGEST": "Is it possible to suggest anything here?",
+		"HOW_TO_SUGGEST_DESC": "Well, I didn't add any suggest command, but you could use the report bug command, or even better try to do a pull request on github.com/skillzl.eres, this will help me!",
+		"IS_IT_OPEN_SOURCE": "Is this project open-source?",
+		"IS_IT_OPEN_SOURCE_DESC": "Yes, it is! You can visit now github.com/skillzl/eres and see that this project is open-source under the Apache License 2.0 license.",
+		"WHAT_VERSION": "What is the current version of the application?",
+		"WHAT_VERSION_DESC": "At this moment you are running on {appName}@{eresVersion}. The current version is stil in beta so, a lot of features are still in progress. Also you may encounter bugs so if you are trying to help, report them.",
+		"WHEN_FINAL": "When will the final version gonna release?",
+		"WHEN_FINAL_DESC": "That's the thing, even I don't know. This project is a hobby of mine so, expect random updates, late works and other things. This project is just made in my free-time so the end of this isn't on line yet."
+	}
+}

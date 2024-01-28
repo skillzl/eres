@@ -29,6 +29,13 @@ html {
   border-radius: 10px;
 }
 
+.button-locale { 
+  background: rgba(170, 170, 170, 0.062);
+  transition: 0.2s;
+  padding: 10px 10px;
+  border-radius: 10px;
+}
+
 .navbar-item:hover { 
   background: rgba(170, 170, 170, 0.062);
   transition: 0.2s;

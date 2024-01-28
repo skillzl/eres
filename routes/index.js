@@ -43,6 +43,23 @@ router.get('/tos', async (req, res) => {
 	});
 });
 
+router.get('/change-locale/:locale', function(req, res) {
+	// Get the locale from the URL
+	const locale = req.params.locale;
+	res.setLocale(locale);
+	res.cookie('locale', locale, { maxAge: 900000, httpOnly: true });
+	res.redirect('back');
+});
+
+router.post('/change-locale', function(req, res) {
+	// Get the locale from the POST request
+	const locale = req.body.locale;
+	res.setLocale(locale);
+	res.cookie('locale', locale, { maxAge: 900000, httpOnly: true });
+	res.redirect('back');
+});
+
+
 router.get('/release', async (req, res) => {
 	// Set owner and repo variables
 	const owner = 'skillzl';

@@ -1,10 +1,35 @@
 {
-    "GLOBAL": {
-      "SUCCESS": "Succes",
-      "ERROR": "O eroare a avut loc"
-    },
-    "GENERAL": {
-      "TEST": "Mesaj de test"
-    }
-  }
-  
+	"GLOBAL": {
+		"SUCCESS": "Succes",
+		"ERROR": "O eroare a avut loc"
+	},
+	"GENERAL": {
+		"TEST": "Mesaj de test"
+	},
+	"WEB": {
+		"RELEASE_CHIP": "{eresName}@{eresVersion} este online!",
+		"RELEASE_CHIP_DESC": "vezi ce e nou",
+		"HEADER": "Client modern de discord scris in javascript cu {commands} comenzi si un website foarte bine optimizat. {bot} este folosit pe {servers} servere. Te invitam sa-l folosesti!",
+		"ADD": "Adauga pe Discord",
+		"DASH": "Dashboard",
+		"UPTIME": "Uptime",
+		"UPTIME_DESC": "Aplicatie online 99% din timp, avand momentan un uptime de {uptime}.",
+		"FEATURES": "Caracteristici",
+		"FEATURES_DESC": "Oferim caracteristici noi si imbunatatite cu un UI nou. Deasemenea este un proiect open-source si toate pull-request-urile sunt acceptate.",
+		"EASY": "Usor-de-folosit",
+		"EASY_DESC": "Toate caracteristicile aplicatiei sunt open-mind si sunt usor de folosit, doar incearca-le!",
+		"FAQ": "Intrebari frecvente",
+		"HOW_TO_RANK": "Cum rankez in nivele?",
+		"HOW_TO_RANK_DESC": "Pai, e usor! Tot ce trebuie sa faci este sa trimiti un mesaj in canalul tau preferat de comunitate si veti primi de la 1 la 5 xp de fiecare data. Deasemenea poti primi xp si cu comenzile de economie, precum fish, hunt, slots.",
+		"HOW_TO_DASH": "Cum pot folosi dashboard-ul?",
+		"HOW_TO_DASH_DESC": "Simplu! Mai intai trebuie sa te loghezi, pentru a face asta foloseste buton din bara de navigatie. Dupa ce te-ai logat ai control asupra serverelor tale cat si a profilului tau.",
+		"HOW_TO_SUGGEST": "Este posibil sa fac o sugestie pentru acest proiect?",
+		"HOW_TO_SUGGEST_DESC": "Nu am creat o comanda pentru a face asta, dar poti folosi comanda de raportare a bug-urilor, or mai bun poti deschide un pull request pe github, asta ma va ajuta!",
+		"IS_IT_OPEN_SOURCE": "E un proiect open-source?",
+		"IS_IT_OPEN_SOURCE_DESC": "Da, desigur! Poti vizita repo-ul pe github.com/skillzl/eres si vedeti ca acest proiect este open-source ce foloseste licenta Apache License 2.0",
+		"WHAT_VERSION": "Care e cea mai recenta versiune a aplicatie?",
+		"WHAT_VERSION_DESC": "La moment folosesti {appName}@{eresVersion}. Aceasta versiune inca este in beta deci, multe lucruri pot fi in progres. Deasemenea poti intalni si unele bug-uri, ceea ce incurajam raportarea lor prin comanda de raportare a bug-urilor sau si pe github cu un issue ticket.",
+		"WHEN_FINAL": "Cand va fi versiunea finala publicata?",
+		"WHEN_FINAL_DESC": "Chestia e ca nu stiu. Este un proiect ca hobby pentru mine, deci asteapta-te la update-uri random, late works si altceva. Proiectul este unul facut in timpul liber deci nu exista un deadline inca."
+	}
+}
