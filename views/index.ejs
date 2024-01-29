@@ -9,7 +9,7 @@
 <div class="flex flex-col items-center justify-center ">
   <div class="container  m-4">
     <div class="max-w-3xl w-full mx-auto grid gap-4 grid-cols-1">
-        <div class="shadow-lg rounded-lg bg-gray-900 mx-auto m-8 p-4 notification-box flex">
+        <div class="shadow-lg rounded-lg bg-[#aaaaaa10] border border-[#aaaaaa10] mx-auto m-8 p-4 notification-box flex">
             <div>
                 <div class="text-sm pb-2 text-gray-300">
                     Notification
@@ -46,7 +46,7 @@
         });
         </script>
       <div class="flex flex-col z-10">
-        <div class="bg-gray-900 border border-gray-900 shadow-lg  rounded-2xl p-4">
+        <div class="bg-[#aaaaaa10] border border-[#aaaaaa10] shadow-lg rounded-2xl p-4">
           <div class="flex-none sm:flex">
             <div class="h-32 w-32 sm:mb-0 mb-3">
               <img src="https://cdn.discordapp.com/avatars/<%= user.id %>/<%= user.avatar %>" alt="user avatar" class=" w-32 h-32 object-cover rounded-2xl">
@@ -64,7 +64,10 @@
               </div>
               <div class="flex pt-5 text-sm text-gray-400">
                 <a href="dashboard/servers" class="flex-no-shrink bg-green-500 hover:bg-green-600 px-5 ml-4 py-2 text-xs shadow-sm hover:shadow-lg font-medium tracking-wider text-white rounded-full transition ease-in duration-300"><i class="fa-solid fa-server"></i> Servers</a>
-                <a href="profile/<%= user.id%>/me" class="flex-no-shrink bg-yellow-400 hover:bg-yellow-500 px-5 ml-4 py-2 text-xs shadow-sm hover:shadow-lg font-medium tracking-wider text-white rounded-full transition ease-in duration-300"><i class="fa-solid fa-user"></i> Profile</a>
+                <a href="profile/me" class="flex-no-shrink bg-yellow-400 hover:bg-yellow-500 px-5 ml-4 py-2 text-xs shadow-sm hover:shadow-lg font-medium tracking-wider text-white rounded-full transition ease-in duration-300"><i class="fa-solid fa-user"></i> Profile</a>
+                <% if (user.id === process.env.DEVELOPER_ID) { %>
+                  <a href="admin/panel" class="flex-no-shrink bg-purple-600 hover:bg-purple-700 px-5 ml-4 py-2 text-xs shadow-sm hover:shadow-lg font-medium tracking-wider text-white rounded-full transition ease-in duration-300"><i class="ml-1 fa-solid fa-fingerprint"></i> Panel</a>
+                  <% } %>
                 <a href="/logout" class="flex-no-shrink bg-red-500 hover:bg-red-600 px-5 ml-4 py-2 text-xs shadow-sm hover:shadow-lg font-medium tracking-wider text-white rounded-full transition ease-in duration-300"><i class="fa-solid fa-right-from-bracket"></i> Log out</a>
               </div>
             </div>
@@ -76,8 +79,15 @@
 </div>
 <% } else { %>
         <div class="px-4 py-16 mx-auto sm:max-w-xl md:max-w-full lg:max-w-screen-xl md:px-24 lg:px-8 lg:py-20">
+          <div class="flex justify-center mb-10">
+            <a href="/release">
+              <button type="button" class="rounded-full px-4 mr-2 bg-[#aaaaaa10] border border-[#aaaaaa10] text-white p-2 leading-none flex items-center hover:-translate-y-0.5 duration-300">
+              <%= eresName %>@<%= eresVersion %> is live! <span class="mx-3 text-gray-500"> | </span><span class="text-cyan-300">see what's new <i class="fa-solid fa-arrow-right text-gray-300"></i></span>
+              </button>
+            </a>
+          </div>
             <div class="flex justify-center">
-                <a href="/"><img src="/static/eres-crop.png" alt="eres.fun logo" class="navicon-fade" width="78" height="auto"></a>
+              <a href="/"><img src="/static/eres-crop.png" alt="eres.fun logo" class="navicon-fade" width="78" height="auto"></a>
         </div>
           <div class="max-w-xl sm:mx-auto lg:max-w-2xl">
             <div class="flex flex-col mb-16 sm:text-center sm:mb-0">
@@ -102,11 +112,13 @@
               <div>
                 <a
                   href="/invite"
-                  class="inline-flex items-center justify-center h-12 px-6 font-semibold tracking-wide text-white hover:text-gray-400 transition duration-200 rounded shadow-md hover:text-deep-purple-900 bg-teal-accent-400 hover:bg-deep-purple-accent-100 focus:shadow-outline focus:outline-none"
+                  class="inline-flex bg-transparent items-center justify-center h-12 px-6 font-semibold tracking-wide text-white hover:text-gray-400 transition duration-200 rounded shadow-md"
                 >
                   Add on Discord
                 </a>
-                <a href="/login" class="flex-no-shrink bg-green-500 hover:bg-green-600 px-5 ml-4 py-2 text-xs shadow-sm hover:shadow-lg font-medium tracking-wider text-white rounded-full transition ease-in duration-300"><i class="fab fa-discord" style="padding-right: 5px;"></i> Login</a>
+                <a href="/login" >
+                  <button class="button-dashboard "><i class="fa-solid fa-gauge text-white"></i><span class="ml-2">Dashboard</span></button>
+                </a>
               </div>
             </div>
           </div>
@@ -123,21 +135,21 @@
             <div class="w-full draggable">
                 <div class="container flex flex-col items-center gap-16 mx-auto my-32">
                     <div class="grid w-full grid-cols-1 gap-5 md:grid-cols-2 lg:grid-cols-3">
-                        <div class="flex flex-col items-center gap-3 px-8 py-10 bg-gray-900 rounded-3xl shadow-main">
+                        <div class="flex flex-col items-center gap-3 px-8 py-10 bg-[#0E121C] border border-[#aaaaaa10] shadow-lg rounded-3xl">
                         <span>
                             <i class="fa-regular fa-circle-up fa-2xl" style="color: #d6b929;"></i>
                         </span>
                         <p class="text-2xl font-extrabold text-white">Uptime</p>
                         <p class="leading-6 text-gray-200">Persistently online, with a current uptime for <%= uptime %>. Almost 99% online application.</p>
                         </div>
-                        <div class="flex flex-col items-center gap-3 px-8 py-10 bg-gray-900 rounded-3xl shadow-main">
+                        <div class="flex flex-col items-center gap-3 px-8 py-10 bg-[#0E121C] border border-[#aaaaaa10] shadow-lg rounded-3xl">
                         <span>
                             <i class="fa-solid fa-feather fa-2xl" style="color: #5a81dd;"></i>
                         </span>
                         <p class="text-2xl font-extrabold text-white">Features</p>
                         <p class="leading-6 text-gray-200">Improved and new light features with custom UI and different types of actions. Also open-source so pull requests are welcomed.</p>
                         </div>
-                        <div class="flex flex-col items-center gap-3 px-8 py-10 bg-gray-900 rounded-3xl shadow-main">
+                        <div class="flex flex-col items-center gap-3 px-8 py-10 bg-[#0E121C] border border-[#aaaaaa10] shadow-lg rounded-3xl">
                         <span>
                             <i class="fa-solid fa-star fa-2xl" style="color: #dd4646;"></i>
                         </span>
@@ -225,7 +237,7 @@
                                 <h1 class="text-xl font-semibold text-white">What is the current version of the application?</h1>
             
                                 <p class="mt-2 text-sm text-gray-300">
-                                    At this moment you are running on <%= eresName %><%= eresVersion %>. The current version is stil in beta so, a lot of features are still in progress. Also you may encounter bugs so if you are trying to help, report them.
+                                    At this moment you are running on <%= eresName %>@<%= eresVersion %>. The current version is stil in beta so, a lot of features are still in progress. Also you may encounter bugs so if you are trying to help, report them.
                                 </p>
                             </div>
                         </div>

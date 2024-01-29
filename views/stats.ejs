@@ -15,7 +15,7 @@
               <div class="sm:flex sm:items-start">
                   <div class="text-center sm:mt-0 sm:ml-2 sm:text-left">
                       <h3 class="text-sm leading-6 font-medium text-gray-400">Users</h3>
-                      <p class="text-3xl font-bold text-black"><%= bot.users.cache.size || 0 %></p>
+                      <p class="text-3xl font-bold text-black"><%= cachedUsers || 0 %></p>
                   </div>
               </div>
           </div>
@@ -44,8 +44,8 @@
     <div class="bg-white p-5">
         <div class="sm:flex sm:items-start">
             <div class="text-center sm:mt-0 sm:ml-2 sm:text-left">
-                <h3 class="text-sm leading-6 font-medium text-gray-400">Memory Usage</h3>
-                <p class="text-3xl font-bold text-black"><%= (process.memoryUsage().rss / 1024 / 1024).toFixed(2) %> MB</p>
+                <h3 class="text-sm leading-6 font-medium text-gray-400">Songs Played</h3>
+                <p class="text-3xl font-bold text-black"><%= songs_played %></p>
             </div>
         </div>
     </div>
@@ -54,8 +54,8 @@
   <div class="bg-white p-5">
       <div class="sm:flex sm:items-start">
           <div class="text-center sm:mt-0 sm:ml-2 sm:text-left">
-              <h3 class="text-sm leading-6 font-medium text-gray-400">CPU Usage</h3>
-              <p class="text-3xl font-bold text-black"><%= (process.cpuUsage().system / 1024 / 1024).toFixed(2) %>%</p>
+              <h3 class="text-sm leading-6 font-medium text-gray-400">Memory Usage</h3>
+              <p class="text-3xl font-bold text-black"><%= (process.memoryUsage().rss / 1024 / 1024).toFixed(2) %> MB</p>
             </div>
           </div>
         </div>
@@ -80,7 +80,7 @@
           label: "Users",
           backgroundColor: "hsl(68,100%,67%)",
           borderColor: "hsl(68,100%,67%)",
-          data: [8, 4432, '<%= users %>', '<%= bot.users.cache.size || 0 %>'],
+          data: [8, 4432, '<%= users %>', '<%= cachedUsers || 0 %>'],
         },
       ],
     };

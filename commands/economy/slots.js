@@ -6,16 +6,12 @@ const { SlashCommandBuilder } = require('discord.js');
 
 const { stripIndents } = require('common-tags');
 
-const slots = [
-	'<:balance_emoji:1129875960188112966>',
-	'<:flag_emoji:1129876196549738626>',
-	'<:gheart_emoji:1129876399134625902>',
-	'<:heart_emoji:1129876126047670403>',
-	'<:seven_emoji:1129876077041422356>',
-	'<:skull_emoji:1129876004748411041>',
-	'<:snowman_emoji:1129876037493334017>',
-];
-
+/**
+ * Shuffles the elements of an array using the Fisher-Yates shuffle algorithm.
+ *
+ * @param {Array} array - The array to be shuffled.
+ * @return {Array} - The shuffled array.
+ */
 function shuffle(array) {
 	const arr = array.slice(0);
 	for (let i = arr.length - 1; i >= 0; i--) {
@@ -42,29 +38,55 @@ module.exports = class Slots extends Command {
 				.setDMPermission(false),
 			usage: 'slots [number]',
 			category: 'Economy',
-			permissions: ['Use Application Commands', 'Send Messages', 'Embed Links'],
+			permissions: ['Use Application Commands', 'Send Messages'],
 		});
 	}
+	/**
+	 * Runs the function asynchronously.
+	 *
+	 * @param {Client} client - The Discord client.
+	 * @param {Interaction} interaction - The interaction object.
+	 * @return {Promise<void>} A promise that resolves when the function completes.
+	 */
 	async run(client, interaction) {
+		// Get the user from the database
 		const { user } = await db.getUserById(interaction.user.id);
 
+		// Get the amount from the interaction
 		const amount = interaction.options.getNumber('amount');
 		const availableCoins = user.balance;
 
+		// Create an array of emojis for the slots
+		const slots = [
+			client.emoji.balance,
+			client.emoji.flag_emoji,
+			client.emoji.gheart,
+			client.emoji.heart,
+			client.emoji.seven,
+			client.emoji.skull,
+			client.emoji.snowman,
+		];
+
+		// Check if the user has enough coins to play the slots
 		if (isNaN(amount)) return interaction.reply('Make sure you enter a valid number.');
 		if (!isFinite(amount)) interaction.reply('Make sure you enter a valid number.');
 		if (availableCoins < 0) return interaction.reply('Sorry, but you don\'t have that amount of coins.');
 		if (amount > availableCoins) return interaction.reply('Sorry, but you don\'t have that amount of coins.');
+
+		// Check if the user entered a valid amount between 100 and 100000
 		if (amount < 100) return interaction.reply('The minimum bet you can play is `100`.');
 		if (amount > 100000) { return interaction.reply('The maximum bet you can play is `100,000`.');}
 
+		// Create random number between 0 and 5 (0, 1, 2, 3, 4, 5) for each slot (1st, 2nd, 3rd) and calculate XP and coins won by each slot
 		const random = 5 * amount;
 		const xp = Math.floor(Math.random() * 10) + 1;
 
+		// Shuffle slots array to randomize slots order (1st, 2nd, 3rd)
 		const array_one = shuffle(slots);
 		const array_two = shuffle(slots);
 		const array_tree = shuffle(slots);
 
+		// Create slots message
 		let slotsInteraction = '';
 		slotsInteraction = interaction
 			.reply(
@@ -115,6 +137,7 @@ ${array_one[0]} : ${array_two[2]} : ${array_tree[0]}
 						1300,
 					);
 
+					// Check if the user won or lost the slots
 					if (
 						(array_one[1] === array_two[1] && array_one[1] === array_tree[1]) ||
 						(array_one[1] && array_two[1] === array_one[1] && array_tree[1]) ||
@@ -123,10 +146,12 @@ ${array_one[0]} : ${array_two[2]} : ${array_tree[0]}
 						(array_tree[1] && array_two[1] === array_tree[1] && array_one[1]) ||
 						(array_one[1] === array_tree[1] && array_tree[1] && array_two[1])
 					) {
+						// Add xp and balance to the user and reply with the slots won message
 						await db.updateUserById(interaction.user.id, {
 							balance: user.balance + random,
 							xp: user.xp + xp,
 						});
+
 						return setTimeout(
 							() =>
 								int.edit(stripIndents `
@@ -139,14 +164,17 @@ ${array_one[1]} : ${array_two[1]} : ${array_tree[1]} **«**
 ${array_one[0]} : ${array_two[2]} : ${array_tree[0]}
 ----------------
 [ :: **SLOTS** :: ]
-${interaction.user.username} won ${random.toLocaleString()} <:balance_emoji:1129875960188112966>. \`(bet: ${amount.toLocaleString()})\`\nXP earned: ${xp} <:star_emoji:1126279940321574913>`),
+${interaction.user.username} won ${random.toLocaleString()} ${client.emoji.balance}. \`(bet: ${amount.toLocaleString()})\`\nXP earned: ${xp} ${client.emoji.star}`),
 							2300,
 						);
 					}
 
+					// Substract the amount from the user's balance
 					await db.updateUserById(interaction.user.id, {
 						balance: user.balance - amount,
 					});
+
+					// Reply with the slots lost message
 					return setTimeout(
 						() =>
 							int.edit(stripIndents `
@@ -159,7 +187,7 @@ ${array_one[1]} : ${array_two[1]} : ${array_tree[1]} **«**
 ${array_one[0]} : ${array_two[2]} : ${array_tree[0]}
 ----------------
 [ :: **SLOTS** :: ]
-${interaction.user.username} lost everything <:balance_emoji:1129875960188112966>. \`(bet: ${amount.toLocaleString()})\``),
+${interaction.user.username} lost everything ${client.emoji.balance}. \`(bet: ${amount.toLocaleString()})\``),
 						2300,
 					);
 				}

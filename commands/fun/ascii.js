@@ -17,15 +17,29 @@ module.exports = class Ascii extends Command {
 				.setDMPermission(false),
 			usage: 'ascii [string]',
 			category: 'Fun',
-			permissions: ['Use Application Commands', 'Send Messages', 'Embed Links'],
+			permissions: ['Use Application Commands', 'Send Messages'],
 		});
 	}
+	/**
+ * Runs the function.
+ *
+ * @param {Client} client - The client object.
+ * @param {Interaction} interaction - The interaction object.
+ * @return {Promise<void>} - A promise that resolves when the function is finished.
+ */
 	async run(client, interaction) {
+		// Get the 'text' string from the interaction options
 		const text = interaction.options.getString('text');
 
-		figlet.text(text, (e, txt) => {
-			if (e) return;
-			interaction.reply(`\`\`\` ${txt.trimRight()} \`\`\``);
+		// Generate ASCII art from the 'text' using the figlet library
+		figlet.text(text, (error, asciiArt) => {
+			// If there was an error generating the ASCII art, return
+			if (error) {
+				return;
+			}
+
+			// Reply to the interaction with the generated ASCII art
+			interaction.reply(`\`\`\`${asciiArt.trimRight()}\`\`\``);
 		});
 	}
 };

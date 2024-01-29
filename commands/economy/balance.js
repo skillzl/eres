@@ -14,13 +14,24 @@ module.exports = class Balance extends Command {
 				.setDMPermission(false),
 			usage: 'balance [user]',
 			category: 'Economy',
-			permissions: ['Use Application Commands', 'Send Messages', 'Embed Links'],
+			permissions: ['Use Application Commands', 'Send Messages'],
 		});
 	}
+	/**
+ * Retrieves the user's balance asynchronously and sends a reply with the balance information.
+ *
+ * @param {Client} client - The client object representing the Discord bot.
+ * @param {Interaction} interaction - The interaction object representing the command interaction.
+ * @return {Promise<void>} This function does not return anything.
+ */
 	async run(client, interaction) {
+		// Get the target user from the interaction options, or use the interaction user as the default
 		const member = interaction.options.getUser('target') || interaction.user;
+
+		// Retrieve the user's data from the database
 		const { user } = await db.getUserById(member.id);
 
-		interaction.reply(`<:balance_emoji:1129875960188112966> ${member.username} has **${user.balance.toLocaleString()}** coins in total.`);
+		// Send a reply with the user's balance information
+		interaction.reply(`${client.emoji.balance} ${member.username} has **${user.balance.toLocaleString()}** coins in total.`);
 	}
 };

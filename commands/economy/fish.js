@@ -20,48 +20,69 @@ module.exports = class Fish extends Command {
 				.setDMPermission(false),
 			usage: 'fish',
 			category: 'Economy',
-			permissions: ['Use Application Commands', 'Send Messages', 'Embed Links'],
+			permissions: ['Use Application Commands', 'Send Messages'],
 		});
 	}
+	/**
+ * Runs the fish minigame when the user interacts with the command.
+ *
+ * @param {Client} client - The Discord client instance.
+ * @param {Interaction} interaction - The interaction object representing the user's interaction with the command.
+ * @return {Promise<void>} - Returns a promise that resolves once the function is complete.
+ */
 	async run(client, interaction) {
+		// Retrieve user data from the database
+
 		const { user } = await db.getUserById(interaction.user.id);
 
-		let rarity;
+		// Generate a random fish ID
 		const fishID = Math.floor(Math.random() * 10) + 1;
+
+		// Determine the rarity of the fish based on the fish ID
+		let rarity;
 		if (fishID < 5) rarity = 'junk';
 		else if (fishID < 8) rarity = 'common';
 		else if (fishID < 9) rarity = 'uncommon';
 		else if (fishID < 10) rarity = 'rare';
 		else rarity = 'legendary';
 
+		// Get the fish data based on its rarity
 		const fish = fishJson[rarity];
+
+		// Generate a random worth for the fish within its min and max values
 		const worth = randomRange(fish.min, fish.max);
 
+		// Check if the user has a fish cooldown
 		if (user.fish_cooldown !== null && 600000 - (Date.now() - user.fish_cooldown) > 0) {
+			// Calculate the remaining time until the fish cooldown is over
 			const time = ms(600000 - (Date.now() - user.fish_cooldown), {
 				long: true,
 			});
 
+			// Reply to the interaction with the remaining cooldown time
 			interaction.reply(`You've already fished recently, \`${time}\` remaining.`);
 		}
 		else {
+			// Generate a random XP value for the fish
 			const xp = Math.floor(Math.random() * 10) + 1;
 
+			// Reply to the interaction with the fish minigame details
 			interaction.reply(stripIndent `
-[ :: **FISH MINIGAME** :: ]
-----------------------------
-Fisherman:  
-\u3000 ${interaction.user.username}
-Caught:
-\u3000 ${fish.symbol}
-Coins earned:
-\u3000 ${worth} <:balance_emoji:1129875960188112966>
-XP earned:
-\u3000 ${xp} <:star_emoji:1126279940321574913>
-----------------------------
-[ :: **FISH MINIGAME** :: ]
-`);
+      [ :: **FISH MINIGAME** :: ]
+      ----------------------------
+      Fisherman:  
+        ${interaction.user.username}
+      Caught:
+        ${fish.symbol}
+      Coins earned:
+        ${worth} ${client.emoji.balance}
+      XP earned:
+        ${xp} ${client.emoji.star}
+      ----------------------------
+      [ :: **FISH MINIGAME** :: ]
+    `);
 
+			// Update the user's balance, XP, and fish cooldown in the database
 			await db.updateUserById(interaction.user.id, {
 				balance: user.balance + worth,
 				xp: user.xp + xp,

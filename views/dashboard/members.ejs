@@ -9,49 +9,43 @@
 
 <div class="flex items-center justify-center min-h-screen">
 	<div class="col-span-12">
-    <div class="flex items-center justify-center mb-14 text-sm text-gray-400">
-      <a href="/dashboard/server/<%= guild.id %>" class="flex-no-shrink bg-green-500 hover:bg-green-600 px-5 ml-4 py-2 text-xs shadow-sm hover:shadow-lg font-medium tracking-wider text-white rounded-full transition ease-in duration-300"><i class="fa-regular fa-circle-left"></i> Go back</a>
-    </div>
-      <form action="" class="relative mx-auto w-max">
-        <input type="text" id="searchInput"
-              class="mb-5 ml-4 cursor-pointer relative z-10 h-12 w-12 rounded-full bg-transparent pl-12 outline-none focus:w-full focus:cursor-text focus:border-gray-400 focus:pl-16 focus:pr-4 text-white" />
-        <svg xmlns="http://www.w3.org/2000/svg" class="mb-7 ml-4 absolute inset-y-0 my-auto h-8 w-12 border-r border-transparent stroke-gray-500 px-3.5 peer-focus:border-gray-400 peer-focus:stroke-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-          <path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
-        </svg>
-      </form>
+		<form action="/dashboard/server/<%= guild.id %>/members?search=<%= searchQuery %>" method="GET" class="relative mx-auto w-max" >
+			<input type="text" name="search" class="mb-5 ml-4 cursor-pointer z-10 h-12 w-12 rounded-full bg-transparent pl-12 focus:w-full focus:cursor-text focus:pl-16 focus:pr-4 text-white focus:bg-[#aaaaaa10] focus:border focus:border-[#aaaaaa10] focus:shadow-lg" />
+			<i class="fa-solid fa-magnifying-glass text-gray-400 absolute z-20 top-4 left-8"></i>
+		</form>
 		<div class="overflow-auto lg:overflow-visible ">
-      <div class="table-responsive">
-			<table id="myTable" class="table text-gray-400 border-separate space-y-5 text-sm">
-				<thead class="bg-gray-900 text-gray-500">
-					<tr>
-						<th class="p-3">Display Name</th>
-						<th class="p-3 text-left">Username (or <span title="Legacy Username and Discriminator">Tag</span>)</th>
-						<th class="p-3 text-left">ID</th>
-						<th class="p-3 text-left">Joined</th>
-						<th class="p-3 text-left">Roles</th>
-					</tr>
-				</thead>
-				<tbody>
-          <% for (let i = 0; i < members.length; i++) { %>
-            <% 
-              const roles = members[i].roles.cache.map(r => r);
-              const index = roles.findIndex(r => r === "@everyone");
-
-              roles.splice(index, 1);
-            %>
-					<tr class="bg-gray-900">
-						<td class="p-3">
-							<div class="flex align-items-center">
-                <% if (members[i].user.avatar) { %>
-                  <img class="rounded-full h-12 w-12  object-cover" src="https://cdn.discordapp.com/avatars/<%= members[i].user.id %>/<%= members[i].user.avatar %>" />
-              <% } else { %>
-                  <img class="rounded-full h-12 w-12  object-cover" src="https://i.imgur.com/RO3uUxX.png" />
-              <% } %>
+			<div class="table-responsive">
+				<table id="myTable" class="table text-gray-400 border-separate space-y-5 text-sm">
+					<thead class="bg-[#aaaaaa10] border border-[#aaaaaa10] shadow-lg text-gray-500">
+						<tr>
+							<th class="p-3">Display Name</th>
+							<th class="p-3 text-left">Username (or <span title="Legacy Username and Discriminator">Tag</span>)</th>
+							<th class="p-3 text-left">ID</th>
+							<th class="p-3 text-left">Joined</th>
+							<th class="p-3 text-left">Roles</th>
+						</tr>
+					</thead>
+					<tbody>
+						<% for (let i = 0; i < members.length; i++) { %>
+							<% 
+							const roles = members[i].roles.cache.map(r => r);
+							const index = roles.findIndex(r => r === "@everyone");
+						
+							roles.splice(index, 1);
+							%>
+							<tr class="bg-[#aaaaaa10] border border-[#aaaaaa10] shadow-lg">
+								<td class="p-3">
+									<div class="flex align-items-center">
+										<% if (members[i].user.avatar) { %>
+											<img class="rounded-full h-12 w-12  object-cover" src="https://cdn.discordapp.com/avatars/<%= members[i].user.id %>/<%= members[i].user.avatar %>" />
+											<% } else { %>
+											<img class="rounded-full h-12 w-12  object-cover" src="https://i.imgur.com/RO3uUxX.png" />
+										<% } %>
 								<div class="p-3">
 									<strong class="text-white"><%= members[i].displayName %></strong>
-                              <% if (members[i].user.bot) { %>
-                                <img title="Discord Bot" width="28px" src="https://i.imgur.com/OKVwc6m.png">
-                              <% } %>
+									<% if (members[i].user.bot) { %>
+										<img title="Discord Bot" width="28px" src="https://i.imgur.com/OKVwc6m.png">
+									<% } %>
 								</div>
 							</div>
 						</td>
@@ -65,66 +59,56 @@
 							<span title="<%= dayjs(members[i].joinedAt).format("dddd MMMM Do YYYY, h:mm a") %>"><%= dayjs(members[i].joinedAt).format("DD/MM/YYYY, HH:mm:ss") %></span>
 						</td>
 						<td class="p-3 ">
-              <% if (roles.length === 0) { %>
-                <p class="center inline-block select-none whitespace-nowrap rounded-lg bg-gray-950 py-2 px-3.5 align-baseline font-sans text-xs font-bold uppercase leading-none text-white">None</p>
-              <% } else { %>
-                  <% for (let j = 0; j < roles.length; j++) { %>
-                      <span class="center inline-block select-none whitespace-nowrap rounded-lg bg-gray-950 py-2 px-3.5 align-baseline font-sans text-xs font-bold uppercase leading-none" style="color: <%= roles[j].hexColor === "#000000" ? "#ffffff" : roles[j].hexColor %>" title="<%= roles[j].id %>"><b><%= roles[j].name %></b></span>
-                  <% } %>
-              <% } %>
-						</td>
-					</tr>
-          <% } %>
-				</tbody>
-			</table>
+							<% if (roles.length === 0) { %>
+								<p class="center inline-block select-none whitespace-nowrap rounded-lg bg-gray-950 py-2 px-3.5 align-baseline font-sans text-xs font-bold uppercase leading-none text-white">None</p>
+								<% } else { %>
+									<% for (let j = 0; j < roles.length; j++) { %>
+										<span class="center inline-block select-none whitespace-nowrap rounded-lg bg-gray-950 py-2 px-3.5 align-baseline font-sans text-xs font-bold uppercase leading-none" style="color: <%= roles[j].hexColor === "#000000" ? "#ffffff" : roles[j].hexColor %>" title="<%= roles[j].id %>"><b><%= roles[j].name %></b></span>
+										<% } %>
+									<% } %>
+								</td>
+							</tr>
+						<% } %>
+					</tbody>
+				</table>
+			</div>
+			<div class="justify-center flex space-x-2 text-gray-400">
+				<% if (currentPage > 1) { %>
+					<a href="/dashboard/server/<%= guild.id %>/members?page=<%= currentPage - 1 %>">
+						<button class="flex items-center justify-center w-10 h-10 rounded-full focus:shadow-outline hover:text-gray-500 hover:bg-[#aaaaaa10] hover:border hover:border-[#aaaaaa10] hover:shadow-lg">
+							<i class="fa-solid fa-chevron-left w-4 h-4 fill-current"></i>
+						</button>
+					</a>
+					<% } %>
+
+					<% 
+					let startPage = Math.max(1, currentPage - 2);
+					let endPage = Math.min(totalPages, startPage + 4);
+					startPage = Math.max(1, endPage - 4);
+
+					for (let i = startPage; i <= endPage; i++) { 
+						let pageUrl = url.parse(req.url, true);
+						pageUrl.query.page = i;
+						delete pageUrl.search;
+						%>
+
+				<a href="/dashboard/server/<%= guild.id %>/members?page=<%= i %>">
+					<button class="<%= i === currentPage ? 'current-page' : '' %> w-10 h-10 rounded-full focus:shadow-outline hover:bg-[#aaaaaa10] hover:border hover:border-[#aaaaaa10] hover:shadow-lg">
+						<%= i %>
+					</button>
+				</a>
+				<% } %>
+
+				<% if (currentPage < totalPages) { %>
+					<a href="/dashboard/server/<%= guild.id %>/members?page=<%= currentPage + 1 %>">
+						<button class="flex items-center justify-center w-10 h-10 rounded-full focus:shadow-outline hover:text-gray-500 hover:bg-[#aaaaaa10] hover:border hover:border-[#aaaaaa10] hover:shadow-lg">
+							<i class="fa-solid fa-chevron-right w-4 h-4 fill-current"></i>
+						</button>
+					</a>
+				<% } %>
+			</div>
 		</div>
 	</div>
 </div>
-</div>
-<style>
-  
-  .table-responsive {
-    display: block;
-    width: 100%;
-    overflow-x: auto;
-    -webkit-overflow-scrolling: touch;
-  }
-
-  .table-responsive > .table {
-    margin-bottom: 0;
-  }
-
-	.table {
-		border-spacing: 0 15px;
-	}
-
-	i {
-		font-size: 1rem !important;
-	}
-
-	.table tr {
-		border-radius: 20px;
-	}
-
-	tr td:nth-child(n+5),
-	tr th:nth-child(n+5) {
-		border-radius: 0 .625rem .625rem 0;
-	}
-
-	tr td:nth-child(1),
-	tr th:nth-child(1) {
-		border-radius: .625rem 0 0 .625rem;
-	}
-</style>
-<script>
-    $(document).ready(function(){
-  $("#searchInput").on("keyup", function() {
-    var value = $(this).val().toLowerCase();
-    $("#myTable tr").filter(function() {
-      $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
-    });
-  });
-});
-</script>
 
 <%- include("../partials/footer") %>

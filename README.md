@@ -1,6 +1,6 @@
 > <img src="./assets/eres-crop.png"  width="24" /> eres.fun<br/> author: [skillzl](https://skillzl.dev)
 
-🍍 A multipurpose discord client written in javascript featuring a lot of util commands and a highly optimized web application with control over the application's settings. Eres is used on over **12** servers, we invite you to try it out and hope you enjoy!
+🍍 A multipurpose discord client written in javascript featuring a lot of util commands and a highly optimized web application with control over the application's settings. Eres is used on over **30** servers, we invite you to try it out and hope you enjoy!
 
 ## Deployment & Features
 
@@ -66,6 +66,18 @@ WEBHOOK_TOKEN=
 
 ## Analytics unique identifier
 ANALYTICS_ID=
+
+## Domain
+DOMAIN= (e.g: localhost:3000 => if used locally)
+
+## api.skillzl.dev unique key (api.skillz.dev for key)
+SKILLZL_API_KEY=
+
+## Custom youtube cookie (for 419 rate limits)
+YOUTUBE_COOKIE=
+
+## GitHub Personal Token => (used for github integration /admin/panel )
+GITHUB_TOKEN=
 ```
 
 > **Note**: Envoirement settings need to be in a ".env" file.
@@ -73,8 +85,16 @@ ANALYTICS_ID=
 ## Analytics
 
 As a developer, see how your application grow.
+ 
 To set the  `_id` just follow this tutorial I made real quick!
-[click here](./ANALYTICS.md)
+
+[Click Here!](./ANALYTICS.md)
+
+## Emojis
+
+Import these emojis to your server [Click Here!](./assets/emojis/)
+
+Change the emojis here [Click Here!](./functions/Emojis.js)
 
 ## License
 

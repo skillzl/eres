@@ -6,7 +6,7 @@ module.exports = class Manager {
 	static async createServer(id) {
 		const result = new serverModel({
 			serverId: id,
-			prefix: null,
+			i18n: 'en',
 		});
 
 		await result.save();
@@ -21,29 +21,6 @@ module.exports = class Manager {
 		const result = await serverModel.findOne({ serverId: id });
 
 		return result;
-	}
-
-	static async getPrefix(id) {
-		if (typeof id !== 'string') {
-			throw new Error('Invalid ID');
-		}
-		const result = await serverModel.findOne({ serverId: id });
-
-		return result.prefix;
-	}
-
-	static async updateServerPrefix(id, prefix) {
-		if (typeof id !== 'string') {
-			throw new Error('Invalid ID');
-		}
-		const result = await serverModel.findOne({ serverId: id });
-
-		if (result) {
-			return await result.updateOne({ prefix });
-		}
-		else {
-			return;
-		}
 	}
 
 	static async createUser(id) {
@@ -88,6 +65,16 @@ module.exports = class Manager {
 		}
 	}
 
+	static async incrementSongsPlayed() {
+		const analyticsData = await analyticsModel.findOne();
+		if (!analyticsData) { this.createAnalytics(); }
+
+		if (analyticsData) {
+			analyticsData.songs_played += 1;
+			await analyticsData.save();
+		}
+	}
+
 	static async incrementCommandsUsed() {
 		const analyticsData = await analyticsModel.findOne();
 		if (!analyticsData) { this.createAnalytics(); }
@@ -96,6 +83,50 @@ module.exports = class Manager {
 			analyticsData.commands_used += 1;
 			await analyticsData.save();
 		}
+	}
+
+	static async updateServerDjRole(id, role) {
+		if (typeof id !== 'string') {
+			throw new Error('Invalid ID');
+		}
+		const guild = await this.findServer(id);
+		if (!guild) { await this.createServer(id); }
+
+		guild.djrole = role;
+		await guild.save();
+	}
+
+	static async updateServerAutorole(id, role) {
+		if (typeof id !== 'string') {
+			throw new Error('Invalid ID');
+		}
+		const guild = await this.findServer(id);
+		if (!guild) { await this.createServer(id); }
+
+		guild.autorole = role;
+		await guild.save();
+	}
+
+	static async updateServerWelcome(id, channel) {
+		if (typeof id !== 'string') {
+			throw new Error('Invalid ID');
+		}
+		const guild = await this.findServer(id);
+		if (!guild) { await this.createServer(id); }
+
+		guild.welcome = channel;
+		await guild.save();
+	}
+
+	static async updateServerLeave(id, channel) {
+		if (typeof id !== 'string') {
+			throw new Error('Invalid ID');
+		}
+		const guild = await this.findServer(id);
+		if (!guild) { await this.createServer(id); }
+
+		guild.leave = channel;
+		await guild.save();
 	}
 
 	static async getUserById(id) {
