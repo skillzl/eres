@@ -2,38 +2,44 @@
 
 <title><%= bot.user.username.toLowerCase() %>.fun - privacy policy</title>
 
+<%
+
+var mailPrivacy = `<a class="hover:text-gray-400" href="mailto:admin@skillzl.dev?&subject=Privacy Policy eres.fun&body=Add what you problem or suggestion there.">admin.skillzl.dev`;
+
+%>
+
 <div class="pt-20">
     <div class="px-4 mx-auto max-w-7xl sm:px-6 lg:px-8 text-left text-white">
-        <h1 class="font-bold text-2xl">Privacy Policy</h1>
+        <h1 class="font-bold text-2xl"><%- __('WEB.PRIVACY_TITLE')%></h1>
         <a href="/privacy">
             <img src="/static/eres-crop.png" alt="eres.fun logo" class="mt-2 navicon-fade" width="24" height="auto"/>
         </a>
-        <h2 class="font-bold mt-2">Introduction</h2>
-        <p>We respect the privacy of our users and are committed to protecting it through our compliance with this policy. This policy describes:</p>
-            <p>The types of information we may collect or that you may provide when you install, access, or use our Discord application (our “App”).</p>
-                <p>Our practices for collecting, using, maintaining, protecting, and disclosing that information.</p>
-        <h3 class="font-bold mt-2">Information We Collect and How We Collect It</h3>
-        <p>We collect several types of information from and about users of our App, specifically:</p>
-        <p class="mt-2"> - Discord User ID</p>
-        <p> - Discord User Username</p>
-            <p> - Guild ID</p>
-                <p> - Guild Name</p>
-                    <p class="mt-2">When you interact with our App, we store your Discord User ID and Guild ID. These are unique identifiers provided by Discord and do not contain personally identifiable information.</p>
-                        <p>Discord OAuth2 API: We use the Discord OAuth2 API to identify you, get your avatar, and username. We do not store this information and only use it to provide functionality within the App.</p>
-        <h4 class="font-bold mt-2">How We Use Your Information</h4>
-        <p>We use the information that we collect about you or that you provide to us, including any personal information, to:</p>
-            <p>Provide you with the App and its contents.</p>
-                <p>Notify you about changes to our App or any products or services we offer or provide though it.
-                    <p>Fulfill any other purpose for which you provide it.
-        <h5 class="font-bold mt-2">Data Security</h5>
-        <p>We have implemented measures designed to secure your personal information from accidental loss and from unauthorized access, use, alteration, and disclosure.</p>
+        <h2 class="font-bold mt-2"><%- __('WEB.PRIVACY_INTRODUCTION')%></h2>
+        <p><%- __('WEB.PRIVACY_INTRODUCTION_SUB')%></p>
+            <p><%- __('WEB.PRIVACY_INTRODUCTION_SUB2')%></p>
+                <p><%- __('WEB.PRIVACY_INTRODUCTION_SUB3')%></p>
+        <h3 class="font-bold mt-2"><%- __('WEB.PRIVACY_WHAT_DATA_WE_COLLECT')%></h3>
+        <p><%- __('WEB.PRIVACY_WHAT_DATA_WE_COLLECT_SUB')%></p>
+        <p class="mt-2"> - <%- __('WEB.PRIVACY_DISCORD_ID')%></p> 
+        <p> - <%- __('WEB.PRIVACY_DISCORD_USERNAME')%></p>
+            <p> - <%- __('WEB.PRIVACY_GUILD_ID')%></p>
+                <p> - <%- __('WEB.PRIVACY_GUILD_NAME')%></p>
+                    <p class="mt-2"><%- __('WEB.PRIVACY_WHAT_DATA_WE_COLLECT_SUB2')%></p>
+                        <p><%- __('WEB.PRIVACY_WHAT_DATA_WE_COLLECT_SUB3')%></p>
+        <h4 class="font-bold mt-2"><%- __('WEB.PRIVACY_HOW_USE')%></h4>
+        <p><%- __('WEB.PRIVACY_HOW_USE_SUB')%></p>
+            <p><%- __('WEB.PRIVACY_HOW_USE_SUB2')%></p>
+                <p><%- __('WEB.PRIVACY_HOW_USE_SUB3')%></p>
+                    <p><%- __('WEB.PRIVACY_HOW_USE_SUB4')%></p>
+        <h5 class="font-bold mt-2"><%- __('WEB.PRIVACY_DATA_SECURITY')%></h5>
+        <p><%- __('WEB.PRIVACY_DATA_SECURITY_SUB')%></p>
 
-        <h6 class="font-bold mt-2">Changes to Our Privacy Policy</h6>
-        <p>We may update our privacy policy from time to time. If we make material changes to how we treat our users’ personal information, we will post the new privacy policy on this page.</p>
+        <h6 class="font-bold mt-2"><%- __('WEB.PRIVACY_CHANGES')%></h6>
+        <p><%- __('WEB.PRIVACY_CHANGES_SUB')%></p>
 
-        <p class="font-bold mt-2">Contact Information</p>
-        <p>To ask questions or comment about this privacy policy and our privacy practices, contact us at: <a class="hover:text-gray-400" href="mailto:admin@skillzl.dev?&subject=Privacy Policy eres.fun&body=Add what you problem or suggestion there.">admin.skillzl.dev</p>
+        <p class="font-bold mt-2"><%- __('WEB.PRIVACY_CONTACT')%></p>
+        <p><%- __('WEB.PRIVACY_CONTACT_SUB').replace('{mail}', mailPrivacy)%></p>
         </div>
-    </div>
+    </div> 
 
 <%- include("partials/footer") %>
