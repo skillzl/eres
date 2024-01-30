@@ -5,7 +5,7 @@
 <div class="pt-20">
 <div class="px-4 mx-auto max-w-7xl sm:px-6 lg:px-8 text-center  ">
   <div class="max-w-2xl mx-auto text-center">
-      <h2 class="text-2xl font-semibold text-white sm:text-4xl sm:leading-tight">See online statistics from our application
+      <h2 class="text-2xl font-semibold text-white sm:text-4xl sm:leading-tight"><%- __('WEB.STATS_TITLE')%>
       </h2>
   </div>
 <div class="max-w-full mx-4 py-1 sm:mx-auto sm:px-6 lg:px-8">
@@ -14,7 +14,7 @@
           <div class="bg-white p-5">
               <div class="sm:flex sm:items-start">
                   <div class="text-center sm:mt-0 sm:ml-2 sm:text-left">
-                      <h3 class="text-sm leading-6 font-medium text-gray-400">Users</h3>
+                      <h3 class="text-sm leading-6 font-medium text-gray-400"><%- __('WEB.STATS_USERS')%></h3>
                       <p class="text-3xl font-bold text-black"><%= cachedUsers || 0 %></p>
                   </div>
               </div>
@@ -24,7 +24,7 @@
         <div class="bg-white p-5">
             <div class="sm:flex sm:items-start">
                 <div class="text-center sm:mt-0 sm:ml-2 sm:text-left">
-                    <h3 class="text-sm leading-6 font-medium text-gray-400">Guilds</h3>
+                    <h3 class="text-sm leading-6 font-medium text-gray-400"><%- __('WEB.STATS_GUILDS')%></h3>
                     <p class="text-3xl font-bold text-black"><%= bot.guilds.cache.size || 0 %></p>
                 </div>
             </div>
@@ -34,7 +34,7 @@
       <div class="bg-white p-5">
           <div class="sm:flex sm:items-start">
               <div class="text-center sm:mt-0 sm:ml-2 sm:text-left">
-                  <h3 class="text-sm leading-6 font-medium text-gray-400">Commands Used</h3>
+                  <h3 class="text-sm leading-6 font-medium text-gray-400"><%- __('WEB.STATS_COMMANDS')%></h3>
                   <p class="text-3xl font-bold text-black"><%= commands_used %></p>
               </div>
           </div>
@@ -44,7 +44,7 @@
     <div class="bg-white p-5">
         <div class="sm:flex sm:items-start">
             <div class="text-center sm:mt-0 sm:ml-2 sm:text-left">
-                <h3 class="text-sm leading-6 font-medium text-gray-400">Songs Played</h3>
+                <h3 class="text-sm leading-6 font-medium text-gray-400"><%- __('WEB.STATS_SONGS')%></h3>
                 <p class="text-3xl font-bold text-black"><%= songs_played %></p>
             </div>
         </div>
@@ -54,7 +54,7 @@
   <div class="bg-white p-5">
       <div class="sm:flex sm:items-start">
           <div class="text-center sm:mt-0 sm:ml-2 sm:text-left">
-              <h3 class="text-sm leading-6 font-medium text-gray-400">Memory Usage</h3>
+              <h3 class="text-sm leading-6 font-medium text-gray-400"><%- __('WEB.STATS_MEMORY')%></h3>
               <p class="text-3xl font-bold text-black"><%= (process.memoryUsage().rss / 1024 / 1024).toFixed(2) %> MB</p>
             </div>
           </div>
@@ -66,18 +66,18 @@
     </div>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script>
-    const labels = ["6 Months Ago", "31 Days Ago", "7 Days Ago", "Now"];
+    const labels = ["<%- __('WEB.STATS_6_MONTHS_AGO')%>", "<%- __('WEB.STATS_31_DAYS_AGO')%>", "<%- __('WEB.STATS_7_DAYS_AGO')%>", "<%- __('WEB.STATS_NOW')%>"];
     const data = {
       labels: labels,
       datasets: [
         {
-          label: "Guilds",
+          label: "<%- __('WEB.STATS_GUILDS')%>",
           backgroundColor: "hsl(131,82.9%,67.8%)",
           borderColor: "hsl(131,82.9%,67.8%)",
           data: [1, 3, '<%= guilds %>', '<%= bot.guilds.cache.size || 0 %>'],
         },
         {
-          label: "Users",
+          label: "<%- __('WEB.STATS_USERS')%>",
           backgroundColor: "hsl(68,100%,67%)",
           borderColor: "hsl(68,100%,67%)",
           data: [8, 4432, '<%= users %>', '<%= cachedUsers || 0 %>'],

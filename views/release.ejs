@@ -13,13 +13,13 @@
 
                 <a href="https://github.com/<%= owner %>/<%= repo %>/releases/tag/<%= release.tagName %>">
                     <button type="button" class="rounded-full px-4 mr-2 bg-[#aaaaaa10] border border-[#aaaaaa10] text-white p-2 leading-none flex items-center hover:-translate-y-0.5 duration-300">
-                        <%= release.tagName %> release <span class="mx-3 text-gray-500"> | </span><span class="text-cyan-300">see on github <i class="fa-solid fa-arrow-right text-gray-300"></i></span>
+                        <%= release.tagName %> release <span class="mx-3 text-gray-500"> | </span><span class="text-cyan-300"><%- __('WEB.RELEASE_CHIP_GITHUB')%> <i class="fa-solid fa-arrow-right text-gray-300"></i></span>
                     </button>
                 </a>
             </div>
             <div class="text-white mt-3">
-            <h1>release name: <%= release.name %></h1>
-            <p>published at: <%= release.publishedAt %></p>
+            <h1><%- __('WEB.RELEASE_NAME')%>: <%= release.name %></h1>
+            <p><%- __('WEB.RELEASE_DATE')%>: <%= release.publishedAt %></p>
             <ul>
                 <% release.body.split('\n').forEach(function(line) { %>
                 <% if (line.startsWith('-')) { %>
