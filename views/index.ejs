@@ -207,11 +207,15 @@
                                 </svg>
                             </div>
             
+                            <%
+                            var githubRepo = `<a href="https://github.com/skillzl/eres" class="hover:text-white">github.com/skillzl/eres</a>`;
+                            %>
+
                             <div>
                                 <h1 class="text-xl font-semibold text-white"><%- __('WEB.HOW_TO_SUGGEST')%></h1>
             
                                 <p class="mt-2 text-sm text-gray-300">
-                                    <%- __('WEB.HOW_TO_SUGGEST_DESC')%>
+                                    <%- __('WEB.HOW_TO_SUGGEST_DESC').replace('{githubRepo}', githubRepo)%>
                                 </p>
                             </div>
                         </div>
@@ -227,7 +231,7 @@
                                 <h1 class="text-xl font-semibold text-white"><%- __('WEB.IS_IT_OPEN_SOURCE')%></h1>
             
                                 <p class="mt-2 text-sm text-gray-300">
-                                    <%- __('WEB.IS_IT_OPEN_SOURCE_DESC')%>
+                                    <%- __('WEB.IS_IT_OPEN_SOURCE_DESC').replace('{githubRepo}', githubRepo)%>
                                 </p>
                             </div>
                         </div>

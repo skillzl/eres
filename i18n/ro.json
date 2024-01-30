@@ -28,7 +28,7 @@
 		"HOW_TO_SUGGEST": "Este posibil sa fac o sugestie pentru acest proiect?",
 		"HOW_TO_SUGGEST_DESC": "Nu am creat o comanda pentru a face asta, dar poti folosi comanda de raportare a bug-urilor, or mai bun poti deschide un pull request pe github, asta ma va ajuta!",
 		"IS_IT_OPEN_SOURCE": "E un proiect open-source?",
-		"IS_IT_OPEN_SOURCE_DESC": "Da, desigur! Poti vizita repo-ul pe github.com/skillzl/eres si vedeti ca acest proiect este open-source ce foloseste licenta Apache License 2.0",
+		"IS_IT_OPEN_SOURCE_DESC": "Da, desigur! Poti vizita repo-ul pe {githubRepo} si vedeti ca acest proiect este open-source ce foloseste licenta Apache License 2.0",
 		"WHAT_VERSION": "Care e cea mai recenta versiune a aplicatie?",
 		"WHAT_VERSION_DESC": "La moment folosesti {appName}@{eresVersion}. Aceasta versiune inca este in beta deci, multe lucruri pot fi in progres. Deasemenea poti intalni si unele bug-uri, ceea ce incurajam raportarea lor prin comanda de raportare a bug-urilor sau si pe github cu un issue ticket.",
 		"WHEN_FINAL": "Cand va fi versiunea finala publicata?",
