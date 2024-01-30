@@ -11,56 +11,56 @@
     src="<%= guild.icon ? `https://cdn.discordapp.com/icons/${guild.id}/${guild.icon}?size=512` : 'https://i.imgur.com/RO3uUxX.png' %>"
     />
 </div>
-<h1 class="mt-5 text-white text-center font-bold text-2xl">Manage <span class="text-green-400"><%= guild.name %></span></h1>
+<h1 class="mt-5 text-white text-center font-bold text-2xl"><%- __('WEB.DASHBOARD_MANAGE')%> <span class="text-green-400"><%= guild.name %></span></h1>
 <div class="h-screen flex items-center justify-center -mt-40">
     <div class="max-w-md w-full bg-[#aaaaaa10] border border-[#aaaaaa10] shadow-lg p-8 rounded-lg">
         <form role="form" action="/dashboard/server/<%= guild.id %>" method="POST">
-            <label for="postContent" class="block text-white text-sm font-bold mb-2">DJ Role</label>
+            <label for="postContent" class="block text-white text-sm font-bold mb-2"><%- __('WEB.DASHBOARD_DJ_ROLE')%></label>
             <select name="djrole" class="mb-4 bg-[#aaaaaa10] border border-[#aaaaaa10] shadow-lg text-sm rounded-lg block w-full p-2.5 text-gray-500 focus:text-white focus:bg-[#0E121C] focus:outline-none">
-                <option selected>Choose a role</option>
-                <option value="null">Disable</option>
+                <option selected><%- __('WEB.DASHBOARD_MANAGE_ROLE')%></option>
+                <option value="null"><%- __('WEB.DASHBOARD_MANAGE_DISABLE')%></option>
                 <% roles.forEach(function(role) { %>
                     <option value="<%= role.id %>"><%= role.name %></option>
                 <% }); %>
             </select>
-            <label for="postContent" class="block text-white text-sm font-bold mb-2">Autorole</label>
+            <label for="postContent" class="block text-white text-sm font-bold mb-2"><%- __('WEB.DASHBOARD_AUTOROLE')%></label>
             <select name="autorole" class="mb-4 bg-[#aaaaaa10] border border-[#aaaaaa10] shadow-lg text-sm rounded-lg block w-full p-2.5 text-gray-500 focus:text-white focus:bg-[#0E121C] focus:outline-none">
-                <option selected>Choose a role</option>
-                <option value="null">Disable</option>
+                <option selected><%- __('WEB.DASHBOARD_MANAGE_ROLE')%></option>
+                <option value="null"><%- __('WEB.DASHBOARD_MANAGE_DISABLE')%></option>
                 <% roles.forEach(function(role) { %>
                     <option value="<%= role.id %>"><%= role.name %></option>
                 <% }); %>
             </select>
-            <label for="welcomeChannel" class="block text-white text-sm font-bold mb-2">Welcome Channel</label>
+            <label for="welcomeChannel" class="block text-white text-sm font-bold mb-2"><%- __('WEB.DASHBOARD_WELCOME')%></label>
             <select name="welcomeChannel" id="welcomeChannel" class="mb-4 bg-[#aaaaaa10] border border-[#aaaaaa10] shadow-lg text-sm rounded-lg block w-full p-2.5 text-gray-500 focus:text-white focus:bg-[#0E121C] focus:outline-none">
-                <option selected>Choose a channel</option>
-                <option value="null">Disable</option>
+                <option selected><%- __('WEB.DASHBOARD_MANAGE_CHANNEL')%></option>
+                <option value="null"><%- __('WEB.DASHBOARD_MANAGE_DISABLE')%></option>
                 <% channels.forEach(function(channel) { %>
                     <option value="<%= channel.id %>"><%= channel.name %></option>
                 <% }); %>
             </select>
         
-            <label for="leaveChannel" class="block text-white text-sm font-bold mb-2">Leave Channel</label>
+            <label for="leaveChannel" class="block text-white text-sm font-bold mb-2"><%- __('WEB.DASHBOARD_LEAVE')%></label>
             <select name="leaveChannel" id="leaveChannel" class="mb-4 bg-[#aaaaaa10] border border-[#aaaaaa10] shadow-lg text-sm rounded-lg block w-full p-2.5 text-gray-500 focus:text-white focus:bg-[#0E121C] focus:outline-none">
-                <option selected>Choose a channel</option>
-                <option value="null">Disable</option>
+                <option selected><%- __('WEB.DASHBOARD_MANAGE_CHANNEL')%></option>
+                <option value="null"><%- __('WEB.DASHBOARD_MANAGE_DISABLE')%></option>
                 <% channels.forEach(function(channel) { %>
                     <option value="<%= channel.id %>"><%= channel.name %></option>
                 <% }); %>
             </select>
             <div class="flex items-center justify-between mt-4">
-                <button type="submit" class="flex justify-center items-center bg-green-500 hover:bg-green-600 focus:outline-none focus:shadow-outline-blue text-white py-2 px-4 rounded-md transition duration-300 gap-2"><i class="fa-solid fa-floppy-disk"></i> Save</button>
+                <button type="submit" class="flex justify-center items-center bg-green-500 hover:bg-green-600 focus:outline-none focus:shadow-outline-blue text-white py-2 px-4 rounded-md transition duration-300 gap-2"><i class="fa-solid fa-floppy-disk"></i> <%- __('WEB.DASHBOARD_FORM_SAVE')%></button>
             </div>
             <div class="mt-2">
-            <span class="text-gray-400 text-xs">Page will reload after clicking the save button.</span>
+            <span class="text-gray-400 text-xs"><%- __('WEB.DASHBOARD_FORM_TIPS')%></span>
             </div>
         </form>
     </div>
 </div>
 <div class="flex items-center justify-center -mt-40 text-sm text-gray-400">
-    <a href="/dashboard/server/<%= guild.id %>/members" class="flex-no-shrink bg-violet-500 hover:bg-violet-600 px-5 ml-4 py-2 text-xs shadow-sm hover:shadow-lg font-medium tracking-wider text-white rounded-full transition ease-in duration-300"><i class="fa-solid fa-users"></i> Members</a>
-    <a href="/dashboard/server/<%= guild.id %>/stats" class="flex-no-shrink bg-teal-400 hover:bg-teal-500 px-5 ml-4 py-2 text-xs shadow-sm hover:shadow-lg font-medium tracking-wider text-white rounded-full transition ease-in duration-300"><i class="fa-solid fa-signal"></i> Stats</a>
-    <a href="/dashboard/servers" class="flex-no-shrink bg-green-500 hover:bg-green-600 px-5 ml-4 py-2 text-xs shadow-sm hover:shadow-lg font-medium tracking-wider text-white rounded-full transition ease-in duration-300"><i class="fa-regular fa-circle-left"></i> Go back</a>
+    <a href="/dashboard/server/<%= guild.id %>/members" class="flex-no-shrink bg-violet-500 hover:bg-violet-600 px-5 ml-4 py-2 text-xs shadow-sm hover:shadow-lg font-medium tracking-wider text-white rounded-full transition ease-in duration-300"><i class="fa-solid fa-users"></i> <%- __('WEB.DASHBOARD_MEMBERS')%></a>
+    <a href="/dashboard/server/<%= guild.id %>/stats" class="flex-no-shrink bg-teal-400 hover:bg-teal-500 px-5 ml-4 py-2 text-xs shadow-sm hover:shadow-lg font-medium tracking-wider text-white rounded-full transition ease-in duration-300"><i class="fa-solid fa-signal"></i> <%- __('WEB.DASHBOARD_STATS')%></a>
+    <a href="/dashboard/servers" class="flex-no-shrink bg-green-500 hover:bg-green-600 px-5 ml-4 py-2 text-xs shadow-sm hover:shadow-lg font-medium tracking-wider text-white rounded-full transition ease-in duration-300"><i class="fa-regular fa-circle-left"></i> <%- __('WEB.DASHBOARD_BACK')%></a>
 </div>
 
 <%- include("../partials/footer") %>
