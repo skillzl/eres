@@ -112,6 +112,8 @@
               var commands = `<span class="text-yellow-200">${bot.commands.size}</span>`;
               var servers = `<span class="text-yellow-200">${bot.guilds.cache.size || 0}</span>`;
               var botName = `<span class="text-yellow-200">${bot.user.username}</span>`;
+              var githubRepo = `<a href="https://github.com/skillzl/eres" class="hover:text-white">github.com/skillzl/eres</a>`;
+              var loginButton = `<a href="/login" class="text-green-500 hover:text-green-400">${__('WEB.DASHBOARD_LOGIN')}</a>`;
               %>
               <p class="text-base text-indigo-100 md:text-lg">
                 <%- __('WEB.HEADER').replace('{commands}', commands).replace('{servers}', servers).replace('{bot}', botName) %>
@@ -196,7 +198,7 @@
                                 <h1 class="text-xl font-semibold text-white"><%- __('WEB.HOW_TO_DASH')%></h1>
             
                                 <p class="mt-2 text-sm text-gray-300">
-                                  <%- __('WEB.HOW_TO_DASH_DESC')%>
+                                  <%- __('WEB.HOW_TO_DASH_DESC').replace('{login}', loginButton)%>
                                 </p>
                             </div>
                         </div>
@@ -207,10 +209,6 @@
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8.228 9c.549-1.165 2.03-2 3.772-2 2.21 0 4 1.343 4 3 0 1.4-1.278 2.575-3.006 2.907-.542.104-.994.54-.994 1.093m0 3h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
                                 </svg>
                             </div>
-            
-                            <%
-                            var githubRepo = `<a href="https://github.com/skillzl/eres" class="hover:text-white">github.com/skillzl/eres</a>`;
-                            %>
 
                             <div>
                                 <h1 class="text-xl font-semibold text-white"><%- __('WEB.HOW_TO_SUGGEST')%></h1>

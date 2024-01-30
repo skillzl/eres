@@ -47,25 +47,25 @@
         </select>
         <input class="rounded-lg p-[10px] bg-[#0E121C] border border-[#aaaaaa10] hover:bg-[#5f5d5d10] text-white" type="submit" value="Change Locale">
     </form>
-			<li><a class="text-sm text-gray-400 navbar-item" href="/">home</a></li>
+			<li><a class="text-sm text-gray-400 navbar-item" href="/"><%- __('WEB.NAV_HOME')%></a></li>
 			<li class="text-gray-300">
 				<svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" class="w-4 h-4 current-fill" viewBox="0 0 24 24">
 					<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 5v0m0 7v0m0 7v0m0-13a1 1 0 110-2 1 1 0 010 2zm0 7a1 1 0 110-2 1 1 0 010 2zm0 7a1 1 0 110-2 1 1 0 010 2z" />
 				</svg>
 			</li>
-			<li><a class="text-sm text-gray-400 navbar-item" href="/stats">stats</a></li>
+			<li><a class="text-sm text-gray-400 navbar-item" href="/stats"><%- __('WEB.NAV_STATS')%></a></li>
 			<li class="text-gray-300">
 				<svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" class="w-4 h-4 current-fill" viewBox="0 0 24 24">
 					<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 5v0m0 7v0m0 7v0m0-13a1 1 0 110-2 1 1 0 010 2zm0 7a1 1 0 110-2 1 1 0 010 2zm0 7a1 1 0 110-2 1 1 0 010 2z" />
 				</svg>
 			</li>
-			<li><a class="text-sm text-gray-400 navbar-item" href="/invite">invite</a></li>
+			<li><a class="text-sm text-gray-400 navbar-item" href="/invite"><%- __('WEB.NAV_INVITE')%></a></li>
 			<li class="text-gray-300">
 				<svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" class="w-4 h-4 current-fill" viewBox="0 0 24 24">
 					<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 5v0m0 7v0m0 7v0m0-13a1 1 0 110-2 1 1 0 010 2zm0 7a1 1 0 110-2 1 1 0 010 2zm0 7a1 1 0 110-2 1 1 0 010 2z" />
 				</svg>
 			</li>
-			<li><a class="text-sm text-gray-400 navbar-item" href="/support">support</a></li>
+			<li><a class="text-sm text-gray-400 navbar-item" href="/support"><%- __('WEB.NAV_SUPPORT')%></a></li>
 		</ul>
         <% if (user) { %>
             <script src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.x.x/dist/alpine.min.js"></script>
@@ -86,7 +86,7 @@
                 <div class="mr-2">
                   <i class="ml-1 fa-solid fa-id-card-clip w-6 h-6"></i>
                 </div>
-                Profile
+                <%- __('WEB.DASHBOARD_PROFILE')%>
               </a>
             </li>
             <li class="font-medium">
@@ -94,7 +94,7 @@
                 <div class="mr-2">
                   <i class="ml-1 fa-solid fa-sliders w-6 h-6"></i>
                 </div>
-                Manage
+                <%- __('WEB.DASHBOARD_MANAGE')%>
               </a>
             </li>
             <% if (user.id === process.env.DEVELOPER_ID) { %>
@@ -103,7 +103,7 @@
                 <div class="mr-2">
                   <i class="ml-1 fa-solid fa-fingerprint w-6 h-6"></i>
                 </div>
-                Admin Panel
+                <%- __('WEB.DASHBOARD_PANEL')%>
               </a>
             </li>
             <% } %>
@@ -113,7 +113,7 @@
                 <div class="mr-2 text-red-600">
                   <i class="ml-1 fa-solid fa-right-from-bracket w-6 h-6"></i>
                 </div>
-                Log out
+                <%- __('WEB.DASHBOARD_LOGOUT')%>
               </a>
             </li>
           </ul>
@@ -124,7 +124,7 @@
         <button class="hidden lg:inline-block login-button">
           <div class="sign">
             <i class="fa-solid fa-right-to-bracket text-white"></i>
-          <div class="text">Login</div>
+          <div class="text"><%- __('WEB.DASHBOARD_LOGIN')%></div>
         </button> 
       </a>
         <% } %>
@@ -145,16 +145,16 @@
           <div>
             <ul>
               <li class="mb-1">
-                <a class="block p-4 text-sm font-semibold text-gray-400 hover:bg-green-50 hover:text-green-600 rounded" href="/">home</a>
+                <a class="block p-4 text-sm font-semibold text-gray-400 hover:bg-green-50 hover:text-green-600 rounded" href="/"><%- __('WEB.NAV_HOME')%></a>
               </li>
               <li class="mb-1">
-                <a class="block p-4 text-sm font-semibold text-gray-400 hover:bg-green-50 hover:text-green-600 rounded" href="/stats">stats</a>
+                <a class="block p-4 text-sm font-semibold text-gray-400 hover:bg-green-50 hover:text-green-600 rounded" href="/stats"><%- __('WEB.NAV_STATS')%></a>
               </li>
               <li class="mb-1">
-                <a class="block p-4 text-sm font-semibold text-gray-400 hover:bg-green-50 hover:text-green-600 rounded" href="/invite">invite</a>
+                <a class="block p-4 text-sm font-semibold text-gray-400 hover:bg-green-50 hover:text-green-600 rounded" href="/invite"><%- __('WEB.NAV_INVITE')%></a>
               </li>
               <li class="mb-1">
-                <a class="block p-4 text-sm font-semibold text-gray-400 hover:bg-green-50 hover:text-green-600 rounded" href="/support">support</a>
+                <a class="block p-4 text-sm font-semibold text-gray-400 hover:bg-green-50 hover:text-green-600 rounded" href="/support"><%- __('WEB.NAV_SUPPORT')%></a>
               </li>
             </ul>
           </div>
@@ -162,7 +162,7 @@
             <% if (user) { %>
               <% } else { %>
                 <div class="pt-6">
-                  <a class="block px-4 py-3 mb-2 leading-loose text-xs text-center text-white font-semibold bg-green-600 hover:bg-green-700  rounded-xl" href="/login"><i class="fab fa-discord" style="padding-right: 5px;"></i> Login</a>
+                  <a class="block px-4 py-3 mb-2 leading-loose text-xs text-center text-white font-semibold bg-green-600 hover:bg-green-700  rounded-xl" href="/login"><i class="fab fa-discord" style="padding-right: 5px;"></i> <%- __('WEB.DASHBOARD_LOGIN')%></a>
                 </div>
                 <% } %>
               </div>
