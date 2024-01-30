@@ -7,6 +7,8 @@
 		"TEST": "Test message"
 	},
 	"WEB": {
+		"ENGLISH": "English",
+		"ROMANIAN": "Romanian",
 		"NAV_HOME": "home",
 		"NAV_STATS": "stats",
 		"NAV_INVITE": "invite",
@@ -36,6 +38,10 @@
 		"DASHBOARD_STATS": "Stats",
 		"DASHBOARD_MEMBERS": "Members",
 		"DASHBOARD_BACK": "Go Back",
+		"MEMBERS_NO_ROLES": "None",
+		"MEMBERS_DISPLAY_NAME": "Display Name",
+		"STATS_LEGACY": "Username (or Tag)",
+		"STATS_JOINED": "Joined",
 		"STATS_TYPE": "Type",
 		"STATS_DATA": "Data",
 		"STATS_ID": "ID",

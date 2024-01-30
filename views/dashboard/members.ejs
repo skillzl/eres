@@ -18,11 +18,11 @@
 				<table id="myTable" class="table text-gray-400 border-separate space-y-5 text-sm">
 					<thead class="bg-[#aaaaaa10] border border-[#aaaaaa10] shadow-lg text-gray-500">
 						<tr>
-							<th class="p-3">Display Name</th>
-							<th class="p-3 text-left">Username (or <span title="Legacy Username and Discriminator">Tag</span>)</th>
-							<th class="p-3 text-left">ID</th>
-							<th class="p-3 text-left">Joined</th>
-							<th class="p-3 text-left">Roles</th>
+							<th class="p-3"><%- __('WEB.MEMBERS_DISPLAY_NAME')%></th>
+							<th class="p-3 text-left"><%- __('WEB.STATS_LEGACY')%></th>
+							<th class="p-3 text-left"><%- __('WEB.STATS_ID')%></th>
+							<th class="p-3 text-left"><%- __('WEB.STATS_JOINED')%></th>
+							<th class="p-3 text-left"><%- __('WEB.STATS_ROLES')%></th>
 						</tr>
 					</thead>
 					<tbody>
@@ -60,7 +60,7 @@
 						</td>
 						<td class="p-3 ">
 							<% if (roles.length === 0) { %>
-								<p class="center inline-block select-none whitespace-nowrap rounded-lg bg-gray-950 py-2 px-3.5 align-baseline font-sans text-xs font-bold uppercase leading-none text-white">None</p>
+								<p class="center inline-block select-none whitespace-nowrap rounded-lg bg-gray-950 py-2 px-3.5 align-baseline font-sans text-xs font-bold uppercase leading-none text-white"><%- __('WEB.MEMBERS_NO_ROLES') %></p>
 								<% } else { %>
 									<% for (let j = 0; j < roles.length; j++) { %>
 										<span class="center inline-block select-none whitespace-nowrap rounded-lg bg-gray-950 py-2 px-3.5 align-baseline font-sans text-xs font-bold uppercase leading-none" style="color: <%= roles[j].hexColor === "#000000" ? "#ffffff" : roles[j].hexColor %>" title="<%= roles[j].id %>"><b><%= roles[j].name %></b></span>

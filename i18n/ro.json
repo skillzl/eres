@@ -7,6 +7,8 @@
 		"TEST": "Mesaj de test"
 	},
 	"WEB": {
+		"ENGLISH": "Engleza",
+		"ROMANIAN": "Romana",
 		"NAV_HOME": "acasa",
 		"NAV_STATS": "statistici",
 		"NAV_INVITE": "invita",
@@ -36,6 +38,10 @@
 		"DASHBOARD_STATS": "Statistici",
 		"DASHBOARD_MEMBERS": "Membrii",
 		"DASHBOARD_BACK": "Inapoi",
+		"MEMBERS_NO_ROLES": "Nimic",
+		"MEMBERS_DISPLAY_NAME": "Nume utilizator",
+		"STATS_LEGACY": "Discriminator (sau Tag)",
+		"STATS_JOINED": "Intrat",
 		"STATS_TYPE": "Tip",
 		"STATS_DATA": "Data",
 		"STATS_ID": "ID",
