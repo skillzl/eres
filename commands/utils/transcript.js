@@ -10,7 +10,7 @@ module.exports = class TranscriptCommand extends Command {
 			data: new SlashCommandBuilder()
 				.setName('transcript')
 				.setDescription('Generates a transcript of the last 100 messages in the channel')
-				.setDMPermission(true),
+				.setDMPermission(false),
 			usage: 'transcript',
 			category: 'Utils',
 			permissions: ['Use Application Commands', 'Send Messages', 'Embed Links', 'Manage Messages'],

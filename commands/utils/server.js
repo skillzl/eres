@@ -8,7 +8,7 @@ module.exports = class Server extends Command {
 			data: new SlashCommandBuilder()
 				.setName('server')
 				.setDescription('Guild informations and statistics')
-				.setDMPermission(true),
+				.setDMPermission(false),
 			usage: 'server',
 			category: 'Utils',
 			permissions: ['Use Application Commands', 'Send Messages', 'Embed Links'],

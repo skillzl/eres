@@ -9,10 +9,10 @@ module.exports = class Dog extends Command {
 		super(client, {
 			data: new SlashCommandBuilder()
 				.setName('dog')
-				.setDescription('Sends a random dog image.')
+				.setDescription('Sends a random dog image')
 				.setDMPermission(false),
 			usage: 'dog',
-			category: 'Fun',
+			category: 'Images',
 			permissions: ['Use Application Commands', 'Send Messages', 'Embed Links'],
 		});
 	}

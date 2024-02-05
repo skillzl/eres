@@ -11,7 +11,7 @@ module.exports = class Whois extends Command {
 				.setDescription('Fetches a user\'s information. If no user is given, your own information will be displayed')
 				.addUserOption(option => option.setName('target').setDescription('The user')
 					.setRequired(false))
-				.setDMPermission(true),
+				.setDMPermission(false),
 			usage: 'whois [user]',
 			category: 'Utils',
 			permissions: ['Use Application Commands', 'Send Messages', 'Embed Links'],

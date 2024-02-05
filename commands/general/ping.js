@@ -9,7 +9,7 @@ module.exports = class Ping extends Command {
 			data: new SlashCommandBuilder()
 				.setName('ping')
 				.setDescription('Returns the bot ping')
-				.setDMPermission(true),
+				.setDMPermission(false),
 			usage: 'ping',
 			category: 'General',
 			permissions: ['Use Application Commands', 'Send Messages'],
