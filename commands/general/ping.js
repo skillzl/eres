@@ -15,7 +15,6 @@ module.exports = class Ping extends Command {
 			permissions: ['Use Application Commands', 'Send Messages'],
 		});
 	}
-
 	/**
  * Runs the ping command.
  *
@@ -24,7 +23,10 @@ module.exports = class Ping extends Command {
  * @returns {Promise<Message>} - A promise that resolves to the message sent.
  */
 	async run(client, interaction) {
-	// Get the current timestamp
+		// Get the i18n instance for the guild
+		const i18n = await client.i18n.get(interaction.guild.id);
+
+		// Get the current timestamp
 		const now = Date.now();
 
 		// Defer the reply to the interaction
@@ -33,7 +35,7 @@ module.exports = class Ping extends Command {
 		// Create the ping embed
 		const pingEmbed = new EmbedBuilder()
 			.setAuthor({
-				name: 'process ping',
+				name: `${client.emoji.heartbeat} ${client.i18n.handle('GENERAL', 'PING', i18n)}`,
 				iconURL: client.user.displayAvatarURL({ size: 2048 }),
 			})
 			.setColor(0x36393e)

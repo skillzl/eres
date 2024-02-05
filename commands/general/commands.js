@@ -26,6 +26,9 @@ module.exports = class Commands extends Command {
  * @param {Interaction} interaction - The interaction object representing the command invocation.
  */
 	async run(client, interaction) {
+		// Get the i18n instance for the guild
+		const i18n = await client.i18n.get(interaction.guild.id);
+
 		// Categorize the commands
 		const categorizedCommands = {};
 		client.commands.forEach(command => {
@@ -45,7 +48,7 @@ module.exports = class Commands extends Command {
 				// Create an embed with the command usage
 				const embed = new EmbedBuilder()
 					.setColor(0x2B2D31)
-					.setDescription(`Usage for command ${commandName}: ${usage}`);
+					.setDescription(client.i18n.handle('GENERAL', 'COMMAND_USAGE', i18n).replace('{commandName}', commandName).replace('{commandUsage}', usage));
 
 				// Reply to the interaction with the embed
 				await interaction.reply({ embeds: [embed] });
@@ -55,11 +58,11 @@ module.exports = class Commands extends Command {
 
 		// Create the main embed with the list of commands
 		const embed = new EmbedBuilder()
-			.setAuthor({ name: `${client.user.username} • Commands`, iconURL: client.user.displayAvatarURL({ dynamic: true, size: 2048, format: 'png' }) })
+			.setAuthor({ name: `${client.user.username} • ${client.i18n.handle('GENERAL', 'COMMANDS', i18n)}`, iconURL: client.user.displayAvatarURL({ dynamic: true, size: 2048, format: 'png' }) })
 			.setColor(0x2B2D31)
-			.setDescription('Before using any of these commands you are welcomed with a guide.')
+			.setDescription(client.i18n.handle('GENERAL', 'COMMANDS_SUB', i18n))
 			.setFooter({
-				text: 'You are experiencing a beta version of this application that may suffer some unfinished features!',
+				text: client.i18n.handle('GENERAL', 'COMMANDS_FOOTER', i18n),
 			})
 			.setThumbnail(client.user.displayAvatarURL({ dynamic: true, size: 128, format: 'png' }));
 
