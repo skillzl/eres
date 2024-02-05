@@ -27,10 +27,7 @@ module.exports = class Partners extends Command {
 
 		// Create the partners embed with the bot's partners
 		const embed = new EmbedBuilder()
-			.setAuthor({
-				name: `${client.emoji.partnered} ${client.i18n.handle('GENERAL', 'PARTNERS', i18n)}`,
-				iconURL: client.user.displayAvatarURL({ size: 2048 }),
-			})
+			.setTitle(`${client.emoji.partnered_badge} ${client.i18n.handle('GENERAL', 'PARTNERS', i18n)}`)
 			.setColor(0x36393e)
 			.setDescription(`${client.i18n.handle('GENERAL', 'PARTNERS_SUB', i18n).replace('{partner_name}', 'Poggy').replace('{partner_desc}', client.i18n.handle('PARTNERS', 'POGGY_DESC', i18n)).replace('{partner_link}', '[GitHub](https://github.com/hotsu0p/Pogy)')}`);
 
