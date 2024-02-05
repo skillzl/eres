@@ -38,7 +38,7 @@ module.exports = class Ping extends Command {
 				name: `${client.emoji.heartbeat} ${client.i18n.handle('GENERAL', 'PING', i18n)}`,
 				iconURL: client.user.displayAvatarURL({ size: 2048 }),
 			})
-			.setColor(0x36393e)
+			.setColor(0x2B2D31)
 			.setDescription(stripIndents`
            ${client.emoji.clock} roundtrip: **${Math.round(Date.now() - now)} ms**
            ${client.emoji.heartbeat} api: **${Math.round(client.ws.ping)} ms**
