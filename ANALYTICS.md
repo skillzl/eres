@@ -9,6 +9,7 @@
 
 ## ❓ Tutorial Analytics
 **How to set the analytics unique identifier?**
+
 First of all, build the bot, deploy the slash-commands and actually use the bot, try to run a slash-command so the analytics collection will be created.
 
 >  **Note**: Without running any command, the analytics mongodb collection will not be created.
@@ -28,4 +29,5 @@ Open it and then you will see a document where you find your `_id`. (first row)
 **Screenshot:**
 
 <img src="./assets/github/id-analytics.png" width="512" />
+
 >  **Hint**: There it is! **656a1c4e7459779a005544ef** is the `_id` you need to copy and put in your .env file.
