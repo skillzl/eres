@@ -20,11 +20,12 @@ After that use the MongoDB Database Compass to get your `_id`.
 
 ## 🔑 Unique Identifier 
 To use the **MongoDB Compass (GIU)** you need to login with your **mongodb** uri link.
+
 After you are logged choose your database (default one is `test`) and search the `analytics` collection.
+
 Open it and then you will see a document where you find your `_id`. (first row)
 
 **Screenshot:**
+
 <img src="./assets/github/id-analytics.png" width="512" />
 >  **Hint**: There it is! **656a1c4e7459779a005544ef** is the `_id` you need to copy and put in your .env file.
-
-  
