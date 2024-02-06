@@ -1,37 +1,57 @@
-> <img src="./assets/eres-crop.png"  width="24" /> eres.fun<br/> author: [skillzl](https://skillzl.dev)
+<p align="center">
+    <a href="https://eres.fun" >
+        <img align="center" src="./assets/github/eres-widget.png" width="592">
+    </a>
+</p>
 
 🍍 A multipurpose discord client written in javascript featuring a lot of util commands and a highly optimized web application with control over the application's settings. Eres is used on over **30** servers, we invite you to try it out and hope you enjoy!
 
-## Deployment & Features
+<p align="center"> 
+  <a href="https://ko-fi.com/eres_fun" target="_blank">
+    <img src="./assets//github/kofi_button_black.png" width="256"/>
+  </a>
+</p>
+
+### 📂 Content
+-   [Deployment & Features](#-deployment--features) 
+-   [Node start guide](#-node-start-guide)
+-   [Dashboard UI](#-dashboard-ui)
+-   [Envoirement settings](#-envoirement-settings)
+-   [Analytics](#-analytics)
+-   [License](#-license)
+-   [Contributors](#-contributors)
+
+## 🌐 Deployment & Features
 
 Deployment support is not here yet! This repository is only for github imigration purposes.
 
-- Modular features with optional congifuration.
-- Experience system with levels and xp.
-- Popular canva design for rank and profile command.
-- Web application (dashboard) for optional configuration settings.
+- ☑️ Modular features with optional congifuration.
+- ☑️ Experience system with levels and xp.
+- ☑️ Popular canva design for rank and profile command.
+- ☑️ Web application (dashboard) for optional configuration settings.
+- ☑️ Multi-lingual support (available languages: English, Romanian).
+- ☑️ Modern tehnologies for web app (nodejs, express, mongodb, tailwindcss, etc).
+- ☑️ Music player for mass-usage (DJ Role setting on dashboard).
 
-## Node start guide
+## ⌨️ Node start guide
 
 ```
 git clone https://github.com/skillzl/eres
 cd eres-main
 
 npm install
+node deploy (before running bot.js, so the slash commands can be loaded) 
+
 npn run start [cls && node bot.js] or nodemon
 ```
 
-## Dashboard
+## 🖼️ Dashboard UI
 
-<img  src="./assets/github/dashboard.png"  width="1042">
+<img src="./assets/github/dashboard.png" width="1042">
 
 > **Tip**: Visit this repository to check out the latest version available.
 
-## Widget
-
-<a  href="https://eres.fun" ><img  src="./assets/github/eres-widget.png"  width="512"><a/>
-
-## Envoirement settings
+## 🚀 Envoirement settings
 
 ```
 ## Discord Application Token
@@ -64,7 +84,7 @@ WEBHOOK_ID=
 ## Unique token webhook for bug reports
 WEBHOOK_TOKEN= 
 
-## Analytics unique identifier
+## Analytics unique identifier (for analytics)
 ANALYTICS_ID=
 
 ## Domain
@@ -76,26 +96,31 @@ SKILLZL_API_KEY=
 ## Custom youtube cookie (for 419 rate limits)
 YOUTUBE_COOKIE=
 
-## GitHub Personal Token => (used for github integration /admin/panel )
+## GitHub Personal Token => (used for github integration /admin/panel)
 GITHUB_TOKEN=
 ```
 
 > **Note**: Envoirement settings need to be in a ".env" file.
 
-## Analytics
+## 📈 Analytics
 
-As a developer, see how your application grow.
- 
-To set the  `_id` just follow this tutorial I made real quick!
+Use this feature to know exactly how many people are using the bot.
+This feature requires the `ANALYTICS_ID` to be set. To get your `_id` from the mangoose database, follow this tutorial I made real quick! 
 
-[Click Here!](./ANALYTICS.md)
+[Analytics Tutorial](./ANALYTICS.md)
 
-## Emojis
+## 😃 Emojis
 
-Import these emojis to your server [Click Here!](./assets/emojis/)
+If you want to use custom emojis, you can do it here.
+Eres project emojis are stored in assets: [assets/emojis](./assets/emojis/) (import them to your Discord server)
+To change emojis you can do it here: [functions/Emojis](./functions/Emojis.js) (currently those emojis are from `Eres - 🍍` Discord server, so you need to change with yours)
+## 🔐 License
 
-Change the emojis here [Click Here!](./functions/Emojis.js)
+This project is licensed under the `Apache License 2.0 License` - see the [LICENSE](https://github.com/skillzl/eres/blob/main/LICENSE) file for details.
 
-## License
+## 🙋‍♂️ Contributors
+Don't hesitate to make a pull request if you have any suggestions, bugs or just want to add more features.
 
-This project is licensed under the Apache License 2.0 License - see the [LICENSE](https://github.com/skillzl/eres/blob/main/LICENSE) file for details.
+<a href="https://github.com/skillzl/eres/graphs/contributors">
+  <img src="https://contrib.rocks/image?repo=skillzl/eres" />
+</a>
