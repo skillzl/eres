@@ -4,7 +4,7 @@
     </a>
 </p>
 
-🍍 A multipurpose discord client written in javascript featuring a lot of util commands and a highly optimized web application with control over the application's settings. Eres is used on over **30** servers, we invite you to try it out and hope you enjoy!
+🍍 A multi-purpose Discord client written in Javascript with 42 commands and a highly optimised web application with control over the application's settings. Eres is running on over 34 servers, we invite you to try it out and hope you enjoy it!
 
 <p align="center"> 
   <a href="https://ko-fi.com/eres_fun" target="_blank">
