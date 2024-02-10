@@ -16,7 +16,15 @@ const fs = require('fs');
 const client = new Client();
 
 // Initialize player
-const player = new Player(client, { autoRegisterExtractor: false, ytdlOptions: { requestOptions: { headers: { cookie: process.env.YOUTUBE_COOKIE ? process.env.YOUTUBE_COOKIE : null } } } });
+const player = new Player(client, {
+	autoRegisterExtractor: false,
+	ytdlOptions: { requestOptions: {
+		headers: { cookie: process.env.YOUTUBE_COOKIE ? process.env.YOUTUBE_COOKIE : null,
+		},
+	} },
+});
+
+// Register extractors to player
 player.extractors.register(YouTubeExtractor);
 player.extractors.register(SpotifyExtractor);
 player.extractors.register(SoundCloudExtractor);
@@ -42,5 +50,7 @@ client.login();
 process.on('uncaughtException', err => console.error(err.stack));
 process.on('unhandledRejection', err => console.error(err.stack));
 process.on('uncaughtExceptionMonitor', err => console.error(err.stack));
+
+// Handle process exit
 process.on('beforeExit', code => console.log(code));
 process.on('exit', code => console.log(code));
