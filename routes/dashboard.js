@@ -75,6 +75,27 @@ router.get('/server/:guildID', checkAuth, async (req, res) => {
 		channels: textChannelsArray,
 	});
 });
+router.get('/server/:guildID/embed-builder', checkAuth, async (req, res) => {
+    try {
+      const guildID = req.params.guildID;
+  
+      const guild = req.client.guilds.cache.get(guildID);
+  
+      if (!guild) {
+        console.error(`Guild with ID ${guildID} not found.`);
+        return res.status(404).send('Guild not found');
+      }
+
+      res.render('dashboard/embed-builder.ejs', {
+        user: req.user || null,
+        bot: req.client,
+        guild: guild,
+      });
+    } catch (error) {
+      console.error(`Error processing /server/:guildID/embed-builder: ${error.message}`);
+      return res.status(500).send('Internal Server Error');
+    }
+  });
 
 router.post('/server/:guildID', checkAuth, async (req, res) => {
 	// Check if the user has permission to manage the server
