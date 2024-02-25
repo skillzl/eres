@@ -30,7 +30,7 @@ module.exports = class Gifs extends Command {
  */
 	async run(client, interaction) {
 		// Fetch a random 🔞 gif from the API
-		const result = await fetch(`https://api.eres.fun/gifs/?key=${process.env.ANALYTICS_ID}`).then((res) => res.json());
+		const result = await fetch(`https://api.eres.fun/images/gifs?token=${process.env.API_ERES_KEY}`).then((res) => res.json());
 
 		// Create an embed with the 🔞 gif
 		const embed = new EmbedBuilder()

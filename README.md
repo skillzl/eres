@@ -90,11 +90,15 @@ ANALYTICS_ID=
 ## Domain
 DOMAIN= (e.g: localhost:3000 => if used locally)
 
-## api.skillzl.dev unique key (api.skillz.dev for key)
+## api.skillzl.dev unique key (visit api.skillz.dev for key)
 SKILLZL_API_KEY=
 
 ## Custom youtube cookie (for 419 rate limits)
 YOUTUBE_COOKIE=
+
+
+## api.eres.fun unique key (visit api.eres.fun for key)
+API_ERES_KEY=
 
 ## GitHub Personal Token => (used for github integration /admin/panel)
 GITHUB_TOKEN=
