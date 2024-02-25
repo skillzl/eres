@@ -1,9 +1,3 @@
-/** WARNING
- *
- * The NSFW Image API is private, so it will be available only to our public client.
- * You can modify the command to use it with your own API.
-* */
-
 const Command = require('../../structures/CommandClass');
 
 const { SlashCommandBuilder, EmbedBuilder } = require('discord.js');
