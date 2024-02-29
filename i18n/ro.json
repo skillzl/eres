@@ -24,6 +24,7 @@
 		"RESTART_TAB": "Restart",
 		"LOGS_TAB": "Arata Loguri",
 		"AUTH_TAB": "Autentificare",
+		"API": "api",
 		"MODAL_CONFIRMATION": "Confirmare",
 		"MODAL_QUESTION": "Esti sigur ca vrei sa faci un restart la procesul pm2?",
 		"MODAL_CONFIRM": "Confirma",

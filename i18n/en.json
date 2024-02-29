@@ -24,6 +24,7 @@
 		"RESTART_TAB": "Restart",
 		"LOGS_TAB": "Show Logs",
 		"AUTH_TAB": "Auth",
+		"API": "api",
 		"MODAL_CONFIRMATION": "Confirmation",
 		"MODAL_QUESTION": "Are you sure you want to restart the pm2 app process?",
 		"MODAL_CONFIRM": "Confirm",
