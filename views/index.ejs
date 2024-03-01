@@ -6,7 +6,7 @@
 <link href="https://unpkg.com/tailwindcss@^2/dist/tailwind.min.css" rel="stylesheet">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Loopple/loopple-public-assets@main/motion-tailwind/motion-tailwind.css" rel="stylesheet">
 <script defer src="https://unpkg.com/alpinejs@3.2.3/dist/cdn.min.js"></script>
-<div class="flex flex-col items-center justify-center ">
+<div class="flex flex-col items-center justify-center">
   <div class="container  m-4">
     <div class="max-w-3xl w-full mx-auto grid gap-4 grid-cols-1">
         <div class="shadow-lg rounded-lg bg-[#aaaaaa10] border border-[#aaaaaa10] mx-auto m-8 p-4 notification-box flex">
@@ -85,14 +85,14 @@
           <div class="flex justify-center mb-10">
             <a href="/release">
               <button type="button" class="px-4 mr-2 text-gray-500 p-2 leading-none flex items-center hover:text-gray-200">
-                <div class="mr-3 center relative inline-block select-none whitespace-nowrap rounded-full bg-[#5eead559] px-3.5 py-1.5 align-baseline font-sans text-xs font-bold uppercase leading-none text-teal-300">
+                <div class="mr-3 center inline-block select-none whitespace-nowrap rounded-full bg-[#5eead559] px-3.5 py-1.5 align-baseline font-sans text-xs font-bold uppercase leading-none text-teal-300">
                   <div class="mt-px">
                     <p class="block font-sans text-sm font-medium capitalize leading-none antialiased">
                       New
                     </p>
                   </div>
                 </div>
-                <%- __('WEB.RELEASE_CHIP').replace('{eresName}', eresName).replace('{eresVersion}', eresVersion) %> <span class="mx-3 text-gray-500"> | </span><%- __('WEB.RELEASE_CHIP_DESC') %> <i class="ml-2 fa-solid fa-arrow-right text-gray-300"></i>
+                <%- __('WEB.RELEASE_CHIP').replace('{eresName}', eresName).replace('{eresVersion}', eresVersion) %> <span class="mx-3 text-gray-700"> | </span><%- __('WEB.RELEASE_CHIP_DESC') %> <i class="ml-2 fa-solid fa-arrow-right text-gray-300"></i>
               </button>
             </a>
           </div>
