@@ -102,6 +102,9 @@ API_ERES_KEY=
 
 ## GitHub Personal Token => (used for github integration /admin/panel)
 GITHUB_TOKEN=
+
+## Replicate API Key (replicate.com for key)
+REPLICATE_API_KEY=
 ```
 
 > **Note**: Envoirement settings need to be in a ".env" file.
