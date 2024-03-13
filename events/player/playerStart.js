@@ -11,14 +11,14 @@ module.exports = {
  * @param {Track} track - The track to be executed.
  * @returns {Promise<void>} - A promise that resolves once the track has been executed.
  */
-	async execute(queue, track) {
+	async execute(queue, track, client) {
 	// Increment the number of songs played in the database
 		db.incrementSongsPlayed();
 
 		// Create an embed with the track information and send it to the channel of the queue's metadata
 		const embed = new EmbedBuilder()
 			.setColor(0x2F3136)
-			.setTitle('<:music_emoji:1188172803934011442> Now Playing')
+			.setTitle(`${client.emoji.music} Now Playing`)
 			.setDescription(`Song: **[${track.title}](${track.url})** by **${track.author}**.`);
 
 		// If the track has a thumbnail, set it as the thumbnail of the embed
