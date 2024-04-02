@@ -3,13 +3,8 @@
 		"SUCCESS": "Success",
 		"ERROR": "An unexpected error occurred"
 	},
-	"PARTNERS": {
-		"POGGY_DESC": "Pogy, a fully customizable bot built with 147 commands, 11 categories, and a dashboard using discord.js@13."
-	},
 	"GENERAL": {
 		"TEST": "Test message",
-		"PARTNERS": "Partners",
-		"PARTNERS_SUB": "{partner_name}\n{partner_desc}\n\n{partner_link}",
 		"PING": "Process Ping",
 		"COMMAND_USAGE": "Usage for command {commandName}: {commandUsage}",
 		"COMMANDS": "Commands",

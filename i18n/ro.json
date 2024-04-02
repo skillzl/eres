@@ -3,13 +3,8 @@
 		"SUCCESS": "Succes",
 		"ERROR": "O eroare a avut loc"
 	},
-	"PARTNERS": {
-		"POGGY_DESC": "Pogy, un bot full-customizabil ce ofera 147 comenzi, 11 categorii, si un dashboard, construit folosind discord.js@13."
-	},
 	"GENERAL": {
 		"TEST": "Mesaj de test",
-		"PARTNERS": "Parteneri",
-		"PARTNERS_SUB": "{partner_name}\n{partner_desc}\n\n{partner_link}",
 		"PING": "Ping Proces",
 		"COMMAND_USAGE": "Model de utilizare a comenzii {commandName}: {commandUsage}",
 		"COMMANDS": "Comenzi",
