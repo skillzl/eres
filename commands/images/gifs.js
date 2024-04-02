@@ -29,7 +29,7 @@ module.exports = class Gifs extends Command {
 		// Create an embed with the 🔞 gif
 		const embed = new EmbedBuilder()
 			.setColor(0x2B2D31)
-			.setTitle('gifs 🔞')
+			.setTitle(`${result.category} 🔞`)
 			.setURL(result.url)
 			.setImage(result.url)
 			.setFooter({

@@ -29,7 +29,7 @@ module.exports = class Tits extends Command {
 		// Create an embed with the 🍒 image
 		const embed = new EmbedBuilder()
 			.setColor(0x2B2D31)
-			.setTitle('tits 🍒')
+			.setTitle(`${result.category} 🍒`)
 			.setURL(result.url)
 			.setImage(result.url)
 			.setFooter({

@@ -16,10 +16,6 @@ const models = [
         'lucataco/open-dalle-v1.1:1c7d4c8dec39c7306df7794b28419078cb9d18b9213ab1c21fdc46a1deca0144',
 	},
 	{
-		name: 'fofr/sdxl-emoji (Memoji)',
-		value: 'fofr/sdxl-emoji:dee76b5afde21b0f01ed7925f0665b7e879c50ee718c5f78a9d38e04d523cc5e',
-	},
-	{
 		name: 'RealvisXL2 (LCM)',
 		value: 'lucataco/realvisxl2-lcm:479633443fc6588e1e8ae764b79cdb3702d0c196e0cb2de6db39ce577383be77',
 	},
@@ -46,10 +42,6 @@ module.exports = class Imagine extends Command {
 						name: 'OpenDALL-E (v1.1)',
 						value:
                         'lucataco/open-dalle-v1.1:1c7d4c8dec39c7306df7794b28419078cb9d18b9213ab1c21fdc46a1deca0144',
-					},
-					{
-						name: 'fofr/sdxl-emoji (Memoji)',
-						value: 'fofr/sdxl-emoji:dee76b5afde21b0f01ed7925f0665b7e879c50ee718c5f78a9d38e04d523cc5e',
 					},
 					{
 						name: 'RealvisXL2 (LCM)',
@@ -92,7 +84,7 @@ module.exports = class Imagine extends Command {
 			);
 
 			const embed = new EmbedBuilder()
-				.setTitle('Image Generated')
+				.setTitle('🖼️ Image Generated')
 				.addFields({ name: 'Prompt', value: prompt })
 				.setImage(output[0])
 				.setColor(0x2B2D31);
