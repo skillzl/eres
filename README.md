@@ -90,7 +90,7 @@ ANALYTICS_ID=
 ## Domain
 DOMAIN= (e.g: localhost:3000 => if used locally)
 
-## api.skillzl.dev unique key (visit api.skillz.dev for key)
+## api.skillzl.dev unique key (visit api.skillzl.dev for key)
 SKILLZL_API_KEY=
 
 ## Custom youtube cookie (for 419 rate limits)
