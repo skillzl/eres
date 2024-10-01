@@ -24,7 +24,7 @@ module.exports = class Tits extends Command {
  */
 	async run(client, interaction) {
 		// Fetch a random 🍒 image from the API
-		const result = await fetch(`https://api.eres.fun/images/tits?token=${process.env.API_ERES_KEY}`).then((res) => res.json());
+		const result = await fetch(`https://api.eres.lol/images/tits?token=${process.env.API_ERES_KEY}`).then((res) => res.json());
 
 		// Create an embed with the 🍒 image
 		const embed = new EmbedBuilder()
@@ -33,7 +33,7 @@ module.exports = class Tits extends Command {
 			.setURL(result.url)
 			.setImage(result.url)
 			.setFooter({
-				text: 'api.eres.fun',
+				text: 'api.eres.lol',
 			});
 
 		// Send the embed as a reply to the interaction

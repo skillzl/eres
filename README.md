@@ -1,5 +1,5 @@
 <p align="center">
-    <a href="https://eres.fun" >
+    <a href="https://eres.lol" >
         <img align="center" src="./assets/github/eres-widget.png" width="592">
     </a>
 </p>
@@ -13,13 +13,14 @@
 </p>
 
 ### 📂 Content
--   [Deployment & Features](#-deployment--features) 
--   [Node start guide](#-node-start-guide)
--   [Dashboard UI](#-dashboard-ui)
--   [Envoirement settings](#-envoirement-settings)
--   [Analytics](#-analytics)
--   [License](#-license)
--   [Contributors](#-contributors)
+- [🌐 Deployment \& Features](#-deployment--features)
+- [⌨️ Node start guide](#️-node-start-guide)
+- [🖼️ Dashboard UI](#️-dashboard-ui)
+- [🚀 Envoirement settings](#-envoirement-settings)
+- [📈 Analytics](#-analytics)
+- [😃 Emojis](#-emojis)
+- [🔐 License](#-license)
+- [🙋‍♂️ Contributors](#️-contributors)
 
 ## 🌐 Deployment & Features
 
@@ -97,7 +98,7 @@ SKILLZL_API_KEY=
 YOUTUBE_COOKIE=
 
 
-## api.eres.fun unique key (visit api.eres.fun for key)
+## api.eres.lol unique key (visit api.eres.lol for key)
 API_ERES_KEY=
 
 ## GitHub Personal Token => (used for github integration /admin/panel)

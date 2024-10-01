@@ -23,7 +23,7 @@ module.exports = class Drive extends Command {
  */
 	async run(client, interaction) {
 		// Fetch a random drive image from the API
-		const result = await fetch(`https://api.eres.fun/images/drive?token=${process.env.API_ERES_KEY}`).then((res) => res.json());
+		const result = await fetch(`https://api.eres.lol/images/drive?token=${process.env.API_ERES_KEY}`).then((res) => res.json());
 
 		// Create an embed with the image
 		const embed = new EmbedBuilder()
