@@ -67,8 +67,8 @@ module.exports = class Server extends Command {
 			dnd: interaction.guild.members.cache.filter(member => member.presence?.status === 'dnd').size,
 			idle: interaction.guild.members.cache.filter(member => member.presence?.status === 'idle').size,
 			bots: interaction.guild.members.cache.filter(member => member.user.bot).size,
+			offline: interaction.guild.memberCount - (interaction.guild.members.cache.filter(member => member.presence?.status === 'online').size + interaction.guild.members.cache.filter(member => member.presence?.status === 'dnd').size + interaction.guild.members.cache.filter(member => member.presence?.status === 'idle').size),
 		};
-
 		// Get the guild owner
 		const owner = await interaction.guild.fetchOwner();
 
@@ -92,7 +92,7 @@ module.exports = class Server extends Command {
 				{ name: 'BOOSTS', value: interaction.guild.premiumSubscriptionCount + ` (Level: ${interaction.guild.premiumTier})`, inline: true },
 				{ name: 'AFK CHANNEL', value: interaction.guild.afkChannel ? `${client.emoji.moon} ${interaction.guild.afkChannel.name}` : client.emoji.red_emoji, inline: true },
 				{ name: 'CREATED ON', value: `<t:${Math.floor(_createdAt / 1000) + 3600}:F>` + `\n${daysAgo(interaction.guild.createdAt).toFixed(0)} (days ago)` },
-				{ name: `MEMBERS (${interaction.guild.memberCount})`, value: `online (${members.online}) : dnd (${members.dnd})  idle (${members.idle}) : bots (${members.bots})`, inline: true },
+				{ name: `MEMBERS (${interaction.guild.memberCount})`, value: `online (${members.online}) : dnd (${members.dnd})  idle (${members.idle}) : bots (${members.bots}) : offline (${members.offline})`, inline: true },
 				{ name: `EMOJIS (${interaction.guild.emojis.cache.size})`, value: `${guildEmojis}`, inline: true },
 				{ name: `ROLES (${interaction.guild.roles.cache.size})`, value: `${guildRoles}`, inline: true },
 			);
