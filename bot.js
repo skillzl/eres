@@ -1,14 +1,8 @@
 require('dotenv').config();
 const Client = require('./structures/Client');
 const { Player } = require('discord-player');
-const {
-	YouTubeExtractor,
-	SpotifyExtractor,
-	SoundCloudExtractor,
-	AppleMusicExtractor,
-	VimeoExtractor,
-	AttachmentExtractor,
-	ReverbnationExtractor } = require('@discord-player/extractor');
+const { SpotifyExtractor } = require('@discord-player/extractor');
+const { YoutubeiExtractor } = require('discord-player-youtubei');
 
 const fs = require('fs');
 
@@ -25,14 +19,8 @@ const player = new Player(client, {
 });
 
 // Register extractors to player
-player.extractors.register(YouTubeExtractor);
+player.extractors.register(YoutubeiExtractor);
 player.extractors.register(SpotifyExtractor);
-player.extractors.register(SoundCloudExtractor);
-player.extractors.register(AppleMusicExtractor);
-player.extractors.register(VimeoExtractor);
-player.extractors.register(ReverbnationExtractor);
-player.extractors.register(AttachmentExtractor);
-
 
 // Load functions from ./functions
 const functions = fs.readdirSync('./functions').filter((file) => file.endsWith('.js'));
